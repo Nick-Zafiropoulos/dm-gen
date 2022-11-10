@@ -8,7 +8,7 @@ const campaignSchema = mongoose.Schema({
     campaign_description: {
         type: String,
     },
-    dungeonMaster: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' }],
+    dungeon_master: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' }],
 });
 
 module.exports = mongoose.model('Campaign', campaignSchema);

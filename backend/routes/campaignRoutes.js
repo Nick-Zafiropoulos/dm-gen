@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { getCampaigns, postCampaign, updateCampaign, deleteCampaign } = require('../controllers/campaignController');
+const { protect } = require('../middleware/authMiddleware');
 
-router.get('/', getCampaigns);
+router.get('/', protect, getCampaigns);
 
-router.post('/', postCampaign);
+router.post('/', protect, postCampaign);
 
-router.put('/:id', updateCampaign);
+router.put('/:id', protect, updateCampaign);
 
-router.delete('/:id', deleteCampaign);
+router.delete('/:id', protect, deleteCampaign);
 
 module.exports = router;
