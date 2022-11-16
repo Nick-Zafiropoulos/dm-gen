@@ -22,20 +22,10 @@ class Navbar extends React.Component {
                         </button>
                         <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                             <li>
-                                {/* <a class='nav-link' aria-current='page' href='/campaigns/cid/newshop'>
-                                    New Shop
-                                </a> */}
                                 <Link to='/campaigns/cid/newshop'>New Shop</Link>
                             </li>
                             <li>
-                                <a class='nav-link' href='/campaigns/cid/newnpc'>
-                                    New NPC
-                                </a>
-                            </li>
-                            <li>
-                                <a class='nav-link' href='/'>
-                                    New Combatant
-                                </a>
+                                <Link to='/campaigns/cid/newnpc'>New NPC</Link>
                             </li>
                         </ul>
                         <div class='collapse navbar-collapse' id='navbarText'>
@@ -45,14 +35,14 @@ class Navbar extends React.Component {
                             <span class='navbar'>
                                 <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                     <li>
-                                        <a class='nav-link active' aria-current='page' href='/'>
+                                        <Link to='/'>
                                             <MdHome /> Home
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a class='nav-link' href='/login'>
+                                        <Link to='/login'>
                                             <MdLogout /> Logout
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </span>

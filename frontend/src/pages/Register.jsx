@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const Register = () => {
 
     return (
         <>
-            <section className='heading'>
+            <section className=''>
                 <h1>Register</h1>
             </section>
 
@@ -62,6 +63,7 @@ const Register = () => {
                             name='password'
                             value={password}
                             placeholder='Enter a password'
+                            onChange={onChange}
                         />
                     </div>
 
@@ -73,6 +75,7 @@ const Register = () => {
                             name='password2'
                             value={password2}
                             placeholder='Re-enter your password'
+                            onChange={onChange}
                         />
                     </div>
 
@@ -84,17 +87,17 @@ const Register = () => {
                 </form>
             </section>
 
-            <a className='btn btn-primary' href='/' role='button'>
-                Home
-            </a>
-
             <div>
-                <p>New User?</p>
+                <p>Already have an account?</p>
 
-                <a className='btn btn-primary' href='/login' role='button'>
+                <Link to='/login' className='btn btn-primary'>
                     Login
-                </a>
+                </Link>
             </div>
+
+            <Link to='/' className='btn btn-primary'>
+                Home
+            </Link>
         </>
     );
 };

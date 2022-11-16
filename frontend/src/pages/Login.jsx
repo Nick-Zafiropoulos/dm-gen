@@ -1,61 +1,79 @@
 import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const Login = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
 
-    componentDidMount() {
-        console.log('hello');
-    }
+    const { email, password } = formData;
 
-    render() {
-        return (
-            <div className='container text-center'>
-                <div className='row'>
-                    <h1>Login</h1>
-                </div>
+    const onChange = (e) => {
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    };
 
-                <form>
-                    <div class='mb-3'>
-                        <label for='exampleInputEmail1' class='form-label'>
-                            Username
-                        </label>
-                        <input type='email' class='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' />
-                        <div id='emailHelp' class='form-text'>
-                            We'll never share your credentials with anyone else.
-                        </div>
+    const onSubmit = (e) => {
+        e.preventDefault();
+    };
+
+    return (
+        <>
+            <section className=''>
+                <h1>Login</h1>
+            </section>
+
+            <section className='form'>
+                <form onSubmit={onSubmit}>
+                    <div className='form-group'>
+                        <input
+                            type='email'
+                            className='form-control'
+                            id='email'
+                            name='email'
+                            value={email}
+                            placeholder='Enter an email'
+                            onChange={onChange}
+                        />
                     </div>
-                    <div class='mb-3'>
-                        <label for='exampleInputPassword1' class='form-label'>
-                            Password
-                        </label>
-                        <input type='password' class='form-control' id='exampleInputPassword1' />
+
+                    <div className='form-group'>
+                        <input
+                            type='password'
+                            className='form-control'
+                            id='password'
+                            name='password'
+                            value={password}
+                            placeholder='Enter a password'
+                            onChange={onChange}
+                        />
                     </div>
 
-                    <button type='submit' class='btn btn-primary'>
-                        Submit
-                    </button>
+                    <div className='form-group'>
+                        <button type='submit' className='btn btn-primary'>
+                            Login
+                        </button>
+                    </div>
                 </form>
+            </section>
 
-                <a className='btn btn-primary' href='/' role='button'>
-                    Home
-                </a>
+            <Link to='/' className='btn btn-primary'>
+                Home
+            </Link>
 
-                <div>
-                    <p>New User?</p>
+            <div>
+                <p>New User?</p>
 
-                    <a className='btn btn-primary' href='/register' role='button'>
-                        Register
-                    </a>
-
-                    <a className='btn btn-primary' href='/campaigns/:uid' role='button'>
-                        Campaigns
-                    </a>
-                </div>
+                <Link to='/register' className='btn btn-primary'>
+                    Register
+                </Link>
             </div>
-        );
-    }
-}
+        </>
+    );
+};
 
 export default Login;
