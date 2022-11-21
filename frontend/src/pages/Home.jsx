@@ -1,17 +1,14 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import { useSelector, useDispatch } from 'react-redux';
 
-class Home extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+function Home() {
+    const { user } = useSelector((state) => state.auth);
 
-    // componentDidMount(props) {
-    //     console.log(props);
-    // }
-
-    render() {
-        return (
+    return (
+        <>
+            <Navbar />
             <div className='container text-center'>
                 <div className='row p-5'>
                     <h1>DM Gen</h1>
@@ -24,14 +21,20 @@ class Home extends React.Component {
                 </div>
                 <div className='row p-5'>
                     <div className='col'>
-                        <a className='btn btn-primary' href='/login' role='button'>
-                            Login
-                        </a>
+                        {user ? (
+                            <Link to='/campaigns/:uid' className='btn btn-primary'>
+                                My Campaigns
+                            </Link>
+                        ) : (
+                            <Link to='/login' className='btn btn-primary'>
+                                Login
+                            </Link>
+                        )}
                     </div>
                     <div className='col'>
-                        <a className='btn btn-primary' href='/register' role='button'>
+                        <Link to='/register' className='btn btn-primary'>
                             Register
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className='row'>
@@ -42,8 +45,8 @@ class Home extends React.Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+        </>
+    );
 }
 
 export default Home;

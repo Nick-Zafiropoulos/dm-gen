@@ -1,16 +1,37 @@
-import React from 'react';
+// import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { register, reset } from '../features/auth/authSlice';
+import Spinner from '../components/Spinner';
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        password2: '',
+        user_name: '',
+        user_email: '',
+        user_password: '',
+        user_password2: '',
     });
 
-    const { username, email, password, password2 } = formData;
+    const { user_name, user_email, user_password, user_password2 } = formData;
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+        if (isSuccess || user) {
+            navigate('/');
+        }
+
+        dispatch(reset());
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -21,7 +42,23 @@ const Register = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (user_password !== user_password2) {
+            toast.error('The entered passwords do not match');
+        } else {
+            const userData = {
+                user_name,
+                user_email,
+                user_password,
+            };
+
+            dispatch(register(userData));
+        }
     };
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <>
@@ -35,9 +72,9 @@ const Register = () => {
                         <input
                             type='text'
                             className='form-control'
-                            id='username'
-                            name='username'
-                            value={username}
+                            id='user_name'
+                            name='user_name'
+                            value={user_name}
                             placeholder='Enter a username'
                             onChange={onChange}
                         />
@@ -47,9 +84,9 @@ const Register = () => {
                         <input
                             type='email'
                             className='form-control'
-                            id='email'
-                            name='email'
-                            value={email}
+                            id='user_email'
+                            name='user_email'
+                            value={user_email}
                             placeholder='Enter an email'
                             onChange={onChange}
                         />
@@ -59,9 +96,9 @@ const Register = () => {
                         <input
                             type='password'
                             className='form-control'
-                            id='password'
-                            name='password'
-                            value={password}
+                            id='user_password'
+                            name='user_password'
+                            value={user_password}
                             placeholder='Enter a password'
                             onChange={onChange}
                         />
@@ -71,9 +108,9 @@ const Register = () => {
                         <input
                             type='password'
                             className='form-control'
-                            id='password2'
-                            name='password2'
-                            value={password2}
+                            id='user_password2'
+                            name='user_password2'
+                            value={user_password2}
                             placeholder='Re-enter your password'
                             onChange={onChange}
                         />

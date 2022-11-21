@@ -1,57 +1,84 @@
 import React from 'react';
 import { MdAccountCircle, MdLogin, MdHome, MdLogout } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout, reset } from '../features/auth/authSlice';
 
-class Navbar extends React.Component {
-    render() {
-        return (
-            <header className='header'>
-                <nav class='navbar navbar-expand-lg bg-light'>
-                    <div class='container-fluid'>
-                        <span class='navbar-brand'>My Campaigns</span>
-                        <button
-                            class='navbar-toggler'
-                            type='button'
-                            data-bs-toggle='collapse'
-                            data-bs-target='#navbarText'
-                            aria-controls='navbarText'
-                            aria-expanded='false'
-                            aria-label='Toggle navigation'
-                        >
-                            <span class='navbar-toggler-icon'></span>
-                        </button>
+function Navbar() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
+
+    const onLogout = () => {
+        dispatch(logout());
+        dispatch(reset());
+        navigate('/');
+    };
+
+    return (
+        <header className='header'>
+            <nav className='navbar navbar-expand-lg bg-light'>
+                <div className='container-fluid'>
+                    <span className='navbar-brand'>My Campaigns</span>
+                    <button
+                        className='navbar-toggler'
+                        type='button'
+                        data-bs-toggle='collapse'
+                        data-bs-target='#navbarText'
+                        aria-controls='navbarText'
+                        aria-expanded='false'
+                        aria-label='Toggle navigation'
+                    >
+                        <span className='navbar-toggler-icon'></span>
+                    </button>
+                    <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+                        <li>
+                            <Link to='/campaigns/cid/newshop'>New Shop</Link>
+                        </li>
+                        <li>
+                            <Link to='/campaigns/cid/newnpc'>New NPC</Link>
+                        </li>
+                    </ul>
+                    <div className='collapse navbar-collapse' id='navbarText'>
                         <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                            <li>
-                                <Link to='/campaigns/cid/newshop'>New Shop</Link>
-                            </li>
-                            <li>
-                                <Link to='/campaigns/cid/newnpc'>New NPC</Link>
-                            </li>
+                            <li className='nav-item'></li>
                         </ul>
-                        <div class='collapse navbar-collapse' id='navbarText'>
-                            <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
-                                <li class='nav-item'></li>
+                        <span className='navbar'>
+                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+                                {user ? (
+                                    <>
+                                        <li>
+                                            <Link to='/'>
+                                                <MdHome /> Home
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <button className='btn' onClick={onLogout}>
+                                                <MdLogout /> Logout
+                                            </button>
+                                        </li>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li>
+                                            <Link to='/'>
+                                                <MdHome /> Home
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/login'>
+                                                <MdLogin /> Login
+                                            </Link>
+                                        </li>
+                                    </>
+                                )}
                             </ul>
-                            <span class='navbar'>
-                                <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                                    <li>
-                                        <Link to='/'>
-                                            <MdHome /> Home
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to='/login'>
-                                            <MdLogout /> Logout
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
+                        </span>
                     </div>
-                </nav>
-            </header>
-        );
-    }
+                </div>
+            </nav>
+        </header>
+    );
 }
 
 export default Navbar;

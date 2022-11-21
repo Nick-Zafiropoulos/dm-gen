@@ -1,14 +1,35 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { login, reset } from '../features/auth/authSlice';
+import Spinner from '../components/Spinner';
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+        user_email: '',
+        user_password: '',
     });
 
-    const { email, password } = formData;
+    const { user_email, user_password } = formData;
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+        if (isSuccess || user) {
+            navigate('/campaigns/:uid');
+        }
+
+        dispatch(reset());
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -19,7 +40,18 @@ const Login = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        const userData = {
+            user_email,
+            user_password,
+        };
+
+        dispatch(login(userData));
     };
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <>
@@ -33,9 +65,9 @@ const Login = () => {
                         <input
                             type='email'
                             className='form-control'
-                            id='email'
-                            name='email'
-                            value={email}
+                            id='user_email'
+                            name='user_email'
+                            value={user_email}
                             placeholder='Enter an email'
                             onChange={onChange}
                         />
@@ -45,9 +77,9 @@ const Login = () => {
                         <input
                             type='password'
                             className='form-control'
-                            id='password'
-                            name='password'
-                            value={password}
+                            id='user_password'
+                            name='user_password'
+                            value={user_password}
                             placeholder='Enter a password'
                             onChange={onChange}
                         />
