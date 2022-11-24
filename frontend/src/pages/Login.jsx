@@ -25,7 +25,7 @@ const Login = () => {
             toast.error(message);
         }
         if (isSuccess || user) {
-            navigate('/campaigns/:uid');
+            navigate('/campaigns');
         }
 
         dispatch(reset());

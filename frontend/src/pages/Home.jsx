@@ -22,7 +22,7 @@ function Home() {
                 <div className='row p-5'>
                     <div className='col'>
                         {user ? (
-                            <Link to='/campaigns/:uid' className='btn btn-primary'>
+                            <Link to='/campaigns' className='btn btn-primary'>
                                 My Campaigns
                             </Link>
                         ) : (

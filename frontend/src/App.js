@@ -12,6 +12,7 @@ import Shop from './pages/Shop';
 import NPC from './pages/NPC';
 import NewShop from './pages/NewShop';
 import NewNPC from './pages/NewNPC';
+import NewCampaign from './pages/NewCampaign';
 import NoPage from './pages/NoPage';
 import Layout from './pages/Layout';
 
@@ -25,12 +26,13 @@ function App() {
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                     <Route path='/*' element={<NoPage />} />
-                    <Route path='/campaigns/:uid' element={<Campaigns />} />
+                    <Route path='/campaigns' element={<Campaigns />} />
                     <Route path='/campaigns/cid' element={<Campaign />} />
                     <Route path='/campaigns/cid/shopid' element={<Shop />} />
                     <Route path='/campaigns/cid/npcid' element={<NPC />} />
                     <Route path='/campaigns/cid/newshop' element={<NewShop />} />
                     <Route path='/campaigns/cid/newnpc' element={<NewNPC />} />
+                    <Route path='/campaigns/newcampaign' element={<NewCampaign />} />
                 </Routes>
             </BrowserRouter>
             <ToastContainer />

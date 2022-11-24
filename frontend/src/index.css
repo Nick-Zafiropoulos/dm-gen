@@ -29,3 +29,7 @@ a {
 .header ul li a svg {
     margin-right: 5px;
 }
+
+.navcolor {
+    background-color: $indigo-900;
+}

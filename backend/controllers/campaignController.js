@@ -13,12 +13,13 @@ const getCampaigns = asyncHandler(async (req, res) => {
 // @desc Create campaign
 // @route POST /api/campaigns
 const postCampaign = asyncHandler(async (req, res) => {
-    if (!req.body.campaign_name) {
+    if (!req.body.campaignData.campaign_name) {
         res.status(400);
-        throw new Error('Add a text field');
+        throw new Error('Please enter a campaign title');
     }
     const createCampaign = await Campaign.create({
-        campaign_name: req.body.campaign_name,
+        campaign_name: req.body.campaignData.campaign_name,
+        campaign_description: req.body.campaignData.campaign_description,
         dungeon_master: req.user.id,
     });
 
