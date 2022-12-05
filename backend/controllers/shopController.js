@@ -1,9 +1,13 @@
 const asyncHandler = require('express-async-handler');
+const Shop = require('../models/shopModel');
+const Campaign = require('../models/campaignModel');
 
 // @desc Get shop
 // @route GET /api/shops
 const getShops = asyncHandler(async (req, res) => {
-    res.send(`Shop list`);
+    const shops = await Shop.find({ shop_campaign: req.campaign.id });
+
+    res.send(shops);
 });
 
 // @desc Create shop

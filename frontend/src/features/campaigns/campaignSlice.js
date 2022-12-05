@@ -4,6 +4,7 @@ import campaignService from './campaignService';
 // Create initial state for campaign creation
 const initialState = {
     campaigns: [],
+    campaignInUse: null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -32,6 +33,12 @@ export const getCampaign = createAsyncThunk('campaign/getcampaign', async (_, th
             (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
+});
+
+// Set current campaign
+export const setCampaign = createAsyncThunk('campaign/setcampaign', async (campaign, thunkAPI) => {
+    const currentCampaign = campaign;
+    return currentCampaign;
 });
 
 // Creating campaign slice
@@ -68,6 +75,19 @@ export const campaignSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
+            })
+            .addCase(setCampaign.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.campaignInUse = action.payload;
+            })
+            .addCase(setCampaign.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(setCampaign.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.campaignInUse = action.payload;
             });
     },
 });
