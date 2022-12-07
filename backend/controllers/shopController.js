@@ -13,10 +13,12 @@ const getShops = asyncHandler(async (req, res) => {
 // @desc Create shop
 // @route POST /api/shops
 const postShop = asyncHandler(async (req, res) => {
-    if (!req.body.text) {
-        res.status(400);
-        throw new Error('Add a text field');
-    }
+    // if (!req.body.text) {
+    //     res.status(400);
+    //     throw new Error('Add a text field');
+    // }
+    console.log(req.body.shopData);
+    res.send(`this is a post`);
 });
 
 // @desc Update shop
