@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -18,21 +18,27 @@ function NewShopOptions() {
     });
 
     // category data
-    let weapon = false;
-    let armor = false;
-    let wondrousItem = false;
-    let ring = false;
-    let potion = false;
-    let scroll = false;
+    const categories = useRef({
+        weapon: false,
+        armor: false,
+        wondrousItem: false,
+        ring: false,
+        potion: false,
+        scroll: false,
+    });
+
     const categoryArray = [];
 
     // rarity data
-    let common = false;
-    let uncommon = false;
-    let rare = false;
-    let veryRare = false;
-    let legendary = false;
-    let artifact = false;
+    const rarities = useRef({
+        common: false,
+        uncommon: false,
+        rare: false,
+        veryRare: false,
+        legendary: false,
+        artifact: false,
+    });
+
     const rarityArray = [];
 
     const { shop_name, shop_owner, shop_location, shop_itemCount, shop_categories, shop_rarities, shop_prices } =
@@ -68,51 +74,71 @@ function NewShopOptions() {
         e.preventDefault();
 
         // populate selected categories array
-        if (weapon) {
+        if (categories.weapon) {
             categoryArray.push('Weapon');
         }
-        if (armor) {
+        if (categories.armor) {
             categoryArray.push('Armor');
         }
-        if (wondrousItem) {
+        if (categories.wondrousItem) {
             categoryArray.push('Wondrous Item');
         }
-        if (ring) {
+        if (categories.ring) {
             categoryArray.push('Ring');
         }
-        if (potion) {
+        if (categories.potion) {
             categoryArray.push('Potion');
         }
-        if (scroll) {
+        if (categories.scroll) {
             categoryArray.push('Scroll');
         }
 
         // populate selected rarities array
-        if (common) {
+        if (rarities.common) {
             rarityArray.push('Common');
         }
-        if (uncommon) {
+        if (rarities.uncommon) {
             rarityArray.push('Uncommon');
         }
-        if (rare) {
+        if (rarities.rare) {
             rarityArray.push('Rare');
         }
-        if (veryRare) {
+        if (rarities.veryRare) {
             rarityArray.push('Very Rare');
         }
-        if (legendary) {
+        if (rarities.legendary) {
             rarityArray.push('Legendary');
         }
-        if (artifact) {
+        if (rarities.artifact) {
             rarityArray.push('Artifact');
         }
-
-        console.log(categoryArray);
-        console.log(rarityArray);
 
         for (let element of categoryArray) {
             shop_categories.push(element);
         }
+
+        for (let element of rarityArray) {
+            shop_rarities.push(element);
+        }
+
+        // reset categories
+        categories.current.weapon = false;
+        categories.current.armor = false;
+        categories.current.wondrousItem = false;
+        categories.current.ring = false;
+        categories.current.potion = false;
+        categories.current.scroll = false;
+
+        // reset rarities
+        rarities.current.weapon = false;
+        rarities.current.armor = false;
+        rarities.current.wondrousItem = false;
+        rarities.current.ring = false;
+        rarities.current.potion = false;
+        rarities.current.scroll = false;
+
+        console.log(categoryArray);
+        console.log(rarityArray);
 
         const shopData = {
             shop_name,
@@ -209,10 +235,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!weapon) {
-                                weapon = true;
+                            if (!categories.weapon) {
+                                categories.weapon = true;
                             } else {
-                                weapon = false;
+                                categories.weapon = false;
                             }
                         }}
                     />
@@ -227,10 +253,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!armor) {
-                                armor = true;
+                            if (!categories.armor) {
+                                categories.armor = true;
                             } else {
-                                armor = false;
+                                categories.armor = false;
                             }
                         }}
                     />
@@ -245,10 +271,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!ring) {
-                                ring = true;
+                            if (!categories.ring) {
+                                categories.ring = true;
                             } else {
-                                ring = false;
+                                categories.ring = false;
                             }
                         }}
                     />
@@ -263,10 +289,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!wondrousItem) {
-                                wondrousItem = true;
+                            if (!categories.wondrousItem) {
+                                categories.wondrousItem = true;
                             } else {
-                                wondrousItem = false;
+                                categories.wondrousItem = false;
                             }
                         }}
                     />
@@ -281,10 +307,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!scroll) {
-                                scroll = true;
+                            if (!categories.scroll) {
+                                categories.scroll = true;
                             } else {
-                                scroll = false;
+                                categories.scroll = false;
                             }
                         }}
                     />
@@ -299,10 +325,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!potion) {
-                                potion = true;
+                            if (!categories.potion) {
+                                categories.potion = true;
                             } else {
-                                potion = false;
+                                categories.potion = false;
                             }
                         }}
                     />
@@ -318,10 +344,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!common) {
-                                common = true;
+                            if (!rarities.common) {
+                                rarities.common = true;
                             } else {
-                                common = false;
+                                rarities.common = false;
                             }
                         }}
                     />
@@ -336,10 +362,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!uncommon) {
-                                uncommon = true;
+                            if (!rarities.uncommon) {
+                                rarities.uncommon = true;
                             } else {
-                                uncommon = false;
+                                rarities.uncommon = false;
                             }
                         }}
                     />
@@ -354,10 +380,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!rare) {
-                                rare = true;
+                            if (!rarities.rare) {
+                                rarities.rare = true;
                             } else {
-                                rare = false;
+                                rarities.rare = false;
                             }
                         }}
                     />
@@ -372,10 +398,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!veryRare) {
-                                veryRare = true;
+                            if (!rarities.veryRare) {
+                                rarities.veryRare = true;
                             } else {
-                                veryRare = false;
+                                rarities.veryRare = false;
                             }
                         }}
                     />
@@ -390,10 +416,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!legendary) {
-                                legendary = true;
+                            if (!rarities.legendary) {
+                                rarities.legendary = true;
                             } else {
-                                legendary = false;
+                                rarities.legendary = false;
                             }
                         }}
                     />
@@ -408,10 +434,10 @@ function NewShopOptions() {
                         role='switch'
                         id='flexSwitchCheckDefault'
                         onChange={() => {
-                            if (!artifact) {
-                                artifact = true;
+                            if (!rarities.artifact) {
+                                rarities.artifact = true;
                             } else {
-                                artifact = false;
+                                rarities.artifact = false;
                             }
                         }}
                     />
