@@ -1,9 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import shopService from './shopService';
 
+const shopFromLocalStorage = JSON.parse(localStorage.getItem('localStorageShop'));
+
 // Create initial state for campaign creation
 const initialState = {
     shops: [],
+    shopInUse: shopFromLocalStorage ? shopFromLocalStorage : null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -24,23 +27,27 @@ export const createShop = createAsyncThunk('shop/createshop', async (shopData, t
     }
 });
 
-// // Get campaigns from DB
-// export const getCampaign = createAsyncThunk('campaign/getcampaign', async (_, thunkAPI) => {
-//     try {
-//         const token = thunkAPI.getState().auth.user.token;
-//         return await campaignService.getCampaign(token);
-//     } catch (error) {
-//         const message =
-//             (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-//         return thunkAPI.rejectWithValue(message);
-//     }
-// });
+// Get shops from DB
+export const getShop = createAsyncThunk('shop/getshop', async (_, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        const currentCampaign = thunkAPI.getState().campaign.campaignInUse;
 
-// // Set current campaign
-// export const setCampaign = createAsyncThunk('campaign/setcampaign', async (campaign, thunkAPI) => {
-//     const currentCampaign = campaign;
-//     return currentCampaign;
-// });
+        return await shopService.getShop(currentCampaign, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+// Set current shop
+export const setShop = createAsyncThunk('shop/setshop', async (shop, thunkAPI) => {
+    const currentShop = shop;
+
+    localStorage.setItem('localStorageShop', JSON.stringify(currentShop));
+    return currentShop;
+});
 
 // Creating shop slice
 export const shopSlice = createSlice({
@@ -63,33 +70,33 @@ export const shopSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
+            })
+            .addCase(getShop.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getShop.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.shops = action.payload;
+            })
+            .addCase(getShop.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(setShop.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.shopInUse = action.payload;
+            })
+            .addCase(setShop.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(setShop.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.shopInUse = action.payload;
             });
-        // .addCase(getCampaign.pending, (state) => {
-        //     state.isLoading = true;
-        // })
-        // .addCase(getCampaign.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.campaigns = action.payload;
-        // })
-        // .addCase(getCampaign.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // })
-        // .addCase(setCampaign.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.campaignInUse = action.payload;
-        // })
-        // .addCase(setCampaign.pending, (state) => {
-        //     state.isLoading = true;
-        // })
-        // .addCase(setCampaign.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.campaignInUse = action.payload;
-        // });
     },
 });
 

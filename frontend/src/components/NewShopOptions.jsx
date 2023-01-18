@@ -14,7 +14,6 @@ function NewShopOptions() {
         shop_itemCount: '',
         shop_categories: [],
         shop_rarities: [],
-        shop_prices: 'fair',
     });
 
     // category data
@@ -25,6 +24,8 @@ function NewShopOptions() {
         ring: false,
         potion: false,
         scroll: false,
+        wand: false,
+        staff: false,
     });
 
     const categoryArray = [];
@@ -41,8 +42,7 @@ function NewShopOptions() {
 
     const rarityArray = [];
 
-    const { shop_name, shop_owner, shop_location, shop_itemCount, shop_categories, shop_rarities, shop_prices } =
-        formData;
+    const { shop_name, shop_owner, shop_location, shop_itemCount, shop_categories, shop_rarities } = formData;
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -81,7 +81,7 @@ function NewShopOptions() {
             categoryArray.push('Armor');
         }
         if (categories.wondrousItem) {
-            categoryArray.push('Wondrous Item');
+            categoryArray.push('Wondrous Items');
         }
         if (categories.ring) {
             categoryArray.push('Ring');
@@ -91,6 +91,12 @@ function NewShopOptions() {
         }
         if (categories.scroll) {
             categoryArray.push('Scroll');
+        }
+        if (categories.wand) {
+            categoryArray.push('Wand');
+        }
+        if (categories.staff) {
+            categoryArray.push('Staff');
         }
 
         // populate selected rarities array
@@ -128,17 +134,16 @@ function NewShopOptions() {
         categories.current.ring = false;
         categories.current.potion = false;
         categories.current.scroll = false;
+        categories.current.wand = false;
+        categories.current.staff = false;
 
         // reset rarities
-        rarities.current.weapon = false;
-        rarities.current.armor = false;
-        rarities.current.wondrousItem = false;
-        rarities.current.ring = false;
-        rarities.current.potion = false;
-        rarities.current.scroll = false;
-
-        console.log(categoryArray);
-        console.log(rarityArray);
+        rarities.current.common = false;
+        rarities.current.uncommon = false;
+        rarities.current.rare = false;
+        rarities.current.veryRare = false;
+        rarities.current.legendary = false;
+        rarities.current.artifact = false;
 
         const shopData = {
             shop_name,
@@ -147,11 +152,10 @@ function NewShopOptions() {
             shop_itemCount,
             shop_categories,
             shop_rarities,
-            shop_prices,
         };
         dispatch(createShop({ shopData }));
 
-        navigate('/shops');
+        navigate('/campaign');
     };
 
     if (isLoading) {
@@ -336,6 +340,42 @@ function NewShopOptions() {
                         Potions
                     </label>
                 </div>
+                <div className='form-check form-switch'>
+                    <input
+                        className='form-check-input'
+                        type='checkbox'
+                        role='switch'
+                        id='flexSwitchCheckDefault'
+                        onChange={() => {
+                            if (!categories.wand) {
+                                categories.wand = true;
+                            } else {
+                                categories.wand = false;
+                            }
+                        }}
+                    />
+                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
+                        Wands
+                    </label>
+                </div>
+                <div className='form-check form-switch'>
+                    <input
+                        className='form-check-input'
+                        type='checkbox'
+                        role='switch'
+                        id='flexSwitchCheckDefault'
+                        onChange={() => {
+                            if (!categories.staff) {
+                                categories.staff = true;
+                            } else {
+                                categories.staff = false;
+                            }
+                        }}
+                    />
+                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
+                        Staves
+                    </label>
+                </div>
                 <h6 className='mt-4'>What rarities of items are in the shop?</h6>
                 <div className='form-check form-switch'>
                     <input
@@ -446,46 +486,6 @@ function NewShopOptions() {
                     </label>
                 </div>
 
-                <h6 className='mt-4'>How does the shopkeeper price his wares?</h6>
-                <div className='form-check form-check-inline'>
-                    <input
-                        className='form-check-input'
-                        type='radio'
-                        name='inlineRadioOptions'
-                        id='fair'
-                        value='fair'
-                        onClick={priceChange}
-                    />
-                    <label className='form-check-label' htmlFor='inlineRadio1'>
-                        Fair
-                    </label>
-                </div>
-                <div className='form-check form-check-inline'>
-                    <input
-                        className='form-check-input'
-                        type='radio'
-                        name='inlineRadioOptions'
-                        id='overpriced'
-                        value='overpriced'
-                        onClick={priceChange}
-                    />
-                    <label className='form-check-label' htmlFor='inlineRadio2'>
-                        Overpriced
-                    </label>
-                </div>
-                <div className='form-check form-check-inline'>
-                    <input
-                        className='form-check-input'
-                        type='radio'
-                        name='inlineRadioOptions'
-                        id='chaotic'
-                        value='chaotic'
-                        onClick={priceChange}
-                    />
-                    <label className='form-check-label' htmlFor='inlineRadio2'>
-                        Chaotic
-                    </label>
-                </div>
                 <div>
                     <button type='submit' className='btn btn-primary mt-4'>
                         Submit

@@ -1,9 +1,12 @@
 const asyncHandler = require('express-async-handler');
+const Item = require('../models/itemModel');
 
 // @desc Get item
 // @route GET /api/items
 const getItems = asyncHandler(async (req, res) => {
-    res.send(`Item list`);
+    const items = await Item.find({ _id: req.query.itemList[0] });
+
+    res.send(items);
 });
 
 // @desc Create item

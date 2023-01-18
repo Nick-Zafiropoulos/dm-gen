@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import campaignService from './campaignService';
 
+// Get current campaign from localStorage
+const campaignFromLocalStorage = JSON.parse(localStorage.getItem('localStorageCampaign'));
+
 // Create initial state for campaign creation
 const initialState = {
     campaigns: [],
-    campaignInUse: null,
+    campaignInUse: campaignFromLocalStorage ? campaignFromLocalStorage : null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -38,6 +41,8 @@ export const getCampaign = createAsyncThunk('campaign/getcampaign', async (_, th
 // Set current campaign
 export const setCampaign = createAsyncThunk('campaign/setcampaign', async (campaign, thunkAPI) => {
     const currentCampaign = campaign;
+
+    localStorage.setItem('localStorageCampaign', JSON.stringify(currentCampaign));
     return currentCampaign;
 });
 

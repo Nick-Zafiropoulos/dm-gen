@@ -1,0 +1,9 @@
+Bugs:
+// Fix shopcontroller shop creation to not hang when a category+rarity combo has no items to pull from to begin with
+
+Features:
+X // Populate shop pages with their items list
+// Hook up NPC generation
+// Complete deletion for shops, items in shop lists, and NPCs
+// Format items display
+// Implement Filter/Search in Campaign Dashboard

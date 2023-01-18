@@ -12,11 +12,18 @@ const shopSchema = mongoose.Schema({
         type: String,
     },
     shop_campaign: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Campaign',
+        type: String,
+        required: [true],
     },
-    shop_list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
+    shop_list: {
+        type: Array,
+    },
+    shop_hidden_list: {
+        type: Array,
+    },
 });
 
 module.exports = mongoose.model('Shop', shopSchema);
+
+// shop_list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
+//     shop_hidden_list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],

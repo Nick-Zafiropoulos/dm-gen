@@ -34,7 +34,7 @@ function Navbar() {
                         </button>
                         <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                             <li>
-                                <Link to='/campaigns/cid/newshop'>New Shop</Link>
+                                <Link to='/shop/newshop'>New Shop</Link>
                             </li>
                             <li>
                                 <Link to='/campaigns/cid/newnpc'>New NPC</Link>

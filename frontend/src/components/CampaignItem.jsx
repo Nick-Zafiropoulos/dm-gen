@@ -9,12 +9,13 @@ function CampaignItem({ campaign }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         const currentCampaign = campaign._id;
-        console.log(currentCampaign);
-        dispatch(setCampaign(currentCampaign));
+
+        await dispatch(setCampaign(currentCampaign));
+        navigate('/campaign');
     };
 
     return (
@@ -24,9 +25,6 @@ function CampaignItem({ campaign }) {
                 <Accordion.Body>
                     <form onSubmit={onSubmit}>
                         <div>
-                            {/* <Link to='/campaigns/cid' className='btn btn-primary mb-3'>
-                                Go To Campaign
-                            </Link> */}
                             <button type='submit' className='btn btn-primary'>
                                 Go To Campaign
                             </button>
