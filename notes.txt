@@ -3,6 +3,8 @@ Bugs:
 
 Features:
 X // Populate shop pages with their items list
+// finish setting up npc post (onchanges in newnpcoptions)
+// Create tables for NPC traits to randomly roll on in separate file, then include that file in the new NPC generation.
 // Hook up NPC generation
 // Complete deletion for shops, items in shop lists, and NPCs
 // Format items display

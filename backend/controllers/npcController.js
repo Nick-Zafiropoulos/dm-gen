@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const NPC = require('../models/npcModel');
 
 // @desc Get npc
 // @route GET /api/npcs
