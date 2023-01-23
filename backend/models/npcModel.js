@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const npcSchema = mongoose.Schema({
     npc_name: {
         type: String,
-        required: [true],
+        // required: [true],
     },
     npc_species: {
         type: String,
@@ -21,10 +21,10 @@ const npcSchema = mongoose.Schema({
         type: String,
     },
     npc_personality: {
-        type: Array,
+        type: String,
     },
     npc_flaws: {
-        type: Array,
+        type: String,
     },
     npc_campaign: {
         type: String,

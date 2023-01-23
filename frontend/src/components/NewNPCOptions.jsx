@@ -17,8 +17,8 @@ function NewNPCOptions() {
         npc_gender: '',
         npc_location: '',
         npc_occupation: '',
-        npc_personality: [],
-        npc_flaws: [],
+        npc_personality: '',
+        npc_flaws: '',
     });
 
     const { npc_name, npc_species, npc_age, npc_gender, npc_location, npc_occupation, npc_personality, npc_flaws } =
@@ -73,6 +73,9 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_name'
+                        name='npc_name'
+                        value={npc_name}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
                         placeholder='Leave blank for a generated result'
@@ -86,9 +89,13 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_species'
+                        name='npc_species'
+                        value={npc_species}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
                         placeholder='Leave blank for a generated result'
+                        onChange={onChange}
                     />
                 </div>
                 <div className='input-group input-group-sm mb-3 w-25'>
@@ -98,9 +105,13 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_age'
+                        name='npc_age'
+                        value={npc_age}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
                         placeholder='Leave blank for a generated result'
+                        onChange={onChange}
                     />
                 </div>
                 <div className='input-group input-group-sm mb-3 w-25'>
@@ -110,9 +121,13 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_gender'
+                        name='npc_gender'
+                        value={npc_gender}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
                         placeholder='Leave blank for a generated result'
+                        onChange={onChange}
                     />
                 </div>
                 <div className='input-group input-group-sm mb-3 w-25'>
@@ -122,9 +137,13 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_occupation'
+                        name='npc_occupation'
+                        value={npc_occupation}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
                         placeholder='Leave blank for a generated result'
+                        onChange={onChange}
                     />
                 </div>
                 <div className='input-group input-group-sm mb-3 w-25'>
@@ -134,9 +153,13 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_personality'
+                        name='npc_personality'
+                        value={npc_personality}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
                         placeholder='Leave blank for a generated result'
+                        onChange={onChange}
                     />
                 </div>
                 <div className='input-group input-group-sm mb-3 w-25'>
@@ -146,9 +169,13 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_flaws'
+                        name='npc_flaws'
+                        value={npc_flaws}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
                         placeholder='Leave blank for a generated result'
+                        onChange={onChange}
                     />
                 </div>
                 <div className='input-group input-group-sm mb-3 w-25'>
@@ -158,9 +185,13 @@ function NewNPCOptions() {
                     <input
                         type='text'
                         className='form-control'
+                        id='npc_location'
+                        name='npc_location'
+                        value={npc_location}
                         aria-label='Sizing example input'
                         aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
+                        placeholder='Leave blank for no location'
+                        onChange={onChange}
                     />
                 </div>
 
