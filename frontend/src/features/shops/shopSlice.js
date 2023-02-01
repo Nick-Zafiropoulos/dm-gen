@@ -17,7 +17,7 @@ const initialState = {
 export const createShop = createAsyncThunk('shop/createshop', async (shopData, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        const currentCampaign = thunkAPI.getState().campaign.campaignInUse;
+        const currentCampaign = thunkAPI.getState().campaign.campaignInUse._id;
 
         return await shopService.createShop(shopData, token, currentCampaign);
     } catch (error) {
@@ -31,7 +31,7 @@ export const createShop = createAsyncThunk('shop/createshop', async (shopData, t
 export const getShop = createAsyncThunk('shop/getshop', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        const currentCampaign = thunkAPI.getState().campaign.campaignInUse;
+        const currentCampaign = thunkAPI.getState().campaign.campaignInUse._id;
 
         return await shopService.getShop(currentCampaign, token);
     } catch (error) {
@@ -47,6 +47,19 @@ export const setShop = createAsyncThunk('shop/setshop', async (shop, thunkAPI) =
 
     localStorage.setItem('localStorageShop', JSON.stringify(currentShop));
     return currentShop;
+});
+
+// delete shop from DB
+export const deleteShop = createAsyncThunk('shop/deleteshop', async (shopToDelete, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+
+        return await shopService.deleteShop(shopToDelete, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
 });
 
 // Creating shop slice

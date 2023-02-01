@@ -7,10 +7,13 @@ X // Populate shop pages with their items list
 X // finish setting up npc post (onchanges in newnpcoptions)
 X // Create tables for NPC traits to randomly roll on in separate file, then include that file in the new NPC generation.
 X // Hook up NPC generation
-// Complete deletion for shops, items in shop lists, and NPCs
-// Format items display
+X // Set up NPC pages
+X // Set up player access to campaigns (hashed link to join a campaign?)
+// Complete deletion for shops (X), items in shop lists, and NPCs (X), and show buttons only to DM (X)
+// Make sure players and DMs can only join a campaign once
+// Format items display, Navbar conditionals
 // Implement Filter/Search in Campaign Dashboard
-// Styling
+// Styling (iron and parchment?)
 // Deployment
 
 

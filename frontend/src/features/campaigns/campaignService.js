@@ -28,9 +28,23 @@ const getCampaign = async (token) => {
     return response.data;
 };
 
+// Update a campaign
+const updateCampaign = async (joinCode, token) => {
+    const tokenHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.put(API_URL, { code: `${joinCode}` }, tokenHeader);
+
+    return response.data;
+};
+
 const campaignService = {
     createCampaign,
     getCampaign,
+    updateCampaign,
 };
 
 export default campaignService;

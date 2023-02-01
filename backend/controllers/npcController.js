@@ -9,7 +9,9 @@ const npcSpecies = require('../tables/npcSpecies');
 // @desc Get npc
 // @route GET /api/npcs
 const getNpcs = asyncHandler(async (req, res) => {
-    res.send(`Npc list`);
+    const npcs = await NPC.find({ npc_campaign: req.query.currentCampaign });
+
+    res.send(npcs);
 });
 
 // @desc Create npc
@@ -106,13 +108,48 @@ const postNpc = asyncHandler(async (req, res) => {
 // @desc Update npc
 // @route PUT /api/npcs/:id
 const updateNpc = asyncHandler(async (req, res) => {
-    res.send(`updated Npc`);
+    const npcToUpdate = await NPC.findByIdAndUpdate(
+        { _id: req.body.npcInfo.npc_id },
+        {
+            npc_name: req.body.npcInfo.npc_name,
+            npc_species: req.body.npcInfo.npc_species,
+            npc_age: req.body.npcInfo.npc_age,
+            npc_gender: req.body.npcInfo.npc_gender,
+            npc_occupation: req.body.npcInfo.npc_occupation,
+            npc_personality: req.body.npcInfo.npc_personality,
+            npc_flaws: req.body.npcInfo.npc_flaws,
+            npc_location: req.body.npcInfo.npc_location,
+        }
+    );
+
+    let sendBackNPC = await NPC.findOne({ _id: req.body.npcInfo.npc_id });
+    // if (!npcToUpdate) {
+    //     res.status(400).json('NPC Not Found');
+    // }
+    // const user = await User.findById(req.user.id);
+    // // check to find user
+    // if (!user) {
+    //     res.status(401);
+    //     throw new Error('User not found');
+    // }
+    // npcToUpdate.npc_name = req.body.npcInfo.npc_name;
+    // npcToUpdate.npc_species = req.body.npcInfo.species;
+    // npcToUpdate.npc_age = req.body.npcInfo.age;
+    // npcToUpdate.npc_gender = req.body.npcInfo.gender;
+    // npcToUpdate.npc_occupation = req.body.npcInfo.occupation;
+    // npcToUpdate.npc_personality = req.body.npcInfo.personality;
+    // npcToUpdate.npc_flaws = req.body.npcInfo.flaws;
+    // npcToUpdate.npc_location = req.body.npcInfo.location;
+    // await npcToUpdate.save();
+
+    res.send(sendBackNPC);
 });
 
 // @desc Delete npc
 // @route DELETE /api/npcs/:id
 const deleteNpc = asyncHandler(async (req, res) => {
-    res.send(`deleted Npc`);
+    const willDelete = await NPC.deleteOne({ _id: req.query.npcToDelete });
+    res.send(willDelete);
 });
 
 module.exports = {

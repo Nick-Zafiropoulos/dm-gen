@@ -27,9 +27,36 @@ const getNPC = async (currentCampaign, token) => {
     return response.data;
 };
 
+// Update a npc
+const updateNPC = async (npcInfo, token) => {
+    const tokenHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.put(API_URL, { npcInfo }, tokenHeader);
+
+    return response.data;
+};
+
+// Delete a npc
+const deleteNPC = async (npcToDelete, token) => {
+    const tokenHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.delete(`${API_URL}?npcToDelete=${npcToDelete}`, tokenHeader);
+    return response.data;
+};
+
 const npcService = {
     createNPC,
     getNPC,
+    deleteNPC,
+    updateNPC,
 };
 
 export default npcService;

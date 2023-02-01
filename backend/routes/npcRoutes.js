@@ -6,8 +6,8 @@ router.get('/', getNpcs);
 
 router.post('/', postNpc);
 
-router.put('/:id', updateNpc);
+router.put('/', updateNpc);
 
-router.delete('/:id', deleteNpc);
+router.delete('/', deleteNpc);
 
 module.exports = router;

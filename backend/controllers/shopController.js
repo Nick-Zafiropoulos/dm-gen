@@ -96,7 +96,8 @@ const updateShop = asyncHandler(async (req, res) => {
 // @desc Delete shop
 // @route DELETE /api/shops/:id
 const deleteShop = asyncHandler(async (req, res) => {
-    res.send(`deleted Shop`);
+    const willDelete = await Shop.deleteOne({ _id: req.query.shopToDelete });
+    res.send(willDelete);
 });
 
 module.exports = {

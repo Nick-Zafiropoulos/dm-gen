@@ -7,8 +7,8 @@ router.get('/', protect, getCampaigns);
 
 router.post('/', protect, postCampaign);
 
-router.put('/:id', protect, updateCampaign);
+router.put('/', protect, updateCampaign);
 
-router.delete('/:id', protect, deleteCampaign);
+router.delete('/', protect, deleteCampaign);
 
 module.exports = router;

@@ -14,6 +14,7 @@ import NewShop from './pages/NewShop';
 import NewNPC from './pages/NewNPC';
 import NewCampaign from './pages/NewCampaign';
 import NoPage from './pages/NoPage';
+import JoinCampaign from './pages/JoinCampaign';
 import Layout from './pages/Layout';
 
 function App() {
@@ -27,14 +28,17 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route path='/*' element={<NoPage />} />
 
+                    <Route path='/join' element={<JoinCampaign />} />
+
                     <Route path='/campaigns' element={<Campaigns />} />
                     <Route path='/campaign' element={<Campaign />} />
 
                     <Route path='/shop' element={<Shop />} />
                     <Route path='/shop/newshop' element={<NewShop />} />
 
-                    <Route path='/campaigns/cid/npcid' element={<NPC />} />
-                    <Route path='/campaigns/cid/newnpc' element={<NewNPC />} />
+                    <Route path='/npc' element={<NPC />} />
+                    <Route path='/npc/newnpc' element={<NewNPC />} />
+
                     <Route path='/campaigns/newcampaign' element={<NewCampaign />} />
                 </Routes>
             </BrowserRouter>

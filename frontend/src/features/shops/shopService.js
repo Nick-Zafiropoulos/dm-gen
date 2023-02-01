@@ -28,9 +28,22 @@ const getShop = async (currentCampaign, token) => {
     return response.data;
 };
 
+// Delete a shop
+const deleteShop = async (shopToDelete, token) => {
+    const tokenHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.delete(`${API_URL}?shopToDelete=${shopToDelete}`, tokenHeader);
+    return response.data;
+};
+
 const shopService = {
     createShop,
     getShop,
+    deleteShop,
 };
 
 export default shopService;

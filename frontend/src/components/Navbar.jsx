@@ -8,12 +8,65 @@ function Navbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
+    const { campaignInUse } = useSelector((state) => state.campaign);
 
     const onLogout = () => {
         dispatch(logout());
         dispatch(reset());
         navigate('/');
     };
+
+    let CampaignCreateVisibility;
+    if (document.URL.includes('campaigns')) {
+        CampaignCreateVisibility = (
+            <li>
+                <Link to='/campaigns/newcampaign'>Create a Campaign</Link>
+            </li>
+        );
+    } else {
+        CampaignCreateVisibility = <p></p>;
+    }
+
+    let ShopCreateVisibility;
+    if (
+        document.URL.includes('campaign') &&
+        !document.URL.includes('campaigns') &&
+        user._id == campaignInUse.dungeon_master[0]
+    ) {
+        ShopCreateVisibility = (
+            <li>
+                <Link to='/shop/newshop'>New Shop</Link>
+            </li>
+        );
+    } else {
+        ShopCreateVisibility = <p></p>;
+    }
+
+    let NPCCreateVisibility;
+    if (
+        document.URL.includes('campaign') &&
+        !document.URL.includes('campaigns') &&
+        user._id == campaignInUse.dungeon_master[0]
+    ) {
+        NPCCreateVisibility = (
+            <li>
+                <Link to='/npc/newnpc'>New NPC</Link>
+            </li>
+        );
+    } else {
+        NPCCreateVisibility = <p></p>;
+    }
+
+    let CampaignJoinVisibility;
+    if (document.URL.includes('campaigns')) {
+        CampaignJoinVisibility = (
+            <li>
+                <Link to='/join'>Join a Campaign</Link>
+            </li>
+        );
+    } else {
+        CampaignJoinVisibility = <p></p>;
+    }
 
     return (
         <header className='header'>
@@ -33,15 +86,10 @@ function Navbar() {
                             <span className='navbar-toggler-icon'></span>
                         </button>
                         <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                            <li>
-                                <Link to='/shop/newshop'>New Shop</Link>
-                            </li>
-                            <li>
-                                <Link to='/campaigns/cid/newnpc'>New NPC</Link>
-                            </li>
-                            <li>
-                                <Link to='/campaigns/newcampaign'>Create a Campaign</Link>
-                            </li>
+                            {ShopCreateVisibility}
+                            {NPCCreateVisibility}
+                            {CampaignCreateVisibility}
+                            {CampaignJoinVisibility}
                         </ul>
 
                         <div className='collapse navbar-collapse' id='navbarText'>

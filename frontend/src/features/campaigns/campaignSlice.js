@@ -38,6 +38,18 @@ export const getCampaign = createAsyncThunk('campaign/getcampaign', async (_, th
     }
 });
 
+// Update campaign
+export const updateCampaign = createAsyncThunk('campaign/updatecampaign', async (joinCode, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        return await campaignService.updateCampaign(joinCode, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // Set current campaign
 export const setCampaign = createAsyncThunk('campaign/setcampaign', async (campaign, thunkAPI) => {
     const currentCampaign = campaign;
@@ -93,6 +105,11 @@ export const campaignSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.campaignInUse = action.payload;
+            })
+            .addCase(updateCampaign.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
             });
     },
 });

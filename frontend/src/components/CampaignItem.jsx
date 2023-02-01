@@ -9,14 +9,25 @@ function CampaignItem({ campaign }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
+
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        const currentCampaign = campaign._id;
+        const currentCampaign = campaign;
 
         await dispatch(setCampaign(currentCampaign));
         navigate('/campaign');
     };
+
+    let campaignLinkVisibility;
+    console.log(campaign.dungeon_master);
+    console.log(user._id);
+    if (user._id == campaign.dungeon_master[0]) {
+        campaignLinkVisibility = <div>Campaign Link: {campaign.campaign_link}</div>;
+    } else {
+        campaignLinkVisibility = <p></p>;
+    }
 
     return (
         <Accordion>
@@ -30,6 +41,7 @@ function CampaignItem({ campaign }) {
                             </button>
                         </div>
                         <div>{campaign.campaign_description}</div>
+                        {campaignLinkVisibility}
                     </form>
                 </Accordion.Body>
             </Accordion.Item>
