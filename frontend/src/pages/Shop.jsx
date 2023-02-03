@@ -4,7 +4,7 @@ import ShopList from '../components/ShopList';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteShop, reset } from '../features/shops/shopSlice';
+import { deleteShop, reset, getShop } from '../features/shops/shopSlice';
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -14,9 +14,11 @@ const Shop = () => {
     const { shopInUse } = useSelector((state) => state.shop);
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
+    useEffect(() => {}, [user, navigate, isError, message, dispatch]);
+
     useEffect(() => {
-        // dispatch(getItem());
-    }, [user, navigate, isError, message, dispatch]);
+        dispatch(getShop());
+    }, [shopInUse]);
 
     const shopDelete = (e) => {
         e.preventDefault();
@@ -58,10 +60,7 @@ const Shop = () => {
                     <h6 className='m-3'>Owner: {shopInUse.shop_owner}</h6>
                     <h6 className='m-3'>Location: {shopInUse.shop_location}</h6>
                 </div>
-                <div className='d-flex align-items-center justify-content-end col'>
-                    {editVisibility}
-                    {deleteVisibility}
-                </div>
+                <div className='d-flex align-items-center justify-content-end col'>{deleteVisibility}</div>
             </div>
             <div className='row'>
                 {shopInUse.shop_list.length >= 0 ? (

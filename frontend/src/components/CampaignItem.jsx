@@ -3,9 +3,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setCampaign, reset } from '../features/campaigns/campaignSlice';
+import { setCampaign, reset, leaveCampaign, deleteCampaign } from '../features/campaigns/campaignSlice';
 
-function CampaignItem({ campaign }) {
+const CampaignItem = ({ campaign }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -20,6 +20,24 @@ function CampaignItem({ campaign }) {
         navigate('/campaign');
     };
 
+    const clickLeaveCampaign = (e) => {
+        e.preventDefault();
+
+        const joinCode = campaign.campaign_link;
+
+        dispatch(leaveCampaign(joinCode));
+        navigate('/');
+    };
+
+    const clickDeleteCampaign = (e) => {
+        e.preventDefault();
+
+        const campaignId = campaign._id;
+
+        dispatch(deleteCampaign(campaignId));
+        navigate('/');
+    };
+
     let campaignLinkVisibility;
     console.log(campaign.dungeon_master);
     console.log(user._id);
@@ -27,6 +45,30 @@ function CampaignItem({ campaign }) {
         campaignLinkVisibility = <div>Campaign Link: {campaign.campaign_link}</div>;
     } else {
         campaignLinkVisibility = <p></p>;
+    }
+
+    let leaveLinkVisibility;
+    if (user._id == campaign.dungeon_master[0]) {
+        leaveLinkVisibility = <p></p>;
+    } else {
+        leaveLinkVisibility = (
+            <button onClick={clickLeaveCampaign} type='button' className='btn btn-primary'>
+                Leave Campaign
+            </button>
+        );
+    }
+
+    let campaignDeleteVisibility;
+    console.log(campaign.dungeon_master);
+    console.log(user._id);
+    if (user._id == campaign.dungeon_master[0]) {
+        campaignDeleteVisibility = (
+            <button onClick={clickDeleteCampaign} type='submit' className='btn btn-primary btn-danger'>
+                Delete Campaign
+            </button>
+        );
+    } else {
+        campaignDeleteVisibility = <p></p>;
     }
 
     return (
@@ -42,43 +84,13 @@ function CampaignItem({ campaign }) {
                         </div>
                         <div>{campaign.campaign_description}</div>
                         {campaignLinkVisibility}
+                        {leaveLinkVisibility}
+                        {campaignDeleteVisibility}
                     </form>
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
-
-        // <div className='accordion' id='accordionExample'>
-        //     <div className='accordion-item'>
-        //         <h2 className='accordion-header' id='headingOne'>
-        //             <button
-        //                 className='accordion-button'
-        //                 type='button'
-        //                 data-bs-toggle='collapse'
-        //                 data-bs-target='#collapseOne'
-        //                 aria-expanded='true'
-        //                 aria-controls='collapseOne'
-        //             >
-        //                 {campaign.campaign_name}
-        //             </button>
-        //         </h2>
-        //         <div
-        //             id='collapseOne'
-        //             className='accordion-collapse collapse show'
-        //             aria-labelledby='headingOne'
-        //             data-bs-parent='#accordionExample'
-        //         >
-        //             <div className='accordion-body'>
-        //                 <div>
-        //                     <a className='btn btn-primary mb-3' href='/campaigns/cid' role='button'>
-        //                         Go To Campaign
-        //                     </a>
-        //                 </div>
-        //                 <strong>{campaign.campaign_description}</strong>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     );
-}
+};
 
 export default CampaignItem;

@@ -2,6 +2,8 @@ const asyncHandler = require('express-async-handler');
 const Campaign = require('../models/campaignModel');
 const User = require('../models/userModel');
 const { createId } = require('@paralleldrive/cuid2');
+const NPC = require('../models/npcModel');
+const Shop = require('../models/shopModel');
 
 // @desc Get all campaigns that match the dungeon_master key of the current user
 // @route GET /api/campaigns
@@ -56,7 +58,7 @@ const updateCampaign = asyncHandler(async (req, res) => {
     //     throw new Error('The user is already the DM of this campaign');
     // }
 
-    if (campaign.campaign_players.includes(req.user.id)) {
+    if (campaign.campaign_players.includes(req.user.id) || campaign.dungeon_master.includes(req.user.id)) {
         res.status(400);
         throw new Error('User is already a part of that campaign');
     } else {
@@ -66,10 +68,8 @@ const updateCampaign = asyncHandler(async (req, res) => {
     res.send(campaign);
 });
 
-// @desc Delete campaign
-// @route DELETE /api/campaigns/:id
-const deleteCampaign = asyncHandler(async (req, res) => {
-    const campaign = await Campaign.findById(req.params.id);
+const leaveCampaign = asyncHandler(async (req, res) => {
+    const campaign = await Campaign.findOne({ campaign_link: req.body.code });
 
     if (!campaign) {
         res.status(400).json('Campaign Not Found');
@@ -84,19 +84,58 @@ const deleteCampaign = asyncHandler(async (req, res) => {
     }
 
     // checking if current user is campaign dungeon master
-    if (campaign.dungeon_master.toString() !== user.id) {
+    // if (campaign.dungeon_master.toString() !== user.id) {
+    //     res.status(401);
+    //     throw new Error('The user is already the DM of this campaign');
+    // }
+
+    if (campaign.campaign_players.includes(req.user.id)) {
+        await campaign.updateOne({ $pull: { campaign_players: req.user.id } });
+    } else {
+        res.status(400);
+        throw new Error('User is already a part of that campaign');
+    }
+
+    res.send(campaign);
+});
+
+// @desc Delete campaign
+// @route DELETE /api/campaigns/:id
+const deleteCampaign = asyncHandler(async (req, res) => {
+    const campaign = await Campaign.findById(req.query.campaignId);
+    console.log(campaign._id.toString());
+
+    if (!campaign) {
+        res.status(400).json('Campaign Not Found');
+    }
+
+    const user = await User.findById(req.user.id);
+
+    // check to find user at all
+    if (!user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+
+    // checking if current user is campaign dungeon master
+    if (campaign.dungeon_master[0].toString() !== user.id) {
         res.status(401);
         throw new Error('The user is not authorized');
     }
 
-    await campaign.remove();
+    const shopsDel = await Shop.deleteMany({ shop_campaign: campaign._id.toString() });
+    const npcsDel = await NPC.deleteMany({ npc_campaign: campaign._id.toString() });
+    const campaignDel = await Campaign.deleteOne({ _id: campaign._id });
 
-    res.send(`Campaign ${req.params.id} has been removed`);
+    // await campaign.remove();
+
+    console.log(`${campaignDel} Campaigns, ${shopsDel} Shops, and ${npcsDel} NPCs deleted`);
 });
 
 module.exports = {
     getCampaigns,
     postCampaign,
     updateCampaign,
+    leaveCampaign,
     deleteCampaign,
 };

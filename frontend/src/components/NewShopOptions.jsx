@@ -70,7 +70,7 @@ function NewShopOptions() {
         }));
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         // populate selected categories array
@@ -153,7 +153,7 @@ function NewShopOptions() {
             shop_categories,
             shop_rarities,
         };
-        dispatch(createShop({ shopData }));
+        await dispatch(createShop({ shopData }));
 
         navigate('/campaign');
     };

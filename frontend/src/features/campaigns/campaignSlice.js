@@ -50,12 +50,37 @@ export const updateCampaign = createAsyncThunk('campaign/updatecampaign', async 
     }
 });
 
+// Leave campaign
+export const leaveCampaign = createAsyncThunk('campaign/leavecampaign', async (joinCode, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        return await campaignService.leaveCampaign(joinCode, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // Set current campaign
 export const setCampaign = createAsyncThunk('campaign/setcampaign', async (campaign, thunkAPI) => {
     const currentCampaign = campaign;
 
     localStorage.setItem('localStorageCampaign', JSON.stringify(currentCampaign));
     return currentCampaign;
+});
+
+// delete campaign from DB and associated shops and npcs
+export const deleteCampaign = createAsyncThunk('npc/deletecampaign', async (campaignId, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+
+        return await campaignService.deleteCampaign(campaignId, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
 });
 
 // Creating campaign slice
@@ -107,6 +132,11 @@ export const campaignSlice = createSlice({
                 state.campaignInUse = action.payload;
             })
             .addCase(updateCampaign.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(leaveCampaign.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

@@ -89,8 +89,41 @@ const postShop = asyncHandler(async (req, res) => {
 
 // @desc Update shop
 // @route PUT /api/shops/:id
-const updateShop = asyncHandler(async (req, res) => {
-    res.send(`updated Shop`);
+const removeItem = asyncHandler(async (req, res) => {
+    const shop = await Shop.findOne({ _id: req.body.removedItemIdAndShop.shopId });
+
+    function indexOfbyKey(obj_list, value) {
+        for (index in obj_list) {
+            if (obj_list[index]._id.toString() === value) return index;
+        }
+        return -1;
+    }
+
+    const itemObjectIndex = indexOfbyKey(shop.shop_list, req.body.removedItemIdAndShop.itemId);
+    shop.shop_list.splice(itemObjectIndex, 1);
+    const newList = shop.shop_list;
+
+    // if (!shop) {
+    //     res.status(400).json('Shop Not Found');
+    // }
+
+    // const user = await User.findById(req.user.id);
+
+    // // check to find user at all
+    // if (!user) {
+    //     res.status(401);
+    //     throw new Error('User not found');
+    // }
+
+    // console.log(newList);
+    console.log(req.body.removedItemIdAndShop.shopId);
+
+    const willRemoveItem = await Shop.updateOne(
+        { _id: req.body.removedItemIdAndShop.shopId.toString() },
+        { $set: { shop_list: newList } }
+    );
+    console.log(shop);
+    res.send(shop);
 });
 
 // @desc Delete shop
@@ -103,6 +136,6 @@ const deleteShop = asyncHandler(async (req, res) => {
 module.exports = {
     getShops,
     postShop,
-    updateShop,
+    removeItem,
     deleteShop,
 };

@@ -68,6 +68,17 @@ function Navbar() {
         CampaignJoinVisibility = <p></p>;
     }
 
+    let ToCampaignVisibility;
+    if (document.URL.includes('shop') || document.URL.includes('npc')) {
+        ToCampaignVisibility = (
+            <li>
+                <Link to='/campaign'>Back to Campaign</Link>
+            </li>
+        );
+    } else {
+        ToCampaignVisibility = <p></p>;
+    }
+
     return (
         <header className='header'>
             {user ? (
@@ -90,6 +101,7 @@ function Navbar() {
                             {NPCCreateVisibility}
                             {CampaignCreateVisibility}
                             {CampaignJoinVisibility}
+                            {ToCampaignVisibility}
                         </ul>
 
                         <div className='collapse navbar-collapse' id='navbarText'>
