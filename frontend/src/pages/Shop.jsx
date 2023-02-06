@@ -4,7 +4,7 @@ import ShopList from '../components/ShopList';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteShop, reset, getShop } from '../features/shops/shopSlice';
+import { deleteShop, reset, getShop, setShop } from '../features/shops/shopSlice';
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -13,12 +13,9 @@ const Shop = () => {
     const { campaignInUse } = useSelector((state) => state.campaign);
     const { shopInUse } = useSelector((state) => state.shop);
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
+    const { isSuccess: shopSuccess } = useSelector((state) => state.shop);
 
     useEffect(() => {}, [user, navigate, isError, message, dispatch]);
-
-    useEffect(() => {
-        dispatch(getShop());
-    }, [shopInUse]);
 
     const shopDelete = (e) => {
         e.preventDefault();
@@ -37,17 +34,6 @@ const Shop = () => {
         );
     } else {
         deleteVisibility = <p></p>;
-    }
-
-    let editVisibility;
-    if (user._id == campaignInUse.dungeon_master[0]) {
-        editVisibility = (
-            <button type='button' className='m-3 btn btn-warning'>
-                Edit Shop
-            </button>
-        );
-    } else {
-        editVisibility = <p></p>;
     }
 
     return (

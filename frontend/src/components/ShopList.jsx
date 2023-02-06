@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem } from '../features/shops/shopSlice';
+import { reset as shopReset } from '../features/shops/shopSlice';
 
 const ShopList = ({ item }) => {
     const dispatch = useDispatch();

@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { TextField } from '@mui/material';
 
-const SearchBar = ({ callback }) => {
+const SearchBar = ({ callback, searchType }) => {
     const [innerValue, setInnerValue] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,16 +13,27 @@ const SearchBar = ({ callback }) => {
 
     return (
         <form className='searchBar input-group mb-3' onSubmit={handleSubmit}>
-            <span class='input-group-text' id='basic-addon1'>
+            <TextField
+                fullWidth
+                id='standard-basic'
+                label={`Search ${searchType}`}
+                variant='standard'
+                type='text'
+                className='searchBarInput form-control'
+                placeholder={`Enter text to search for a ${searchType} name`}
+                value={innerValue}
+                onChange={(e) => setInnerValue(e.target.value)}
+            />
+            {/* <span class='input-group-text' id='basic-addon1'>
                 Search
             </span>
             <input
                 type='text'
                 className='searchBarInput form-control'
-                placeholder='Enter a shop name'
+                placeholder={`Enter text to search for a ${searchType} name`}
                 value={innerValue}
                 onChange={(e) => setInnerValue(e.target.value)}
-            />
+            /> */}
         </form>
     );
 };

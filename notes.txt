@@ -12,7 +12,7 @@ X // Set up player access to campaigns (hashed link to join a campaign?)
 X // Complete deletion for shops (X), items in shop lists (X), and NPCs (X), campaigns (X) (and leave campaign (X)), and show buttons only to DM (X)
 X // Make sure players and DMs can only join a campaign once
 X // Format items display, Navbar conditionals
-// Implement Filter/Search in Campaign Dashboard
+X // Implement Search in Campaign Dashboard
 // Styling (iron and parchment?)
 // How it works page with gifs
 // Deployment

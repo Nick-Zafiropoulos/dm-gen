@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from '@mui/material';
 import { BrowserRouter, Routes, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +20,7 @@ import Layout from './pages/Layout';
 
 function App() {
     return (
-        <>
+        <Container maxWidth={false} disableGutters>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' exact element={<Home />} />
@@ -43,7 +44,7 @@ function App() {
                 </Routes>
             </BrowserRouter>
             <ToastContainer />
-        </>
+        </Container>
     );
 }
 

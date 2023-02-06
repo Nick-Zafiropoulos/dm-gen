@@ -121,7 +121,7 @@ export const shopSlice = createSlice({
             .addCase(setShop.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.shopInUse = action.payload;
+                state.message = action.payload;
             })
             .addCase(removeItem.fulfilled, (state, action) => {
                 state.isLoading = false;
