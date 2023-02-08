@@ -25,3 +25,4 @@ occupations - https://negatherium.com/npc-generator/joblist.html
 names - https://barelyharebooks.com/a-master-list-of-300-fantasy-names-characters-towns-and-villages/
 personalities - https://examples.yourdictionary.com/examples-of-personality-traits.html
 flaws - https://dungeongoblin.com/blog/20-characters-flaws-to-try-on-your-next-dnd-character
+d20 art: <a href="https://www.vecteezy.com/free-vector/icons">Icons Vectors by Vecteezy</a>

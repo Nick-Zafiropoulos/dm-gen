@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { TextField } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
 
 const SearchBar = ({ callback, searchType }) => {
     const [innerValue, setInnerValue] = useState('');
@@ -14,6 +15,7 @@ const SearchBar = ({ callback, searchType }) => {
     return (
         <form className='searchBar input-group mb-3' onSubmit={handleSubmit}>
             <TextField
+                sx={{ backgroundColor: 'transparent', color: 'white' }}
                 fullWidth
                 id='standard-basic'
                 label={`Search ${searchType}`}

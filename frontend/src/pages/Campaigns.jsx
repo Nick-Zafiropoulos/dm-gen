@@ -5,7 +5,26 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCampaign, reset } from '../features/campaigns/campaignSlice';
-import { Box, shadows } from '@mui/material';
+import { Box, shadows, Typography } from '@mui/material';
+import blankCanvas from '../images/dmgenblankcloth.png';
+
+const styles = {
+    backgroundCanvas: {
+        backgroundImage: `url(${blankCanvas})`,
+        // backgroundColor: 'lightgray',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+    backgroundSolid: {
+        backgroundColor: '#030418',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+};
 
 function Campaigns() {
     const dispatch = useDispatch();
@@ -32,25 +51,40 @@ function Campaigns() {
     }, [user, navigate, isError, message, dispatch]);
 
     return (
-        <Box>
-            <Box>
-                <Navbar />
-            </Box>
-            <Box sx={{ p: 3 }}>
-                <p>Campaigns:</p>
-                <Box sx={{ width: '50%' }}>
-                    {campaigns.length >= 0 ? (
-                        <div className='campaigns'>
-                            {campaigns.map((campaign) => (
-                                <CampaignItem key={campaign._id} campaign={campaign} />
-                            ))}{' '}
-                        </div>
-                    ) : (
-                        <p>You do not have any campaigns yet!</p>
-                    )}
+        <>
+            <Box style={styles.backgroundCanvas}>
+                <Box>
+                    <Navbar />
+                </Box>
+                <Box sx={{ p: 3 }}>
+                    <Typography
+                        sx={{
+                            display: 'flex',
+                            mb: 3,
+                            mt: 3,
+                            fontSize: '35px',
+                            fontWeight: 'bold',
+                            color: 'white',
+                            textShadow: '2px 2px #262626',
+                        }}
+                    >
+                        My Campaigns
+                    </Typography>
+                    <Box>
+                        {campaigns.length >= 0 ? (
+                            <div className='campaigns'>
+                                {campaigns.map((campaign) => (
+                                    <CampaignItem key={campaign._id} campaign={campaign} />
+                                ))}{' '}
+                            </div>
+                        ) : (
+                            <p>You do not have any campaigns yet!</p>
+                        )}
+                    </Box>
                 </Box>
             </Box>
-        </Box>
+            <Box style={styles.backgroundSolid}></Box>
+        </>
     );
 }
 

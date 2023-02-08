@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdAccountCircle, MdLogin, MdHome, MdLogout } from 'react-icons/md';
+import { MdAccountCircle, MdLogin, MdHome, MdLogout, MdPersonAdd, MdOutlineHelp } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
@@ -25,7 +25,7 @@ function Navbar() {
             </li>
         );
     } else {
-        CampaignCreateVisibility = <p></p>;
+        CampaignCreateVisibility = <span></span>;
     }
 
     let ShopCreateVisibility;
@@ -40,7 +40,7 @@ function Navbar() {
             </li>
         );
     } else {
-        ShopCreateVisibility = <p></p>;
+        ShopCreateVisibility = <span></span>;
     }
 
     let NPCCreateVisibility;
@@ -55,7 +55,7 @@ function Navbar() {
             </li>
         );
     } else {
-        NPCCreateVisibility = <p></p>;
+        NPCCreateVisibility = <span></span>;
     }
 
     let CampaignJoinVisibility;
@@ -66,7 +66,7 @@ function Navbar() {
             </li>
         );
     } else {
-        CampaignJoinVisibility = <p></p>;
+        CampaignJoinVisibility = <span></span>;
     }
 
     let ToCampaignVisibility;
@@ -77,7 +77,7 @@ function Navbar() {
             </li>
         );
     } else {
-        ToCampaignVisibility = <p></p>;
+        ToCampaignVisibility = <span></span>;
     }
 
     return (
@@ -115,8 +115,8 @@ function Navbar() {
                                         {user ? (
                                             <>
                                                 <li>
-                                                    <Link to='/'>
-                                                        <MdHome /> Home
+                                                    <Link to='/campaigns'>
+                                                        <MdHome /> My Campaigns
                                                     </Link>
                                                 </li>
                                                 <li>
@@ -145,7 +145,7 @@ function Navbar() {
                         </div>
                     </nav>
                 ) : (
-                    <nav className='navbar navbar-expand-lg'>
+                    <nav className='navbar navbar-expand-lg bg-light'>
                         <div className='container-fluid'>
                             <span className='navbar-brand'></span>
                             <button
@@ -183,8 +183,14 @@ function Navbar() {
                                         ) : (
                                             <>
                                                 <li>
-                                                    <Link to='/'>
-                                                        <MdHome /> Home
+                                                    <Link to='/howitworks'>
+                                                        <MdOutlineHelp />
+                                                        How It Works
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link to='/register'>
+                                                        <MdPersonAdd /> Register
                                                     </Link>
                                                 </li>
                                                 <li>

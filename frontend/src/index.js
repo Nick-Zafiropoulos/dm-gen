@@ -8,12 +8,19 @@ import { createTheme, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
     palette: {
-        type: 'light',
+        mode: 'dark',
         primary: {
-            main: '#3f51b5',
+            main: '#FFFFFF',
         },
         secondary: {
-            main: '#f50057',
+            main: '#578d9d',
+        },
+        text: {
+            primary: '#ffffff',
+            secondary: 'rgba(255, 255, 255, 0.7)',
+        },
+        background: {
+            paper: '#48413f',
         },
     },
 });

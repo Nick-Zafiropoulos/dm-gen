@@ -1,5 +1,11 @@
 import React from 'react';
-import Accordion from 'react-bootstrap/Accordion';
+// import Accordion from 'react-bootstrap/Accordion';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import { Box, shadows, Button } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,30 +31,29 @@ const FilterResults = ({ shop }) => {
     }, [user, navigate, isError, message, dispatch]);
 
     return (
-        <Accordion className='mt-2 mb-2'>
-            <Accordion.Item eventKey='0'>
-                <Accordion.Header>{shop.shop_name}</Accordion.Header>
-                <Accordion.Body>
+        <Accordion sx={{ boxShadow: 3, width: { xs: '100%', lg: '100%' } }}>
+            <AccordionSummary
+                sx={{ color: 'white' }}
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls='panel1a-content'
+                id='panel1a-header'
+            >
+                <Typography sx={{ fontWeight: 'bold', fontSize: '20px', textShadow: '2px 2px #262626' }}>
+                    {shop.shop_name}
+                </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <Typography>
                     <form onSubmit={onSubmit}>
-                        <div
-                            id='collapseOne'
-                            className='accordion-collapse collapse show'
-                            aria-labelledby='headingOne'
-                            data-bs-parent='#accordionExample'
-                        >
-                            <div className='accordion-body'>
-                                <div>
-                                    <button type='submit' className='btn btn-primary'>
-                                        Go To Shop
-                                    </button>
-                                </div>
-                                <p>Owner: {shop.shop_owner}</p>
-                                <p>Location: {shop.shop_location}</p>
-                            </div>
-                        </div>
+                        <div></div>
+                        <p>Owner: {shop.shop_owner}</p>
+                        <p>Location: {shop.shop_location}</p>
+                        <Button type='submit' variant='contained' color='secondary'>
+                            Enter Shop
+                        </Button>
                     </form>
-                </Accordion.Body>
-            </Accordion.Item>
+                </Typography>
+            </AccordionDetails>
         </Accordion>
     );
 };

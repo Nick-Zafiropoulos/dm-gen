@@ -31,7 +31,7 @@ a {
 }
 
 .navcolor {
-    background-color: $indigo-900;
+    background-color: gray;
 }
 
 .accordion-body {
@@ -45,4 +45,12 @@ a {
 .btn-primary {
     background-color: #7c8487;
     border: none;
+}
+
+.main-contain {
+    background-color: 'gray';
+}
+
+.blurb {
+    color: 'white';
 }
