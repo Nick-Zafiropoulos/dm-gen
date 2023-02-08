@@ -13,7 +13,8 @@ X // Complete deletion for shops (X), items in shop lists (X), and NPCs (X), cam
 X // Make sure players and DMs can only join a campaign once
 X // Format items display, Navbar conditionals
 X // Implement Search in Campaign Dashboard
-// Styling (iron and parchment?)
+// Add note bullet points for NPCs (model update, axios route, slice and service, npc page update notes event)
+// Styling
 // How it works page with gifs
 // Deployment
 

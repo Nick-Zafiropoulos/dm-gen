@@ -15,13 +15,14 @@ const Shop = () => {
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
     const { isSuccess: shopSuccess } = useSelector((state) => state.shop);
 
-    useEffect(() => {}, [user, navigate, isError, message, dispatch]);
+    // useEffect(() => {}, [user, navigate, isError, message, dispatch]);
 
     const shopDelete = (e) => {
         e.preventDefault();
         const shopToDelete = shopInUse._id;
         console.log(shopToDelete);
         dispatch(deleteShop(shopToDelete));
+
         navigate('/campaign');
     };
 

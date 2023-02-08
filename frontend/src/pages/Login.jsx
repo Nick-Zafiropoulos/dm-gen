@@ -5,7 +5,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { login, reset } from '../features/auth/authSlice';
+import diceCanvas from '../images/dicebackground.jpeg';
+import { Box, Typography, TextField, Button } from '@mui/material';
+import Navbar from '../components/Navbar';
 import Spinner from '../components/Spinner';
+
+const styles = {
+    backgroundContainer: {
+        backgroundImage: `url(${diceCanvas})`,
+        // backgroundColor: 'lightgray',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+    backgroundSolid: {
+        backgroundColor: '#030418',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+};
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -54,57 +75,72 @@ const Login = () => {
     }
 
     return (
-        <>
-            <section className=''>
-                <h1>Login</h1>
-            </section>
+        <Box style={styles.backgroundContainer}>
+            <Navbar />
+            <Box>
+                <Box sx={{ display: 'flex', justifyContent: 'right', p: 30 }}>
+                    <section className='form'>
+                        <Typography
+                            sx={{
+                                display: 'flex',
 
-            <section className='form'>
-                <form onSubmit={onSubmit}>
-                    <div className='form-group'>
-                        <input
-                            type='email'
-                            className='form-control'
-                            id='user_email'
-                            name='user_email'
-                            value={user_email}
-                            placeholder='Enter an email'
-                            onChange={onChange}
-                        />
-                    </div>
-
-                    <div className='form-group'>
-                        <input
-                            type='password'
-                            className='form-control'
-                            id='user_password'
-                            name='user_password'
-                            value={user_password}
-                            placeholder='Enter a password'
-                            onChange={onChange}
-                        />
-                    </div>
-
-                    <div className='form-group'>
-                        <button type='submit' className='btn btn-primary'>
+                                mt: 3,
+                                fontSize: '35px',
+                                fontWeight: 'bold',
+                                color: 'white',
+                                textShadow: '2px 2px #262626',
+                            }}
+                        >
                             Login
-                        </button>
-                    </div>
-                </form>
-            </section>
+                        </Typography>
+                        <form onSubmit={onSubmit}>
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Email'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Enter your email'
+                                name='user_email'
+                                value={user_email}
+                                onChange={onChange}
+                            />
 
-            <Link to='/' className='btn btn-primary'>
-                Home
-            </Link>
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Password'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Enter your password'
+                                name='user_password'
+                                value={user_password}
+                                onChange={onChange}
+                            />
 
-            <div>
-                <p>New User?</p>
+                            <Box sx={{ mt: 3 }}>
+                                <Button type='submit' variant='contained' color='secondary'>
+                                    Login
+                                </Button>
+                            </Box>
+                        </form>
 
-                <Link to='/register' className='btn btn-primary'>
-                    Register
-                </Link>
-            </div>
-        </>
+                        <Box sx={{ display: 'inline-flex', mt: 5 }}>
+                            <Typography sx={{ pr: 3, mt: 0.5 }} color='primary'>
+                                New User?
+                            </Typography>
+                            <Button component={Link} to='/register' variant='outlined' color='secondary' size='small'>
+                                Register
+                            </Button>
+                        </Box>
+                    </section>
+                </Box>
+            </Box>
+        </Box>
     );
 };
 

@@ -15,6 +15,8 @@ import { reset as shopReset } from '../features/shops/shopSlice';
 import { Box, shadows, Typography } from '@mui/material';
 import blankCanvas from '../images/dmgenblankcloth.png';
 import { useTheme } from '@mui/material/styles';
+import { GiDualityMask, GiShop, GiTwoShadows } from 'react-icons/gi';
+import { IconContext } from 'react-icons';
 
 const styles = {
     backgroundCanvas: {
@@ -139,6 +141,7 @@ const Campaign = () => {
                             display: 'flex',
                             ml: 3,
                             mt: 3,
+                            mb: 3,
                             fontSize: '35px',
                             fontWeight: 'bold',
                             color: 'white',
@@ -151,7 +154,14 @@ const Campaign = () => {
                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: 4, p: 3 }}>
                     <Box sx={{ width: '40%' }}>
                         <Box sx={{ width: '50%' }}>
-                            <SearchBar callback={(searchValue) => setSearchValue(searchValue)} searchType='shops' />
+                            <IconContext.Provider
+                                value={{ color: 'white', className: 'global-class-name', size: '40px' }}
+                            >
+                                <GiShop />
+                            </IconContext.Provider>
+                            <Box sx={{ mt: 1 }}>
+                                <SearchBar callback={(searchValue) => setSearchValue(searchValue)} searchType='shops' />
+                            </Box>
                         </Box>
 
                         <Box sx={{ width: '100%' }}>
@@ -168,10 +178,17 @@ const Campaign = () => {
                     </Box>
                     <Box sx={{ width: '40%' }}>
                         <Box sx={{ width: '50%' }}>
-                            <SearchBar
-                                callback={(NPCsearchValue) => setNPCSearchValue(NPCsearchValue)}
-                                searchType='NPCs'
-                            />
+                            <IconContext.Provider
+                                value={{ color: 'white', className: 'global-class-name', size: '40px' }}
+                            >
+                                <GiTwoShadows />
+                            </IconContext.Provider>
+                            <Box sx={{ mt: 1 }}>
+                                <SearchBar
+                                    callback={(NPCsearchValue) => setNPCSearchValue(NPCsearchValue)}
+                                    searchType='NPCs'
+                                />
+                            </Box>
                         </Box>
 
                         <Box sx={{ width: '100%' }}>

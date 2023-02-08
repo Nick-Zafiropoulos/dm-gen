@@ -9,6 +9,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box, shadows, Button } from '@mui/material';
 
 const NPCFilter = ({ npc }) => {
     const dispatch = useDispatch();
@@ -39,14 +40,12 @@ const NPCFilter = ({ npc }) => {
             <AccordionDetails>
                 <Typography>
                     <form onSubmit={onSubmit}>
-                        <div>
-                            <button type='submit' className='btn btn-primary'>
-                                Go To NPC
-                            </button>
-                        </div>
                         <p>Species: {npc.npc_species}</p>
                         <p>Gender: {npc.npc_gender}</p>
-                        <p>Occupation: {npc.npc_occupation}</p>
+                        <p>Occupation: {npc.npc_occupation}</p>{' '}
+                        <Button type='submit' variant='contained' color='secondary'>
+                            View NPC
+                        </Button>
                     </form>
                 </Typography>
             </AccordionDetails>

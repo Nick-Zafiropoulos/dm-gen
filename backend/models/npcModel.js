@@ -26,6 +26,9 @@ const npcSchema = mongoose.Schema({
     npc_flaws: {
         type: String,
     },
+    npc_notes: {
+        type: Array,
+    },
     npc_campaign: {
         type: String,
         required: [true],

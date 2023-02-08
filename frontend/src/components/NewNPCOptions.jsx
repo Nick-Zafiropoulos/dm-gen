@@ -40,7 +40,7 @@ function NewNPCOptions() {
         }));
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         const npcData = {
@@ -53,7 +53,7 @@ function NewNPCOptions() {
             npc_personality,
             npc_flaws,
         };
-        dispatch(createNPC({ npcData }));
+        await dispatch(createNPC({ npcData }));
 
         navigate('/campaign');
     };

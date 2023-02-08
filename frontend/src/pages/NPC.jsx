@@ -64,8 +64,21 @@ const NPC = () => {
         }
     };
 
-    const npcUpdate = (e) => {
-        e.preventDefault();
+    const npcUpdate = async (e) => {
+        // e.preventDefault();
+
+        const newNPCInfo = {
+            npc_name,
+            npc_species,
+            npc_age,
+            npc_gender,
+            npc_location,
+            npc_occupation,
+            npc_personality,
+            npc_flaws,
+            npc_id,
+            npc_campaign: npcInUse.npc_campaign,
+        };
 
         const npcUpdate = {
             npc_name,
@@ -81,7 +94,9 @@ const NPC = () => {
 
         dispatch(updateNPC({ npcUpdate }));
 
-        navigate('/campaign');
+        await dispatch(setNPC(newNPCInfo));
+
+        navigate('/npc');
     };
 
     let deleteVisibility;
