@@ -4,6 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 import { Box, shadows } from '@mui/material';
+import dmgenlogoblack from '../images/dmgenlogoblack.png';
+
+const styles = {
+    dmgentext: {
+        width: 'auto',
+        height: 'auto',
+        maxWidth: '50px',
+        margin: 0,
+        padding: 0,
+    },
+};
 
 function Navbar() {
     const navigate = useNavigate();
@@ -80,6 +91,17 @@ function Navbar() {
         ToCampaignVisibility = <span></span>;
     }
 
+    let LogoVisibility;
+    if (document.URL.includes('login')) {
+        LogoVisibility = (
+            <Link to='/'>
+                <img style={styles.dmgentext} className='' src={dmgenlogoblack} />
+            </Link>
+        );
+    } else {
+        LogoVisibility = <span></span>;
+    }
+
     return (
         <Box width='100%' sx={{ boxShadow: 4 }}>
             <header className='header'>
@@ -87,6 +109,7 @@ function Navbar() {
                     <nav className='navbar navbar-expand-lg bg-light'>
                         <div className='container-fluid'>
                             <span className='navbar-brand'>{user.user_name}'s Dashboard</span>
+
                             <button
                                 className='navbar-toggler'
                                 type='button'
@@ -98,6 +121,7 @@ function Navbar() {
                             >
                                 <span className='navbar-toggler-icon'></span>
                             </button>
+                            {LogoVisibility}
                             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                 {ShopCreateVisibility}
                                 {NPCCreateVisibility}
@@ -159,7 +183,7 @@ function Navbar() {
                             >
                                 <span className='navbar-toggler-icon'></span>
                             </button>
-                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'></ul>
+                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>{LogoVisibility}</ul>
 
                             <div className='collapse navbar-collapse' id='navbarText'>
                                 <ul className='navbar-nav me-auto mb-2 mb-lg-0'>

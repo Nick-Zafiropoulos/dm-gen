@@ -3,7 +3,27 @@ import Navbar from '../components/Navbar';
 import { useEffect } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateNPC, deleteNPC, getNPC, setNPC } from '../features/npcs/npcSlice';
+import { updateNPC, deleteNPC, getNPC, setNPC, npcNote } from '../features/npcs/npcSlice';
+import { Box, shadows, Button, Typography, TextField } from '@mui/material';
+import blankCanvas from '../images/dmgenblankcloth.png';
+
+const styles = {
+    backgroundCanvas: {
+        backgroundImage: `url(${blankCanvas})`,
+        // backgroundColor: 'lightgray',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+    backgroundSolid: {
+        backgroundColor: '#030418',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+};
 
 const NPC = () => {
     const dispatch = useDispatch();
@@ -23,8 +43,10 @@ const NPC = () => {
         npc_occupation: npcInUse.npc_occupation,
         npc_personality: npcInUse.npc_personality,
         npc_flaws: npcInUse.npc_flaws,
-        npc_id: npcInUse._id,
+        _id: npcInUse._id,
     });
+
+    const [npcNewNote, setNpcNewNote] = useState('');
 
     const {
         npc_name,
@@ -35,7 +57,7 @@ const NPC = () => {
         npc_occupation,
         npc_personality,
         npc_flaws,
-        npc_id,
+        _id,
     } = npcUpdateInfo;
 
     useEffect(() => {}, [user, navigate, isError, message, dispatch]);
@@ -47,25 +69,23 @@ const NPC = () => {
         }));
     };
 
-    const npcDelete = (e) => {
+    const npcNoteUpdate = (e) => {
+        setNpcNewNote(e.target.value);
+    };
+
+    const npcNoteSend = async (e) => {
         e.preventDefault();
-        const npcToDelete = npcInUse._id;
-        console.log(npcToDelete);
-        dispatch(deleteNPC(npcToDelete));
-        navigate('/campaign');
-    };
 
-    const npcEdit = () => {
-        console.log('hello');
-        if (editState == 0) {
-            setEditState(1);
-        } else {
-            setEditState(0);
-        }
-    };
+        console.log(npcInUse);
+        const npcNoteData = {
+            npcNewNote,
+            _id: npcInUse._id,
+        };
+        console.log(npcNoteData);
+        let noteForRedux = Object.assign([], npcInUse.npc_notes);
+        let noteToPush = npcNewNote;
 
-    const npcUpdate = async (e) => {
-        // e.preventDefault();
+        noteForRedux.push(noteToPush);
 
         const newNPCInfo = {
             npc_name,
@@ -76,7 +96,48 @@ const NPC = () => {
             npc_occupation,
             npc_personality,
             npc_flaws,
-            npc_id,
+            _id,
+            npc_campaign: npcInUse.npc_campaign,
+            npc_notes: noteForRedux,
+        };
+
+        await dispatch(npcNote(npcNoteData));
+
+        dispatch(setNPC(newNPCInfo));
+        dispatch(getNPC());
+        navigate('/npc');
+    };
+
+    const npcDelete = (e) => {
+        e.preventDefault();
+        const npcToDelete = npcInUse._id;
+
+        dispatch(deleteNPC(npcToDelete));
+        navigate('/campaign');
+    };
+
+    const npcEdit = () => {
+        if (editState == 0) {
+            setEditState(1);
+        } else {
+            setEditState(0);
+        }
+    };
+
+    const npcUpdate = async (e) => {
+        e.preventDefault();
+
+        const newNPCInfo = {
+            npc_name,
+            npc_species,
+            npc_age,
+            npc_gender,
+            npc_location,
+            npc_occupation,
+            npc_personality,
+            npc_flaws,
+            npc_notes: npcInUse.npc_notes,
+            _id,
             npc_campaign: npcInUse.npc_campaign,
         };
 
@@ -89,13 +150,13 @@ const NPC = () => {
             npc_occupation,
             npc_personality,
             npc_flaws,
-            npc_id,
+            _id,
         };
 
-        dispatch(updateNPC({ npcUpdate }));
+        await dispatch(updateNPC({ npcUpdate }));
 
         await dispatch(setNPC(newNPCInfo));
-
+        setEditState(0);
         navigate('/npc');
     };
 
@@ -228,20 +289,54 @@ const NPC = () => {
     }
 
     return (
-        <div>
-            <Navbar />
-
-            <div className='row'>
-                <div className='col'>{editState == 0 && <h1 className='m-3'>{npcInUse.npc_name}</h1>}</div>
-                <div className='d-flex align-items-center justify-content-end col'>
-                    {editVisibility}
-                    {deleteVisibility}
-                </div>
-            </div>
-            <div className='row'>
-                <div>{editView}</div>
-            </div>
-        </div>
+        <>
+            <Box style={styles.backgroundCanvas}>
+                <Navbar />
+                <Box>
+                    <Box>
+                        <div className='row'>
+                            <div className='col'>{editState == 0 && <h1 className='m-3'>{npcInUse.npc_name}</h1>}</div>
+                            <div className='d-flex align-items-center justify-content-end col'>
+                                {editVisibility}
+                                {deleteVisibility}
+                            </div>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Box sx={{ ml: 5 }}>{editView}</Box>
+                                <Box sx={{ mr: 30 }}>
+                                    <form className='' onSubmit={npcNoteSend}>
+                                        <TextField
+                                            sx={{ backgroundColor: 'transparent', color: 'white' }}
+                                            fullWidth
+                                            id='standard-basic'
+                                            name='npcNewNote'
+                                            value={npcNewNote}
+                                            label='Enter a new note'
+                                            variant='standard'
+                                            type='text'
+                                            className='searchBarInput form-control'
+                                            placeholder=''
+                                            onChange={npcNoteUpdate}
+                                        />
+                                    </form>
+                                    <Typography>
+                                        {npcInUse.npc_notes.length > 0 ? (
+                                            <div className='notes'>
+                                                {npcInUse.npc_notes.map((note) => (
+                                                    <Typography>- {note}</Typography>
+                                                ))}{' '}
+                                            </div>
+                                        ) : (
+                                            <Typography>There are no notes for this NPC yet.</Typography>
+                                        )}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                        </div>
+                    </Box>
+                </Box>
+            </Box>
+            <Box style={styles.backgroundSolid}></Box>
+        </>
     );
 };
 

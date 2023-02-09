@@ -71,7 +71,7 @@ function Campaigns() {
                         My Campaigns
                     </Typography>
                     <Box>
-                        {campaigns.length >= 0 ? (
+                        {campaigns.length > 0 ? (
                             <div className='campaigns'>
                                 {campaigns.map((campaign) => (
                                     <CampaignItem key={campaign._id} campaign={campaign} />

@@ -105,11 +105,20 @@ const postNpc = asyncHandler(async (req, res) => {
     res.send(createNPC);
 });
 
+//@desc Update npc notes
+const updateNpcNotes = asyncHandler(async (req, res) => {
+    let noteToNPC = await NPC.findOne({ _id: req.body.newNpcNote._id });
+
+    await noteToNPC.updateOne({ $push: { npc_notes: req.body.newNpcNote.npcNewNote } });
+
+    res.send(noteToNPC);
+});
+
 // @desc Update npc
 // @route PUT /api/npcs/:id
 const updateNpc = asyncHandler(async (req, res) => {
     const npcToUpdate = await NPC.findByIdAndUpdate(
-        { _id: req.body.npcInfo.npc_id },
+        { _id: req.body.npcInfo._id },
         {
             npc_name: req.body.npcInfo.npc_name,
             npc_species: req.body.npcInfo.npc_species,
@@ -156,5 +165,6 @@ module.exports = {
     getNpcs,
     postNpc,
     updateNpc,
+    updateNpcNotes,
     deleteNpc,
 };

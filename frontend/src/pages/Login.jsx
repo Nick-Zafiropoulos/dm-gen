@@ -114,7 +114,7 @@ const Login = () => {
                                 id='standard-basic'
                                 label='Password'
                                 variant='standard'
-                                type='text'
+                                type='password'
                                 className='searchBarInput form-control'
                                 placeholder='Enter your password'
                                 name='user_password'

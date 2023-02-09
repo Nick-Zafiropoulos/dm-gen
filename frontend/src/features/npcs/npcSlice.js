@@ -63,6 +63,19 @@ export const updateNPC = createAsyncThunk('npc/updatenpc', async (npcUpdate, thu
     }
 });
 
+// npc note
+export const npcNote = createAsyncThunk('npc/npcnote', async (newNpcNote, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+
+        return await npcService.npcNote(newNpcNote, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // delete npc from DB
 export const deleteNPC = createAsyncThunk('npc/deletenpc', async (npcToDelete, thunkAPI) => {
     try {
