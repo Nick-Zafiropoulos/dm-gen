@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Box, Typography } from '@mui/material';
 import diceCanvas from '../images/dicebackground.jpeg';
 import dmgenlogowhite from '../images/dmgenlogowhite.png';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const styles = {
     backgroundContainer: {
@@ -41,10 +42,27 @@ function Home() {
                     <Navbar />
 
                     <Box sx={{ display: 'flex', justifyContent: 'right', mt: 35, pr: 55 }}>
-                        <img style={styles.dmgentext} className='' src={dmgenlogowhite} />
+                        <AnimatePresence>
+                            <motion.img
+                                key='logo'
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ type: 'smooth', delay: 0.2 }}
+                                exit={{ opacity: 0 }}
+                                style={styles.dmgentext}
+                                className='logo'
+                                src={dmgenlogowhite}
+                            />
+                        </AnimatePresence>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'right', mt: 5, pr: 25 }}>
-                        <Typography sx={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}>
+                        <Typography
+                            component={motion.div}
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ type: 'smooth', delay: 0.6 }}
+                            sx={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
+                        >
                             Item shop and NPC generation managed by you, viewable by your players.
                         </Typography>
                     </Box>

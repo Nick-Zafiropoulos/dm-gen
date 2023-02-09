@@ -9,6 +9,7 @@ import diceCanvas from '../images/dicebackground.jpeg';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Spinner from '../components/Spinner';
+import { motion } from 'framer-motion';
 
 const styles = {
     backgroundContainer: {
@@ -84,7 +85,12 @@ const Register = () => {
     return (
         <Box style={styles.backgroundContainer}>
             <Navbar />
-            <Box>
+            <Box
+                component={motion.div}
+                initial={{ x: 650 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+                animate={{ x: 0 }}
+            >
                 <Box sx={{ display: 'flex', justifyContent: 'right', mt: 30, mr: 35 }}>
                     <form onSubmit={onSubmit}>
                         <Box>

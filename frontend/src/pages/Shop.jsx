@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteShop, reset, getShop, setShop } from '../features/shops/shopSlice';
+import { motion } from 'framer-motion';
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -36,6 +37,11 @@ const Shop = () => {
     } else {
         deleteVisibility = <p></p>;
     }
+
+    const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+    };
 
     return (
         <div>

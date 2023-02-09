@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { login, reset } from '../features/auth/authSlice';
 import diceCanvas from '../images/dicebackground.jpeg';
 import { Box, Typography, TextField, Button } from '@mui/material';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Spinner from '../components/Spinner';
 
@@ -74,12 +75,24 @@ const Login = () => {
         return <Spinner />;
     }
 
+    const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+    };
+
     return (
         <Box style={styles.backgroundContainer}>
             <Navbar />
+            {/* <motion.div initial='hidden' animate='visible' variants={variants} /> */}
+
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'right', p: 30 }}>
-                    <section className='form'>
+                    <motion.section
+                        initial={{ x: 650 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+                        animate={{ x: 0 }}
+                        className='form'
+                    >
                         <Typography
                             sx={{
                                 display: 'flex',
@@ -137,7 +150,7 @@ const Login = () => {
                                 Register
                             </Button>
                         </Box>
-                    </section>
+                    </motion.section>
                 </Box>
             </Box>
         </Box>
