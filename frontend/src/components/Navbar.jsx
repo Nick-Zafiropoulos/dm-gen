@@ -92,7 +92,7 @@ function Navbar() {
     }
 
     let LogoVisibility;
-    if (document.URL.includes('login')) {
+    if (document.URL.includes('login') || document.URL.includes('register')) {
         LogoVisibility = (
             <Link to='/'>
                 <img style={styles.dmgentext} className='' src={dmgenlogoblack} />

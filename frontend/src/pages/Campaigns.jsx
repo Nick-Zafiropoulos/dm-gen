@@ -78,7 +78,10 @@ function Campaigns() {
                                 ))}{' '}
                             </div>
                         ) : (
-                            <p>You do not have any campaigns yet!</p>
+                            <Typography sx={{ color: 'white' }}>
+                                You do not have any campaigns yet. Click "Create a Campaign" in the banner above to get
+                                started!
+                            </Typography>
                         )}
                     </Box>
                 </Box>

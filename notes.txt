@@ -16,6 +16,7 @@ X // Implement Search in Campaign Dashboard
 X // Add note bullet points for NPCs (model update, axios route, slice and service, npc page update notes event)
 // Add delete note feature
 // Styling (npc, shop, register, how it works)
+// animations
 // How it works page with gifs
 // Deployment
 
