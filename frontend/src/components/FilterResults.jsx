@@ -45,10 +45,24 @@ const FilterResults = ({ shop }) => {
             <AccordionDetails>
                 <Typography>
                     <form onSubmit={onSubmit}>
-                        <div></div>
-                        <p>Owner: {shop.shop_owner}</p>
-                        <p>Location: {shop.shop_location}</p>
-                        <Button type='submit' variant='contained' color='secondary'>
+                        <Box>
+                            <Box sx={{ display: 'inline-flex' }}>
+                                <Typography sx={{ fontWeight: 'bold', mr: 1, mb: 1, color: '#90A4AE' }}>
+                                    Owner:
+                                </Typography>
+                                <Typography>{shop.shop_owner} </Typography>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Box sx={{ display: 'inline-flex' }}>
+                                <Typography sx={{ fontWeight: 'bold', mr: 1, mb: 1, color: '#90A4AE' }}>
+                                    Location:
+                                </Typography>
+                                <Typography> {shop.shop_location}</Typography>
+                            </Box>
+                        </Box>
+
+                        <Button sx={{ mt: 2 }} type='submit' variant='contained' color='secondary'>
                             Enter Shop
                         </Button>
                     </form>

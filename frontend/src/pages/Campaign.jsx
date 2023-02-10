@@ -63,7 +63,19 @@ const Campaign = () => {
         if (searchValue === '') {
             return shops;
         }
-        return shops.filter((result) => result.shop_name.toLowerCase().includes(searchValue.toLowerCase()));
+
+        let nameFilter = shops.filter((result) => result.shop_name.toLowerCase().includes(searchValue.toLowerCase()));
+        let locationFilter = shops.filter((result) =>
+            result.shop_location.toLowerCase().includes(searchValue.toLowerCase())
+        );
+        let combinedArray = nameFilter.concat(locationFilter);
+
+        let set = new Set(combinedArray);
+
+        combinedArray = Array.from(set);
+
+        return combinedArray;
+        // return shops.filter((result) => result.shop_name.toLowerCase().includes(searchValue.toLowerCase()));
     };
 
     const [results, setResults] = useState(shops);
@@ -83,7 +95,21 @@ const Campaign = () => {
         if (NPCsearchValue === '') {
             return npcs;
         }
-        return npcs.filter((result) => result.npc_name.toLowerCase().includes(NPCsearchValue.toLowerCase()));
+        let npcNameFilter = npcs.filter((result) =>
+            result.npc_name.toLowerCase().includes(NPCsearchValue.toLowerCase())
+        );
+        let occupationFilter = npcs.filter((result) =>
+            result.npc_occupation.toLowerCase().includes(NPCsearchValue.toLowerCase())
+        );
+        let npcCombinedArray = npcNameFilter.concat(occupationFilter);
+
+        let npcSet = new Set(npcCombinedArray);
+
+        npcCombinedArray = Array.from(npcSet);
+
+        return npcCombinedArray;
+
+        // return npcs.filter((result) => result.npc_name.toLowerCase().includes(NPCsearchValue.toLowerCase()));
     };
 
     const [NPCresults, setNPCResults] = useState(npcs);

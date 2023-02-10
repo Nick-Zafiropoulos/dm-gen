@@ -40,12 +40,35 @@ const NPCFilter = ({ npc }) => {
             <AccordionDetails>
                 <Typography>
                     <form onSubmit={onSubmit}>
-                        <p>Species: {npc.npc_species}</p>
-                        <p>Gender: {npc.npc_gender}</p>
-                        <p>Occupation: {npc.npc_occupation}</p>{' '}
-                        <Button type='submit' variant='contained' color='secondary'>
-                            View NPC
-                        </Button>
+                        <Box>
+                            <Box sx={{ display: 'inline-flex' }}>
+                                <Typography sx={{ fontWeight: 'bold', mr: 1, mb: 1, color: '#90A4AE' }}>
+                                    Species:
+                                </Typography>
+                                <Typography> {npc.npc_species}</Typography>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Box sx={{ display: 'inline-flex' }}>
+                                <Typography sx={{ fontWeight: 'bold', mr: 1, mb: 1, color: '#90A4AE' }}>
+                                    Gender:
+                                </Typography>
+                                <Typography> {npc.npc_gender}</Typography>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Box sx={{ display: 'inline-flex' }}>
+                                <Typography sx={{ fontWeight: 'bold', mr: 1, mb: 1, color: '#90A4AE' }}>
+                                    Occupation:
+                                </Typography>
+                                <Typography> {npc.npc_occupation}</Typography>
+                            </Box>
+                        </Box>
+                        <Box sx={{ mt: 2 }}>
+                            <Button type='submit' variant='contained' color='secondary'>
+                                View NPC
+                            </Button>
+                        </Box>
                     </form>
                 </Typography>
             </AccordionDetails>

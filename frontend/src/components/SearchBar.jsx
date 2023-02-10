@@ -22,7 +22,7 @@ const SearchBar = ({ callback, searchType }) => {
                 variant='standard'
                 type='text'
                 className='searchBarInput form-control'
-                placeholder={`Enter text to search for a ${searchType} name`}
+                placeholder={`Enter text to search for ${searchType}`}
                 value={innerValue}
                 onChange={(e) => setInnerValue(e.target.value)}
             />

@@ -49,7 +49,11 @@ const CampaignItem = ({ campaign }) => {
     console.log(campaign.dungeon_master);
     console.log(user._id);
     if (user._id == campaign.dungeon_master[0]) {
-        campaignLinkVisibility = <Typography sx={{ mt: 3 }}>Campaign Code: {campaign.campaign_link}</Typography>;
+        campaignLinkVisibility = (
+            <Typography sx={{ mt: 3, color: '#90A4AE', fontSize: '0.8rem' }}>
+                Campaign Code: {campaign.campaign_link}
+            </Typography>
+        );
     } else {
         campaignLinkVisibility = <p></p>;
     }
@@ -88,7 +92,7 @@ const CampaignItem = ({ campaign }) => {
             <AccordionDetails>
                 <Typography>
                     <form onSubmit={onSubmit}>
-                        <Typography sx={{}}>Description: {campaign.campaign_description}</Typography>
+                        <Typography sx={{}}>{campaign.campaign_description}</Typography>
                         {campaignLinkVisibility}
                         {leaveLinkVisibility}
                         <div>
