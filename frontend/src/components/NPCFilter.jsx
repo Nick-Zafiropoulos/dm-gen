@@ -31,9 +31,9 @@ const NPCFilter = ({ npc }) => {
     }, [user, navigate, isError, message, dispatch]);
 
     return (
-        <Accordion sx={{ boxShadow: 3, width: { xs: '100%', lg: '100%' } }}>
+        <Accordion sx={{ boxShadow: 10, width: { xs: '100%', lg: '100%' } }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
-                <Typography sx={{ fontWeight: 'bold', fontSize: '20px', textShadow: '2px 2px #262626' }}>
+                <Typography sx={{ fontWeight: 'bold', fontSize: '20px', textShadow: '2px 2px #303030' }}>
                     {npc.npc_name}
                 </Typography>
             </AccordionSummary>

@@ -5,7 +5,30 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteShop, reset, getShop, setShop } from '../features/shops/shopSlice';
+import { Box, shadows, Typography, Button } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import blankCanvas from '../images/dmgenblankcloth.png';
 import { motion } from 'framer-motion';
+
+const styles = {
+    backgroundCanvas: {
+        backgroundImage: `url(${blankCanvas})`,
+        // backgroundColor: 'lightgray',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+    backgroundSolid: {
+        backgroundColor: '#030418',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+};
 
 const Shop = () => {
     const dispatch = useDispatch();
@@ -30,9 +53,9 @@ const Shop = () => {
     let deleteVisibility;
     if (user._id == campaignInUse.dungeon_master[0]) {
         deleteVisibility = (
-            <button onClick={shopDelete} type='button' className='m-3 btn btn-danger'>
+            <Button onClick={shopDelete} type='button' variant='contained' color='dangerRed' sx={{ color: 'white' }}>
                 Delete Shop
-            </button>
+            </Button>
         );
     } else {
         deleteVisibility = <p></p>;
@@ -44,29 +67,98 @@ const Shop = () => {
     };
 
     return (
-        <div>
-            <Navbar />
+        <Box>
+            <Box style={styles.backgroundCanvas}>
+                <Navbar />
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'top' }}>
+                    <Card
+                        component={motion.div}
+                        initial={{ x: -500 }}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 400,
+                            damping: 40,
+                        }}
+                        animate={{ x: -20 }}
+                        sx={{ display: 'inline-flex', maxWidth: '30rem', mt: 3, boxShadow: 10 }}
+                    >
+                        <CardContent>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        display: 'flex',
+                                        ml: 5,
+                                        mr: 3,
+                                        mb: 3,
+                                        fontSize: '35px',
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        textShadow: '2px 2px #262626',
+                                    }}
+                                >
+                                    {shopInUse.shop_name}
+                                </Typography>
+                            </Box>
+                            <Box sx={{ ml: 5 }}>
+                                <Box sx={{ display: 'inline-flex' }}>
+                                    <Typography sx={{ fontWeight: 'bold', mr: 1, mb: 1, color: '#90A4AE' }}>
+                                        Owner:
+                                    </Typography>
+                                    <Typography sx={{ mr: 3 }}>{shopInUse.shop_owner}</Typography>
+                                </Box>
+                            </Box>
+                            <Box sx={{ ml: 5 }}>
+                                <Box sx={{ display: 'inline-flex' }}>
+                                    <Typography sx={{ fontWeight: 'bold', mr: 1, color: '#90A4AE' }}>
+                                        Location:{' '}
+                                    </Typography>
+                                    <Typography sx={{ mr: 3 }}>{shopInUse.shop_location}</Typography>
+                                </Box>
+                            </Box>
+                        </CardContent>
+                    </Card>
+                    <Box sx={{ mr: 3, mt: 3 }}>{deleteVisibility}</Box>
+                </Box>
 
-            <div className='row'>
-                <div className='col'>
-                    <h1 className='m-3'>{shopInUse.shop_name}</h1>
-                    <h6 className='m-3'>Owner: {shopInUse.shop_owner}</h6>
-                    <h6 className='m-3'>Location: {shopInUse.shop_location}</h6>
-                </div>
-                <div className='d-flex align-items-center justify-content-end col'>{deleteVisibility}</div>
-            </div>
-            <div className='row'>
-                {shopInUse.shop_list.length >= 0 ? (
-                    <div className='items'>
-                        {shopInUse.shop_list.map((item) => (
-                            <ShopList key={shopInUse.shop_list.item} item={item} />
-                        ))}{' '}
-                    </div>
-                ) : (
-                    <p>This shop has no items!</p>
-                )}
-            </div>
-        </div>
+                <Typography
+                    component={motion.div}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.1 }}
+                    initial={{ opacity: 0 }}
+                    sx={{
+                        mt: 4,
+                        ml: 3,
+                        display: 'flex',
+
+                        fontSize: '35px',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '2px 2px #262626',
+                    }}
+                >
+                    Shop Inventory
+                </Typography>
+
+                <Box sx={{ display: 'inline-flex', ml: 3, mt: 1 }}>
+                    {shopInUse.shop_list.length > 0 ? (
+                        <Box>
+                            {shopInUse.shop_list.map((item) => (
+                                <ShopList key={shopInUse.shop_list.item} item={item} />
+                            ))}{' '}
+                        </Box>
+                    ) : (
+                        <Typography>This shop has no items!</Typography>
+                    )}
+                </Box>
+            </Box>
+            <Box style={styles.backgroundSolid}></Box>
+        </Box>
     );
 };
 

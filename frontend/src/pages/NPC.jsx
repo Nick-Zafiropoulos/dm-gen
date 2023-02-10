@@ -174,7 +174,13 @@ const NPC = () => {
     let deleteVisibility;
     if (user._id == campaignInUse.dungeon_master[0]) {
         deleteVisibility = (
-            <Button sx={{ mt: 3, mr: 5 }} onClick={npcDelete} type='button' color='error' variant='contained'>
+            <Button
+                sx={{ mt: 3, mr: 5, color: 'white' }}
+                onClick={npcDelete}
+                type='button'
+                color='dangerRed'
+                variant='contained'
+            >
                 Delete NPC
             </Button>
         );
@@ -433,7 +439,7 @@ const NPC = () => {
                     initial={{ opacity: 0 }}
                     sx={{ mt: 3, ml: 3, mr: 5, maxWidth: '95vw' }}
                 >
-                    <Card>
+                    <Card sx={{ boxShadow: 10 }}>
                         <CardContent>
                             <div className='row'>
                                 <div className='col'></div>

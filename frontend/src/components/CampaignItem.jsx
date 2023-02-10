@@ -50,22 +50,24 @@ const CampaignItem = ({ campaign }) => {
     console.log(user._id);
     if (user._id == campaign.dungeon_master[0]) {
         campaignLinkVisibility = (
-            <Typography sx={{ mt: 3, color: '#90A4AE', fontSize: '0.8rem' }}>
-                Campaign Code: {campaign.campaign_link}
-            </Typography>
+            <Box sx={{ mb: 2 }}>
+                <Typography sx={{ mt: 3, color: '#90A4AE', fontSize: '0.8rem' }}>
+                    Campaign Code: {campaign.campaign_link}
+                </Typography>
+            </Box>
         );
     } else {
-        campaignLinkVisibility = <p></p>;
+        campaignLinkVisibility = <span></span>;
     }
 
     let leaveLinkVisibility;
     if (user._id == campaign.dungeon_master[0]) {
-        leaveLinkVisibility = <p></p>;
+        leaveLinkVisibility = <span></span>;
     } else {
         leaveLinkVisibility = (
-            <button onClick={clickLeaveCampaign} type='button' className='btn btn-primary'>
+            <Button onClick={clickLeaveCampaign} type='button' variant='text' sx={{ color: 'white', ml: 5 }}>
                 Leave Campaign
-            </button>
+            </Button>
         );
     }
 
@@ -79,26 +81,29 @@ const CampaignItem = ({ campaign }) => {
             </Button>
         );
     } else {
-        campaignDeleteVisibility = <p></p>;
+        campaignDeleteVisibility = <span></span>;
     }
 
     return (
-        <Accordion sx={{ boxShadow: 3, width: { xs: '80vw', lg: '992px' } }}>
+        <Accordion sx={{ boxShadow: 10, width: { xs: '80vw', lg: '992px' } }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
-                <Typography sx={{ fontWeight: 'bold', fontSize: '20px', textShadow: '2px 2px #262626' }}>
+                <Typography sx={{ fontWeight: 'bold', fontSize: '20px', textShadow: '2px 2px #303030' }}>
                     {campaign.campaign_name}
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <Typography>
                     <form onSubmit={onSubmit}>
-                        <Typography sx={{}}>{campaign.campaign_description}</Typography>
+                        <Box sx={{ mb: 3, mt: 1 }}>
+                            <Typography>{campaign.campaign_description}</Typography>
+                        </Box>
                         {campaignLinkVisibility}
-                        {leaveLinkVisibility}
+
                         <div>
                             <Button type='submit' variant='contained' color='secondary'>
                                 Enter Campaign
                             </Button>
+                            {leaveLinkVisibility}
 
                             {campaignDeleteVisibility}
                         </div>

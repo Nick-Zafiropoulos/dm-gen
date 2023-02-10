@@ -91,7 +91,7 @@ function NewNPCOptions() {
                     },
                 }}
                 animate={{ x: 0, opacity: 1 }}
-                sx={{}}
+                sx={{ boxShadow: 10 }}
             >
                 <CardContent>
                     <form onSubmit={onSubmit}>

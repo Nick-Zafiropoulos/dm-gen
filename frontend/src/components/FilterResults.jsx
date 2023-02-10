@@ -31,14 +31,14 @@ const FilterResults = ({ shop }) => {
     }, [user, navigate, isError, message, dispatch]);
 
     return (
-        <Accordion sx={{ boxShadow: 3, width: { xs: '100%', lg: '100%' } }}>
+        <Accordion sx={{ boxShadow: 10, width: { xs: '100%', lg: '100%' } }}>
             <AccordionSummary
                 sx={{ color: 'white' }}
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls='panel1a-content'
                 id='panel1a-header'
             >
-                <Typography sx={{ fontWeight: 'bold', fontSize: '20px', textShadow: '2px 2px #262626' }}>
+                <Typography sx={{ fontWeight: 'bold', fontSize: '20px', textShadow: '2px 2px #303030' }}>
                     {shop.shop_name}
                 </Typography>
             </AccordionSummary>

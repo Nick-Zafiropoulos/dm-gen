@@ -31,7 +31,7 @@ function Navbar() {
     };
 
     let CampaignCreateVisibility;
-    if (document.URL.includes('campaigns')) {
+    if (document.URL.includes('campaigns') || document.URL.includes('join')) {
         CampaignCreateVisibility = (
             <li>
                 <Link to='/campaigns/newcampaign'>Create a Campaign</Link>
@@ -72,7 +72,7 @@ function Navbar() {
     }
 
     let CampaignJoinVisibility;
-    if (document.URL.includes('campaigns')) {
+    if (document.URL.includes('campaigns') || document.URL.includes('join')) {
         CampaignJoinVisibility = (
             <li>
                 <Link to='/join'>Join a Campaign</Link>
@@ -113,11 +113,7 @@ function Navbar() {
         );
     } else {
         MyCampaignSlide = (
-            <Box
-                component={motion.div}
-                transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-                animate={{ x: -1100 }}
-            >
+            <Box>
                 <Link to='/campaigns'>
                     <MdHome /> My Campaigns
                 </Link>

@@ -15,12 +15,16 @@ const theme = createTheme({
         secondary: {
             main: '#578d9d',
         },
+        dangerRed: {
+            main: '#C73636',
+        },
         text: {
             primary: '#ffffff',
             secondary: 'rgba(255, 255, 255, 0.7)',
         },
         background: {
             paper: '#48413f',
+            paperSecondary: '#578d9d',
         },
     },
 });

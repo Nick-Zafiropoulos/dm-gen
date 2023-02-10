@@ -197,7 +197,7 @@ function NewShopOptions() {
             animate={{ x: 0, opacity: 1 }}
             sx={{ mt: 5, ml: 5, maxWidth: '500px' }}
         >
-            <Card sx={{}}>
+            <Card sx={{ boxShadow: 10 }}>
                 <CardContent>
                     <form onSubmit={onSubmit}>
                         <div className='ms-3'>
