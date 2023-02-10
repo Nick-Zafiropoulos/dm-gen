@@ -1,19 +1,40 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import NewShopOptions from '../components/NewShopOptions';
+import { Box, shadows, Typography } from '@mui/material';
+import blankCanvas from '../images/dmgenblankcloth.png';
 
-class NewShop extends React.Component {
-    render() {
-        return (
-            <div>
+const styles = {
+    backgroundCanvas: {
+        backgroundImage: `url(${blankCanvas})`,
+        // backgroundColor: 'lightgray',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+    backgroundSolid: {
+        backgroundColor: '#030418',
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+
+        height: '100vw',
+    },
+};
+
+const NewShop = () => {
+    return (
+        <>
+            <Box style={styles.backgroundCanvas}>
                 <Navbar />
 
-                <div className='row'>
+                <Box className='row'>
                     <NewShopOptions />
-                </div>
-            </div>
-        );
-    }
-}
+                </Box>
+            </Box>
+            <Box style={styles.backgroundSolid}></Box>
+        </>
+    );
+};
 
 export default NewShop;

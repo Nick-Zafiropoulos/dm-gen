@@ -45,7 +45,7 @@ function Home() {
                         <AnimatePresence>
                             <motion.img
                                 key='logo'
-                                initial={{ opacity: 0, y: -10 }}
+                                initial={{ opacity: 0, y: -5 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ type: 'smooth', delay: 0.2 }}
                                 exit={{ opacity: 0 }}

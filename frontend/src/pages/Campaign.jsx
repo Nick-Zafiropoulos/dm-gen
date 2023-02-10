@@ -17,6 +17,7 @@ import blankCanvas from '../images/dmgenblankcloth.png';
 import { useTheme } from '@mui/material/styles';
 import { GiDualityMask, GiShop, GiTwoShadows } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
+import { motion } from 'framer-motion';
 
 const styles = {
     backgroundCanvas: {
@@ -135,72 +136,82 @@ const Campaign = () => {
         <>
             <Box style={styles.backgroundCanvas}>
                 <Navbar />
-                <Box sx={{ mt: 6 }}>
-                    <Typography
-                        sx={{
-                            display: 'flex',
-                            ml: 3,
-                            mt: 3,
-                            mb: 3,
-                            fontSize: '35px',
-                            fontWeight: 'bold',
-                            color: 'white',
-                            textShadow: '2px 2px #262626',
-                        }}
-                    >
-                        {campaignInUse.campaign_name}
-                    </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: 4, p: 3 }}>
-                    <Box sx={{ width: '40%' }}>
-                        <Box sx={{ width: '50%' }}>
-                            <IconContext.Provider
-                                value={{ color: 'white', className: 'global-class-name', size: '40px' }}
-                            >
-                                <GiShop />
-                            </IconContext.Provider>
-                            <Box sx={{ mt: 1 }}>
-                                <SearchBar callback={(searchValue) => setSearchValue(searchValue)} searchType='shops' />
-                            </Box>
-                        </Box>
-
-                        <Box sx={{ width: '100%' }}>
-                            {results.length >= 0 ? (
-                                <div className='campaigns'>
-                                    {results.map((shop) => (
-                                        <FilterResults key={results._id} shop={shop} />
-                                    ))}{' '}
-                                </div>
-                            ) : (
-                                <p>You do not have any shops yet!</p>
-                            )}
-                        </Box>
+                <Box
+                    component={motion.div}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.1 }}
+                    initial={{ opacity: 0 }}
+                >
+                    <Box sx={{ mt: 6 }}>
+                        <Typography
+                            sx={{
+                                display: 'flex',
+                                ml: 3,
+                                mt: 3,
+                                mb: 3,
+                                fontSize: '35px',
+                                fontWeight: 'bold',
+                                color: 'white',
+                                textShadow: '2px 2px #262626',
+                            }}
+                        >
+                            {campaignInUse.campaign_name}
+                        </Typography>
                     </Box>
-                    <Box sx={{ width: '40%' }}>
-                        <Box sx={{ width: '50%' }}>
-                            <IconContext.Provider
-                                value={{ color: 'white', className: 'global-class-name', size: '40px' }}
-                            >
-                                <GiTwoShadows />
-                            </IconContext.Provider>
-                            <Box sx={{ mt: 1 }}>
-                                <SearchBar
-                                    callback={(NPCsearchValue) => setNPCSearchValue(NPCsearchValue)}
-                                    searchType='NPCs'
-                                />
+                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: 4, p: 3 }}>
+                        <Box sx={{ width: '40%' }}>
+                            <Box sx={{ width: '50%' }}>
+                                <IconContext.Provider
+                                    value={{ color: 'white', className: 'global-class-name', size: '40px' }}
+                                >
+                                    <GiShop />
+                                </IconContext.Provider>
+                                <Box sx={{ mt: 1 }}>
+                                    <SearchBar
+                                        callback={(searchValue) => setSearchValue(searchValue)}
+                                        searchType='shops'
+                                    />
+                                </Box>
+                            </Box>
+
+                            <Box sx={{ width: '100%' }}>
+                                {results.length >= 0 ? (
+                                    <div className='campaigns'>
+                                        {results.map((shop) => (
+                                            <FilterResults key={results._id} shop={shop} />
+                                        ))}{' '}
+                                    </div>
+                                ) : (
+                                    <p>You do not have any shops yet!</p>
+                                )}
                             </Box>
                         </Box>
+                        <Box sx={{ width: '40%' }}>
+                            <Box sx={{ width: '50%' }}>
+                                <IconContext.Provider
+                                    value={{ color: 'white', className: 'global-class-name', size: '40px' }}
+                                >
+                                    <GiTwoShadows />
+                                </IconContext.Provider>
+                                <Box sx={{ mt: 1 }}>
+                                    <SearchBar
+                                        callback={(NPCsearchValue) => setNPCSearchValue(NPCsearchValue)}
+                                        searchType='NPCs'
+                                    />
+                                </Box>
+                            </Box>
 
-                        <Box sx={{ width: '100%' }}>
-                            {NPCresults.length >= 0 ? (
-                                <div className='campaigns'>
-                                    {NPCresults.map((npc) => (
-                                        <NPCFilter key={NPCresults._id} npc={npc} />
-                                    ))}{' '}
-                                </div>
-                            ) : (
-                                <p>You do not have any NPCs yet!</p>
-                            )}
+                            <Box sx={{ width: '100%' }}>
+                                {NPCresults.length >= 0 ? (
+                                    <div className='campaigns'>
+                                        {NPCresults.map((npc) => (
+                                            <NPCFilter key={NPCresults._id} npc={npc} />
+                                        ))}{' '}
+                                    </div>
+                                ) : (
+                                    <p>You do not have any NPCs yet!</p>
+                                )}
+                            </Box>
                         </Box>
                     </Box>
                 </Box>

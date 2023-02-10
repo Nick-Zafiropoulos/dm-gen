@@ -87,9 +87,16 @@ const Register = () => {
             <Navbar />
             <Box
                 component={motion.div}
-                initial={{ x: 650 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-                animate={{ x: 0 }}
+                initial={{ x: 650, opacity: 0 }}
+                transition={{
+                    type: 'spring',
+                    stiffness: 400,
+                    damping: 40,
+                    opacity: {
+                        duration: 0.4,
+                    },
+                }}
+                animate={{ x: 0, opacity: 1 }}
             >
                 <Box sx={{ display: 'flex', justifyContent: 'right', mt: 30, mr: 35 }}>
                     <form onSubmit={onSubmit}>

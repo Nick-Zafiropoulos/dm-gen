@@ -5,6 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createShop, reset } from '../features/shops/shopSlice';
 import Spinner from '../components/Spinner';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { TextField } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { motion } from 'framer-motion';
 
 function NewShopOptions() {
     const [formData, setFormData] = useState({
@@ -16,6 +31,11 @@ function NewShopOptions() {
         shop_rarities: [],
     });
 
+    const [itemTotal, setItemTotal] = useState('');
+
+    const handleChange = (event) => {
+        setItemTotal(event.target.value);
+    };
     // category data
     const categories = useRef({
         weapon: false,
@@ -149,7 +169,7 @@ function NewShopOptions() {
             shop_name,
             shop_owner,
             shop_location,
-            shop_itemCount,
+            shop_itemCount: itemTotal,
             shop_categories,
             shop_rarities,
         };
@@ -163,336 +183,365 @@ function NewShopOptions() {
     }
 
     return (
-        <form onSubmit={onSubmit}>
-            <div className='ms-3'>
-                <h1>Create an Item Shop</h1>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Custom Name
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='shop_name'
-                        name='shop_name'
-                        value={shop_name}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Custom Owner
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='shop_owner'
-                        name='shop_owner'
-                        value={shop_owner}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Location
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='shop_location'
-                        name='shop_location'
-                        value={shop_location}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        onChange={onChange}
-                    />
-                </div>
-                <select
-                    className='form-select mt-4 w-25'
-                    aria-label='Default select example'
-                    id='shop_itemCount'
-                    name='shop_itemCount'
-                    value={shop_itemCount}
-                    onChange={onChange}
-                >
-                    <option defaultValue>How many items in the shop?</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                    <option value='6'>6</option>
-                    <option value='7'>7</option>
-                    <option value='8'>8</option>
-                    <option value='9'>9</option>
-                    <option value='10'>10</option>
-                </select>
-                <h6 className='mt-4'>What types of items are in the shop?</h6>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.weapon) {
-                                categories.weapon = true;
-                            } else {
-                                categories.weapon = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Weapons
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.armor) {
-                                categories.armor = true;
-                            } else {
-                                categories.armor = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Armor
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.ring) {
-                                categories.ring = true;
-                            } else {
-                                categories.ring = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Rings
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.wondrousItem) {
-                                categories.wondrousItem = true;
-                            } else {
-                                categories.wondrousItem = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Wondrous Items
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.scroll) {
-                                categories.scroll = true;
-                            } else {
-                                categories.scroll = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Scrolls
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.potion) {
-                                categories.potion = true;
-                            } else {
-                                categories.potion = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Potions
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.wand) {
-                                categories.wand = true;
-                            } else {
-                                categories.wand = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Wands
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!categories.staff) {
-                                categories.staff = true;
-                            } else {
-                                categories.staff = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Staves
-                    </label>
-                </div>
-                <h6 className='mt-4'>What rarities of items are in the shop?</h6>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!rarities.common) {
-                                rarities.common = true;
-                            } else {
-                                rarities.common = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Common
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!rarities.uncommon) {
-                                rarities.uncommon = true;
-                            } else {
-                                rarities.uncommon = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Uncommon
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!rarities.rare) {
-                                rarities.rare = true;
-                            } else {
-                                rarities.rare = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Rare
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!rarities.veryRare) {
-                                rarities.veryRare = true;
-                            } else {
-                                rarities.veryRare = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Very Rare
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!rarities.legendary) {
-                                rarities.legendary = true;
-                            } else {
-                                rarities.legendary = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Legendary
-                    </label>
-                </div>
-                <div className='form-check form-switch'>
-                    <input
-                        className='form-check-input'
-                        type='checkbox'
-                        role='switch'
-                        id='flexSwitchCheckDefault'
-                        onChange={() => {
-                            if (!rarities.artifact) {
-                                rarities.artifact = true;
-                            } else {
-                                rarities.artifact = false;
-                            }
-                        }}
-                    />
-                    <label className='form-check-label' htmlFor='flexSwitchCheckDefault'>
-                        Artifact
-                    </label>
-                </div>
+        <Box
+            component={motion.div}
+            initial={{ x: -550 }}
+            transition={{
+                type: 'spring',
+                stiffness: 400,
+                damping: 40,
+                opacity: {
+                    duration: 0.4,
+                },
+            }}
+            animate={{ x: 0, opacity: 1 }}
+            sx={{ mt: 5, ml: 5, maxWidth: '500px' }}
+        >
+            <Card sx={{}}>
+                <CardContent>
+                    <form onSubmit={onSubmit}>
+                        <div className='ms-3'>
+                            <Typography
+                                sx={{
+                                    display: 'flex',
 
-                <div>
-                    <button type='submit' className='btn btn-primary mt-4'>
-                        Submit
-                    </button>
-                </div>
-            </div>
-        </form>
+                                    fontSize: '35px',
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    textShadow: '2px 2px #262626',
+                                }}
+                            >
+                                Create a Shop
+                            </Typography>
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Shop Name'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Enter a name for the shop'
+                                name='shop_name'
+                                value={shop_name}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Shop Owner'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Enter a name for the shop owner'
+                                name='shop_owner'
+                                value={shop_owner}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Location'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Enter the location for the shop '
+                                name='shop_location'
+                                value={shop_location}
+                                onChange={onChange}
+                            />
+
+                            <FormControl variant='standard' sx={{ mt: 1, width: '60%' }}>
+                                <InputLabel id='demo-simple-select-standard-label'>
+                                    How many items in the shop?
+                                </InputLabel>
+                                <Select
+                                    labelId='demo-simple-select-standard-label'
+                                    id='demo-simple-select-standard'
+                                    value={itemTotal}
+                                    onChange={handleChange}
+                                    label='Amount of Items'
+                                >
+                                    <MenuItem value=''>
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={1}>1</MenuItem>
+                                    <MenuItem value={2}>2</MenuItem>
+                                    <MenuItem value={3}>3</MenuItem>
+                                    <MenuItem value={4}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
+                                    <MenuItem value={6}>6</MenuItem>
+                                    <MenuItem value={7}>7</MenuItem>
+                                    <MenuItem value={8}>8</MenuItem>
+                                    <MenuItem value={9}>9</MenuItem>
+                                    <MenuItem value={10}>10</MenuItem>
+                                </Select>
+                            </FormControl>
+
+                            <Typography sx={{ mt: 4 }}>What types of items are in the shop?</Typography>
+
+                            <Box sx={{ ml: 1, mt: 1 }}>
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.weapon) {
+                                                        categories.weapon = true;
+                                                    } else {
+                                                        categories.weapon = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Weapons'
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.armor) {
+                                                        categories.armor = true;
+                                                    } else {
+                                                        categories.armor = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Armor'
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.ring) {
+                                                        categories.ring = true;
+                                                    } else {
+                                                        categories.ring = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Rings'
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.wondrousItem) {
+                                                        categories.wondrousItem = true;
+                                                    } else {
+                                                        categories.wondrousItem = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Wondrous Items'
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.scroll) {
+                                                        categories.scroll = true;
+                                                    } else {
+                                                        categories.scroll = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Scrolls'
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.potion) {
+                                                        categories.potion = true;
+                                                    } else {
+                                                        categories.potion = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Potions'
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.wand) {
+                                                        categories.wand = true;
+                                                    } else {
+                                                        categories.wand = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Wands'
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color='secondary'
+                                                size='small'
+                                                onChange={() => {
+                                                    if (!categories.staff) {
+                                                        categories.staff = true;
+                                                    } else {
+                                                        categories.staff = false;
+                                                    }
+                                                }}
+                                            />
+                                        }
+                                        label='Staves'
+                                    />
+                                </FormGroup>
+                            </Box>
+                            <Typography sx={{ mt: 3 }}>What rarities of items are in the shop?</Typography>
+
+                            <Box sx={{ ml: 1, mt: 1 }}>
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={<Switch color='secondary' size='small' />}
+                                        label='Common'
+                                        onChange={() => {
+                                            if (!rarities.common) {
+                                                rarities.common = true;
+                                            } else {
+                                                rarities.common = false;
+                                            }
+                                        }}
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={<Switch color='secondary' size='small' />}
+                                        label='Uncommon'
+                                        onChange={() => {
+                                            if (!rarities.uncommon) {
+                                                rarities.uncommon = true;
+                                            } else {
+                                                rarities.uncommon = false;
+                                            }
+                                        }}
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={<Switch color='secondary' size='small' />}
+                                        label='Rare'
+                                        onChange={() => {
+                                            if (!rarities.rare) {
+                                                rarities.rare = true;
+                                            } else {
+                                                rarities.rare = false;
+                                            }
+                                        }}
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={<Switch color='secondary' size='small' />}
+                                        label='Very Rare'
+                                        onChange={() => {
+                                            if (!rarities.veryRare) {
+                                                rarities.veryRare = true;
+                                            } else {
+                                                rarities.veryRare = false;
+                                            }
+                                        }}
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={<Switch color='secondary' size='small' />}
+                                        label='Legendary'
+                                        onChange={() => {
+                                            if (!rarities.legendary) {
+                                                rarities.legendary = true;
+                                            } else {
+                                                rarities.legendary = false;
+                                            }
+                                        }}
+                                    />
+                                </FormGroup>
+
+                                <FormGroup sx={{ mt: 0.2 }}>
+                                    <FormControlLabel
+                                        control={<Switch color='secondary' size='small' />}
+                                        label='Artifact'
+                                        onChange={() => {
+                                            if (!rarities.artifact) {
+                                                rarities.artifact = true;
+                                            } else {
+                                                rarities.artifact = false;
+                                            }
+                                        }}
+                                    />
+                                </FormGroup>
+                            </Box>
+
+                            <Box
+                                sx={{
+                                    display: 'flex',
+
+                                    mt: 3,
+                                }}
+                            >
+                                <Button type='submit' variant='contained' color='secondary'>
+                                    Create
+                                </Button>
+                            </Box>
+                        </div>
+                    </form>
+                </CardContent>
+            </Card>
+        </Box>
     );
 }
 

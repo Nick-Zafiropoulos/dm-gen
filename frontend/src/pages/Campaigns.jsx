@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCampaign, reset } from '../features/campaigns/campaignSlice';
 import { Box, shadows, Typography } from '@mui/material';
 import blankCanvas from '../images/dmgenblankcloth.png';
+import { motion } from 'framer-motion';
 
 const styles = {
     backgroundCanvas: {
@@ -56,7 +57,13 @@ function Campaigns() {
                 <Box>
                     <Navbar />
                 </Box>
-                <Box sx={{ p: 3 }}>
+                <Box
+                    component={motion.div}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.1 }}
+                    initial={{ opacity: 0 }}
+                    sx={{ p: 3 }}
+                >
                     <Typography
                         sx={{
                             display: 'flex',

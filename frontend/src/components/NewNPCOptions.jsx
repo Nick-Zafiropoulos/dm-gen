@@ -5,6 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createNPC, reset } from '../features/npcs/npcSlice';
 import Spinner from '../components/Spinner';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { motion } from 'framer-motion';
+import { TextField } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 function NewNPCOptions() {
     const navigate = useNavigate();
@@ -63,145 +78,169 @@ function NewNPCOptions() {
     }
 
     return (
-        <form onSubmit={onSubmit}>
-            <div className='ms-3'>
-                <h1>Create an NPC</h1>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Name
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_name'
-                        name='npc_name'
-                        value={npc_name}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Species
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_species'
-                        name='npc_species'
-                        value={npc_species}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Age
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_age'
-                        name='npc_age'
-                        value={npc_age}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Gender
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_gender'
-                        name='npc_gender'
-                        value={npc_gender}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Occupation
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_occupation'
-                        name='npc_occupation'
-                        value={npc_occupation}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Personality
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_personality'
-                        name='npc_personality'
-                        value={npc_personality}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Flaws
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_flaws'
-                        name='npc_flaws'
-                        value={npc_flaws}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for a generated result'
-                        onChange={onChange}
-                    />
-                </div>
-                <div className='input-group input-group-sm mb-3 w-25'>
-                    <span className='input-group-text' id='inputGroup-sizing-sm'>
-                        Location
-                    </span>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='npc_location'
-                        name='npc_location'
-                        value={npc_location}
-                        aria-label='Sizing example input'
-                        aria-describedby='inputGroup-sizing-sm'
-                        placeholder='Leave blank for no location'
-                        onChange={onChange}
-                    />
-                </div>
+        <Box sx={{ mt: 5, ml: 5, maxWidth: '500px' }}>
+            <Card
+                component={motion.div}
+                initial={{ x: -550 }}
+                transition={{
+                    type: 'spring',
+                    stiffness: 400,
+                    damping: 40,
+                    opacity: {
+                        duration: 0.4,
+                    },
+                }}
+                animate={{ x: 0, opacity: 1 }}
+                sx={{}}
+            >
+                <CardContent>
+                    <form onSubmit={onSubmit}>
+                        <div className='ms-3'>
+                            <Typography
+                                sx={{
+                                    display: 'flex',
 
-                <div>
-                    <button type='submit' className='btn btn-primary mt-4'>
-                        Submit
-                    </button>{' '}
-                </div>
-            </div>
-        </form>
+                                    fontSize: '35px',
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    textShadow: '2px 2px #262626',
+                                }}
+                            >
+                                Create a NPC
+                            </Typography>
+                            <Typography sx={{ fontSize: '.8rem' }}>
+                                All fields can be edited after character creation.
+                            </Typography>
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Name'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for a generated result'
+                                name='npc_name'
+                                value={npc_name}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Species'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for a generated result'
+                                name='npc_species'
+                                value={npc_species}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Age'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for a generated result'
+                                name='npc_age'
+                                value={npc_age}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Gender'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for a generated result'
+                                name='npc_gender'
+                                value={npc_gender}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Occupation'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for a generated result'
+                                name='npc_occupation'
+                                value={npc_occupation}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Personality'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for a generated result'
+                                name='npc_personality'
+                                value={npc_personality}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Flaws'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for a generated result'
+                                name='npc_flaws'
+                                value={npc_flaws}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
+                                fullWidth
+                                id='standard-basic'
+                                label='Location'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Leave blank for no location'
+                                name='npc_location'
+                                value={npc_location}
+                                onChange={onChange}
+                            />
+
+                            <Box
+                                sx={{
+                                    display: 'flex',
+
+                                    mt: 3,
+                                }}
+                            >
+                                <Button type='submit' variant='contained' color='secondary'>
+                                    Create
+                                </Button>
+                            </Box>
+                        </div>
+                    </form>
+                </CardContent>
+                <CardActions></CardActions>
+            </Card>
+        </Box>
     );
 }
 

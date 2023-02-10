@@ -88,9 +88,16 @@ const Login = () => {
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'right', p: 30 }}>
                     <motion.section
-                        initial={{ x: 650 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-                        animate={{ x: 0 }}
+                        initial={{ x: 650, opacity: 0 }}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 400,
+                            damping: 40,
+                            opacity: {
+                                duration: 0.4,
+                            },
+                        }}
+                        animate={{ x: 0, opacity: 1 }}
                         className='form'
                     >
                         <Typography
