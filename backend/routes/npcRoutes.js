@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { getNpcs, postNpc, updateNpc, deleteNpc, updateNpcNotes } = require('../controllers/npcController');
+const {
+    getNpcs,
+    postNpc,
+    updateNpc,
+    deleteNpc,
+    updateNpcNotes,
+    deleteNpcNote,
+} = require('../controllers/npcController');
 
 router.get('/', getNpcs);
 
@@ -9,6 +16,8 @@ router.post('/', postNpc);
 router.put('/', updateNpc);
 
 router.put('/notes', updateNpcNotes);
+
+router.put('/deletenote', deleteNpcNote);
 
 router.delete('/', deleteNpc);
 

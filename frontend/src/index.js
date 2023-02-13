@@ -18,13 +18,15 @@ const theme = createTheme({
         dangerRed: {
             main: '#C73636',
         },
+        calmRed: {
+            main: '#E57373',
+        },
         text: {
             primary: '#ffffff',
             secondary: 'rgba(255, 255, 255, 0.7)',
         },
         background: {
             paper: '#48413f',
-            paperSecondary: '#578d9d',
         },
     },
 });

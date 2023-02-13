@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api/npcs/';
 const API_URL_NOTE = 'http://localhost:5000/api/npcs/notes';
+const API_URL_NOTEDELETE = 'http://localhost:5000/api/npcs/deletenote';
 
 // Create a npc
 const createNPC = async (npcData, token, currentCampaign) => {
@@ -54,6 +55,19 @@ const npcNote = async (newNpcNote, token) => {
     return response.data;
 };
 
+// npc note removal
+const npcDeleteNote = async (noteToDeleteData, token) => {
+    const tokenHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.put(API_URL_NOTEDELETE, { noteToDeleteData }, tokenHeader);
+
+    return response.data;
+};
+
 // Delete a npc
 const deleteNPC = async (npcToDelete, token) => {
     const tokenHeader = {
@@ -72,6 +86,7 @@ const npcService = {
     deleteNPC,
     updateNPC,
     npcNote,
+    npcDeleteNote,
 };
 
 export default npcService;

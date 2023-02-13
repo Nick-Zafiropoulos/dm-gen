@@ -114,6 +114,24 @@ const updateNpcNotes = asyncHandler(async (req, res) => {
     res.send(noteToNPC);
 });
 
+//@desc Delete npc note
+const deleteNpcNote = asyncHandler(async (req, res) => {
+    let deleteNoteNPC = await NPC.findOne({ _id: req.body.noteToDeleteData._id });
+
+    let noteArray = deleteNoteNPC.npc_notes;
+    let noteIndex = noteArray.indexOf(req.body.noteToDeleteData.noteToDelete);
+
+    if (noteIndex == -1) {
+        deleteNoteNPC = 'This note does not exist, please refresh the page';
+    } else {
+        noteArray.splice(noteIndex, 1);
+
+        await deleteNoteNPC.updateOne({ npc_notes: noteArray });
+    }
+
+    res.send(deleteNoteNPC);
+});
+
 // @desc Update npc
 // @route PUT /api/npcs/:id
 const updateNpc = asyncHandler(async (req, res) => {
@@ -166,5 +184,6 @@ module.exports = {
     postNpc,
     updateNpc,
     updateNpcNotes,
+    deleteNpcNote,
     deleteNpc,
 };

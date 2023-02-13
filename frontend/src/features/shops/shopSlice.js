@@ -62,6 +62,19 @@ export const removeItem = createAsyncThunk('shop/removeitem', async (removedItem
     }
 });
 
+// Add item to shop
+export const addItem = createAsyncThunk('shop/additem', async (newItemAndShop, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+
+        return await shopService.addItem(newItemAndShop, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // delete shop from DB
 export const deleteShop = createAsyncThunk('shop/deleteshop', async (shopToDelete, thunkAPI) => {
     try {

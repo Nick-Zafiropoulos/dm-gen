@@ -76,6 +76,19 @@ export const npcNote = createAsyncThunk('npc/npcnote', async (newNpcNote, thunkA
     }
 });
 
+// npc note removal
+export const npcDeleteNote = createAsyncThunk('npc/npcdeletenote', async (noteToDeleteData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+
+        return await npcService.npcDeleteNote(noteToDeleteData, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // delete npc from DB
 export const deleteNPC = createAsyncThunk('npc/deletenpc', async (npcToDelete, thunkAPI) => {
     try {

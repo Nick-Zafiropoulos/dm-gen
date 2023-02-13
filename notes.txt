@@ -1,6 +1,8 @@
 Bugs:
 // Fix shopcontroller shop creation to not hang when a category+rarity combo has no items to pull from to begin with
-// Make sure all fields that need to be entered can only be entered as correct type i.e. age being a number for NPCs
+// Make sure all fields that need to be entered can only be entered as correct type i.e. age being a number for NPCs (do I really need this?)
+// Error message handling (things like if you try to delete a note that has already been deleted)
+// page loads that move back to the top of the page
 
 Features:
 X // Populate shop pages with their items list
@@ -15,14 +17,21 @@ X // Format items display, Navbar conditionals
 X // Implement Search in Campaign Dashboard
 X // Add note bullet points for NPCs (model update, axios route, slice and service, npc page update notes event)
 X // Add location to NPC sheets
-// Add delete note feature (delete button and onclick is ready, just need slice/service/controller to splice it out)
-// Styling (create campaign, join campaign, shop)
-// animations (modals)
+X // Add delete note feature (delete button and onclick is ready, just need slice/service/controller to splice it out)
+X // Styling (create campaign, join campaign, shop)
+// Complete new item push to shop_list (push works, need to refresh state. Also need to make remove item work for items with no ID)
+// animations (modals), add shop and add npc buttons on campaign page, add campaign on campaigns page
 // How it works page with gifs
 // Error displays
+// prevent injection with field/text validation
 // increase gen table size
+// A few unit tests
 // Deployment
 
+// Make talking point list for what I did in my project
+- talk about modern stuff Im doing:
+    - CSS injection in React using styles
+    - switching from class react components to function components
 
 
 
@@ -31,4 +40,3 @@ occupations - https://negatherium.com/npc-generator/joblist.html
 names - https://barelyharebooks.com/a-master-list-of-300-fantasy-names-characters-towns-and-villages/
 personalities - https://examples.yourdictionary.com/examples-of-personality-traits.html
 flaws - https://dungeongoblin.com/blog/20-characters-flaws-to-try-on-your-next-dnd-character
-d20 art: <a href="https://www.vecteezy.com/free-vector/icons">Icons Vectors by Vecteezy</a>

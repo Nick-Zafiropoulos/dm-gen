@@ -88,7 +88,7 @@ const postShop = asyncHandler(async (req, res) => {
 });
 
 // @desc Update shop
-// @route PUT /api/shops/:id
+// @route PUT /api/shops/removeitem
 const removeItem = asyncHandler(async (req, res) => {
     const shop = await Shop.findOne({ _id: req.body.removedItemIdAndShop.shopId });
 
@@ -126,6 +126,24 @@ const removeItem = asyncHandler(async (req, res) => {
     res.send(shop);
 });
 
+// @desc Add Item To Shop
+// @route PUT /api/shops/additem
+const addItem = asyncHandler(async (req, res) => {
+    const shop = await Shop.findOne({ _id: req.body.newItemAndShop.shopId });
+
+    const newItem = {
+        item_name: req.body.newItemAndShop.new_item_name,
+        item_desc: req.body.newItemAndShop.new_item_description,
+        equipment_category: req.body.newItemAndShop.new_item_equipment_category,
+        item_rarity: req.body.newItemAndShop.new_item_rarity,
+        item_cursed: req.body.newItemAndShop.new_item_cursed,
+    };
+
+    await shop.updateOne({ $push: { shop_list: newItem } });
+
+    res.send(shop);
+});
+
 // @desc Delete shop
 // @route DELETE /api/shops/:id
 const deleteShop = asyncHandler(async (req, res) => {
@@ -137,5 +155,6 @@ module.exports = {
     getShops,
     postShop,
     removeItem,
+    addItem,
     deleteShop,
 };

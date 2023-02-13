@@ -70,7 +70,9 @@ const NPC = () => {
         _id,
     } = npcUpdateInfo;
 
-    useEffect(() => {}, [user, navigate, isError, message, dispatch]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [navigate]);
 
     const onChange = (e) => {
         setNpcUpdateInfo((prevState) => ({

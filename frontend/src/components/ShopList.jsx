@@ -69,7 +69,7 @@ const ShopList = ({ item }) => {
         <Accordion
             component={motion.div}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.1 }}
+            transition={{ delay: 0.3, duration: 0.1 }}
             initial={{ opacity: 0 }}
             sx={{ boxShadow: 10, width: { xs: '80vw', lg: '992px' } }}
         >

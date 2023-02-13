@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api/shops/';
 const API_URL_REMOVEITEM = 'http://localhost:5000/api/shops/removeitem';
+const API_URL_ADDITEM = 'http://localhost:5000/api/shops/additem';
+
 // Create a shop
 const createShop = async (shopData, token, currentCampaign) => {
     const tokenHeader = {
@@ -40,6 +42,19 @@ const removeItem = async (removedItemIdAndShop, token) => {
     return response.data;
 };
 
+// Add item to shop
+const addItem = async (newItemAndShop, token) => {
+    const tokenHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.put(API_URL_ADDITEM, { newItemAndShop }, tokenHeader);
+
+    return response.data;
+};
+
 // Delete a shop
 const deleteShop = async (shopToDelete, token) => {
     const tokenHeader = {
@@ -56,6 +71,7 @@ const shopService = {
     createShop,
     getShop,
     removeItem,
+    addItem,
     deleteShop,
 };
 
