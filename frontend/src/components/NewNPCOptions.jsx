@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createNPC, reset } from '../features/npcs/npcSlice';
 import Spinner from '../components/Spinner';
@@ -13,6 +13,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import { TextField } from '@mui/material';
+import { MdClose } from 'react-icons/md';
+import { IconContext } from 'react-icons';
+import IconButton from '@mui/material/IconButton';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -96,18 +99,45 @@ function NewNPCOptions() {
                 <CardContent>
                     <form onSubmit={onSubmit}>
                         <div className='ms-3'>
-                            <Typography
-                                sx={{
-                                    display: 'flex',
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Typography
+                                    sx={{
+                                        display: 'flex',
 
-                                    fontSize: '35px',
-                                    fontWeight: 'bold',
-                                    color: 'white',
-                                    textShadow: '2px 2px #262626',
-                                }}
-                            >
-                                Create a NPC
-                            </Typography>
+                                        fontSize: '35px',
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        textShadow: '2px 2px #262626',
+                                    }}
+                                >
+                                    Create a NPC
+                                </Typography>
+
+                                <Box>
+                                    <IconButton
+                                        component={Link}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.3, duration: 0.1 }}
+                                        initial={{ opacity: 0 }}
+                                        to='/campaign'
+                                        type='button'
+                                        variant='contained'
+                                        color='calmRed'
+                                        style={{ color: '#E57373' }}
+                                    >
+                                        <IconContext.Provider
+                                            value={{
+                                                color: 'calmRed',
+                                                className: 'global-class-name',
+                                                size: '2rem',
+                                            }}
+                                        >
+                                            <MdClose />
+                                        </IconContext.Provider>
+                                    </IconButton>
+                                </Box>
+                            </Box>
+
                             <Typography sx={{ fontSize: '.8rem' }}>
                                 All fields can be edited after character creation.
                             </Typography>

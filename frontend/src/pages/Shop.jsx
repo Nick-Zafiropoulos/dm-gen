@@ -17,6 +17,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { MdClose } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import IconButton from '@mui/material/IconButton';
+import { v4 as uuidv4 } from 'uuid';
+import Modal from '@mui/material/Modal';
 
 const styles = {
     backgroundCanvas: {
@@ -36,6 +38,18 @@ const styles = {
     },
 };
 
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 455,
+    bgcolor: '#ECEFF1',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 const Shop = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,6 +61,7 @@ const Shop = () => {
     const [editNewItemToggleState, setEditNewItemToggleState] = useState(0);
 
     let editNewItemCursed = false;
+    let textInput = useRef(null);
 
     const [editNewItemState, setEditNewItemState] = useState({
         new_item_name: '',
@@ -56,6 +71,10 @@ const Shop = () => {
     });
 
     const { new_item_name, new_item_description, new_item_equipment_category, new_item_rarity } = editNewItemState;
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -77,12 +96,34 @@ const Shop = () => {
         navigate('/campaign');
     };
 
-    const addCustomItem = (e) => {
+    const addCustomItem = async (e) => {
         e.preventDefault();
+
+        let newItemId = uuidv4();
         let itemDesc = new_item_description;
         let itemDescArray = itemDesc.split('\n').filter((elm) => elm);
+        let arrayBeginning;
+        if (new_item_equipment_category === '' || new_item_rarity === '') {
+            arrayBeginning = `${new_item_equipment_category}${new_item_rarity}`;
+        } else {
+            arrayBeginning = `${new_item_equipment_category}, ${new_item_rarity}`;
+        }
+        itemDescArray.unshift(arrayBeginning);
+
+        const newItemToRedux = {
+            _id: newItemId,
+            item_name: new_item_name,
+            item_desc: itemDescArray,
+            equipment_category: new_item_equipment_category,
+            item_rarity: new_item_rarity,
+            item_cursed: editNewItemCursed,
+        };
+
+        let new_shop_list = Object.assign([], shopInUse.shop_list);
+        new_shop_list.push(newItemToRedux);
 
         const newItemAndShop = {
+            _id: newItemId,
             new_item_name,
             new_item_description: itemDescArray,
             new_item_equipment_category,
@@ -90,19 +131,58 @@ const Shop = () => {
             new_item_cursed: editNewItemCursed,
             shopId: shopInUse._id,
         };
-        console.log(itemDescArray);
-        dispatch(addItem(newItemAndShop));
-        // dispatch(getShop());
 
-        // navigate('/shop');
+        const shopReduxUpdate = {
+            shop_name: shopInUse.shop_name,
+            shop_owner: shopInUse.shop_owner,
+            shop_location: shopInUse.shop_location,
+            shop_campaign: shopInUse.shop_campaign,
+            shop_list: new_shop_list,
+            shop_hidden_list: shopInUse.shop_hidden_list,
+            _id: shopInUse._id,
+        };
+
+        console.log(itemDescArray);
+        await dispatch(addItem(newItemAndShop));
+
+        await dispatch(setShop(shopReduxUpdate));
+        textInput.current.value = '';
+        setEditNewItemToggleState(0);
+
+        navigate('/shop');
     };
 
     let deleteVisibility;
     if (user._id == campaignInUse.dungeon_master[0]) {
         deleteVisibility = (
-            <Button onClick={shopDelete} type='button' variant='contained' color='dangerRed' sx={{ color: 'white' }}>
-                Delete Shop
-            </Button>
+            <div>
+                <Button color='calmRed' variant='outlined' onClick={handleOpen}>
+                    Delete Shop
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby='modal-modal-title'
+                    aria-describedby='modal-modal-description'
+                >
+                    <Box sx={modalStyle}>
+                        <Typography id='modal-modal-title' variant='h6' component='h2'>
+                            Are you sure you want to delete this shop?
+                        </Typography>
+                        <Box sx={{ mt: 3, display: 'flex', justifyContent: 'right' }}>
+                            <Button
+                                onClick={shopDelete}
+                                type='button'
+                                variant='contained'
+                                color='calmRed'
+                                sx={{ color: 'white' }}
+                            >
+                                Delete
+                            </Button>
+                        </Box>
+                    </Box>
+                </Modal>
+            </div>
         );
     } else {
         deleteVisibility = <span></span>;
@@ -202,13 +282,13 @@ const Shop = () => {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '51%' }}
                                 fullWidth
                                 id='standard-basic'
+                                inputRef={textInput}
                                 label='Item Name'
                                 variant='standard'
                                 type='text'
                                 className='searchBarInput form-control'
                                 placeholder='Enter an item name'
                                 name='new_item_name'
-                                value={new_item_name}
                                 onChange={onChange}
                             />
                             <TextField
@@ -217,43 +297,43 @@ const Shop = () => {
                                 multiline
                                 rows={6}
                                 id='standard-basic'
+                                inputRef={textInput}
                                 label='Description'
                                 variant='outlined'
                                 type='text'
                                 className='searchBarInput form-control'
                                 placeholder='Enter an item description'
                                 name='new_item_description'
-                                value={new_item_description}
                                 onChange={onChange}
                             />
                             <TextField
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '51%' }}
                                 fullWidth
                                 id='standard-basic'
+                                inputRef={textInput}
                                 label='Category'
                                 variant='standard'
                                 type='text'
                                 className='searchBarInput form-control'
                                 placeholder='Enter a category'
                                 name='new_item_equipment_category'
-                                value={new_item_equipment_category}
                                 onChange={onChange}
                             />
                             <TextField
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '51%' }}
                                 fullWidth
                                 id='standard-basic'
+                                inputRef={textInput}
                                 label='Rarity'
                                 variant='standard'
                                 type='text'
                                 className='searchBarInput form-control'
                                 placeholder='Enter the item rarity'
                                 name='new_item_rarity'
-                                value={new_item_rarity}
                                 onChange={onChange}
                             />
 
-                            <FormGroup sx={{ mt: 3, color: 'white' }}>
+                            {/* <FormGroup sx={{ mt: 3, color: 'white' }}>
                                 <FormControlLabel
                                     control={
                                         <Switch
@@ -270,7 +350,7 @@ const Shop = () => {
                                     }
                                     label='Cursed?'
                                 />
-                            </FormGroup>
+                            </FormGroup> */}
 
                             <Box sx={{ mt: 3, mb: 3 }}>
                                 <Button onClick={addCustomItem} type='submit' variant='contained' color='secondary'>
@@ -379,7 +459,7 @@ const Shop = () => {
                         <Typography>This shop has no items!</Typography>
                     )}
                 </Box>
-                <Box sx={{ ml: 3, mt: 3 }}>{addItemVisibility}</Box>
+                <Box sx={{ ml: 5, mt: 3 }}>{addItemVisibility}</Box>
                 <Box sx={{ ml: 3, mt: 3 }}>{editNewItem}</Box>
             </Box>
             <Box style={styles.backgroundSolid}></Box>

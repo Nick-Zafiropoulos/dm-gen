@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import FilterCheckbox from '../components/FilterCheckbox';
@@ -12,7 +12,7 @@ import { getShop } from '../features/shops/shopSlice';
 import { getNPC } from '../features/npcs/npcSlice';
 import { reset as npcReset } from '../features/npcs/npcSlice';
 import { reset as shopReset } from '../features/shops/shopSlice';
-import { Box, shadows, Typography } from '@mui/material';
+import { Box, shadows, Typography, Button } from '@mui/material';
 import blankCanvas from '../images/dmgenblankcloth.png';
 import { useTheme } from '@mui/material/styles';
 import { GiDualityMask, GiShop, GiTwoShadows } from 'react-icons/gi';
@@ -211,6 +211,21 @@ const Campaign = () => {
                                     <p>You do not have any shops yet!</p>
                                 )}
                             </Box>
+                            <Box sx={{ mt: 3, ml: 2 }}>
+                                <Button
+                                    component={Link}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3, duration: 0.1 }}
+                                    initial={{ opacity: 0 }}
+                                    type='button'
+                                    variant='contained'
+                                    color='secondary'
+                                    to='/shop/newshop'
+                                    style={{ color: '#FFF' }}
+                                >
+                                    + New Shop
+                                </Button>
+                            </Box>
                         </Box>
                         <Box sx={{ width: '40%' }}>
                             <Box sx={{ width: '50%' }}>
@@ -237,6 +252,21 @@ const Campaign = () => {
                                 ) : (
                                     <p>You do not have any NPCs yet!</p>
                                 )}
+                            </Box>
+                            <Box sx={{ mt: 3, ml: 2 }}>
+                                <Button
+                                    component={Link}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3, duration: 0.1 }}
+                                    initial={{ opacity: 0 }}
+                                    type='button'
+                                    variant='contained'
+                                    color='secondary'
+                                    to='/npc/newnpc'
+                                    style={{ color: '#FFF' }}
+                                >
+                                    + New NPC
+                                </Button>
                             </Box>
                         </Box>
                     </Box>

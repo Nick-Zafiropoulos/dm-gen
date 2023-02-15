@@ -12,11 +12,28 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, shadows, Button } from '@mui/material';
 import { motion } from 'framer-motion';
+import Modal from '@mui/material/Modal';
+
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 460,
+    bgcolor: '#ECEFF1',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 const ShopList = ({ item }) => {
     const dispatch = useDispatch();
 
     const { shopInUse } = useSelector((state) => state.shop);
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     // const [revisedShop, setRevisedShop] = useState({
     //     shop_name: shopInUse.shop_name,
     //     shop_owner: shopInUse.shop_owner,
@@ -31,16 +48,30 @@ const ShopList = ({ item }) => {
     const clickRemoveItem = (e) => {
         e.preventDefault();
 
+        setOpen(false);
+
         function indexOfbyKey(obj_list, value) {
             for (let index in obj_list) {
                 if (obj_list[index]._id.toString() === value) return index;
             }
             return -1;
         }
+        function indexOfbyKeyForCustom(obj_list, value) {
+            for (let index in obj_list) {
+                if (obj_list[index]._id === value) return index;
+            }
+            return -1;
+        }
 
         const shopListArray = [...shopInUse.shop_list];
 
-        const itemObjectIndex = indexOfbyKey(shopListArray, item._id);
+        let itemObjectIndex;
+
+        if (item._id.includes('-')) {
+            itemObjectIndex = indexOfbyKeyForCustom(shopListArray, item._id);
+        } else {
+            itemObjectIndex = indexOfbyKey(shopListArray, item._id);
+        }
 
         let objectForSort = shopListArray.splice(itemObjectIndex, 1);
 
@@ -93,9 +124,37 @@ const ShopList = ({ item }) => {
                     </Typography>
                 </Box>
 
-                <Button onClick={clickRemoveItem} type='button' variant='contained' color='secondary'>
+                <Box sx={{ mt: 3, mr: 6 }}>
+                    <Button color='calmRed' variant='outlined' onClick={handleOpen}>
+                        Remove Item
+                    </Button>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby='modal-modal-title'
+                        aria-describedby='modal-modal-description'
+                    >
+                        <Box sx={modalStyle}>
+                            <Typography id='modal-modal-title' variant='h6' component='h2'>
+                                Are you sure you want to remove this item?
+                            </Typography>
+                            <Box sx={{ mt: 3, display: 'flex', justifyContent: 'right' }}>
+                                <Button
+                                    onClick={clickRemoveItem}
+                                    type='button'
+                                    variant='contained'
+                                    color='calmRed'
+                                    sx={{ color: 'white' }}
+                                >
+                                    Yes, Remove Item
+                                </Button>
+                            </Box>
+                        </Box>
+                    </Modal>
+                </Box>
+                {/* <Button onClick={clickRemoveItem} type='button' variant='contained' color='secondary'>
                     Remove Item
-                </Button>
+                </Button> */}
             </AccordionDetails>
         </Accordion>
 

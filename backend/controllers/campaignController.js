@@ -129,7 +129,8 @@ const deleteCampaign = asyncHandler(async (req, res) => {
 
     // await campaign.remove();
 
-    console.log(`${campaignDel} Campaigns, ${shopsDel} Shops, and ${npcsDel} NPCs deleted`);
+    // console.log(`${campaignDel} Campaigns, ${shopsDel} Shops, and ${npcsDel} NPCs deleted`);
+    res.send(campaign);
 });
 
 module.exports = {

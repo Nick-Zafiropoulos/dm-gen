@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createShop, reset } from '../features/shops/shopSlice';
 import Spinner from '../components/Spinner';
@@ -20,6 +20,9 @@ import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { motion } from 'framer-motion';
+import { MdClose } from 'react-icons/md';
+import { IconContext } from 'react-icons';
+import IconButton from '@mui/material/IconButton';
 
 function NewShopOptions() {
     const [formData, setFormData] = useState({
@@ -201,18 +204,44 @@ function NewShopOptions() {
                 <CardContent>
                     <form onSubmit={onSubmit}>
                         <div className='ms-3'>
-                            <Typography
-                                sx={{
-                                    display: 'flex',
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Typography
+                                    sx={{
+                                        display: 'flex',
 
-                                    fontSize: '35px',
-                                    fontWeight: 'bold',
-                                    color: 'white',
-                                    textShadow: '2px 2px #262626',
-                                }}
-                            >
-                                Create a Shop
-                            </Typography>
+                                        fontSize: '35px',
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        textShadow: '2px 2px #262626',
+                                    }}
+                                >
+                                    Create a Shop
+                                </Typography>
+
+                                <Box>
+                                    <IconButton
+                                        component={Link}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.3, duration: 0.1 }}
+                                        initial={{ opacity: 0 }}
+                                        to='/campaign'
+                                        type='button'
+                                        variant='contained'
+                                        color='calmRed'
+                                        style={{ color: '#E57373' }}
+                                    >
+                                        <IconContext.Provider
+                                            value={{
+                                                color: 'calmRed',
+                                                className: 'global-class-name',
+                                                size: '2rem',
+                                            }}
+                                        >
+                                            <MdClose />
+                                        </IconContext.Provider>
+                                    </IconButton>
+                                </Box>
+                            </Box>
 
                             <TextField
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}

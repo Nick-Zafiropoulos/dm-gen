@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createCampaign, reset } from '../features/campaigns/campaignSlice';
 import Spinner from '../components/Spinner';
@@ -11,6 +11,9 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { motion } from 'framer-motion';
+import { MdClose } from 'react-icons/md';
+import { IconContext } from 'react-icons';
+import IconButton from '@mui/material/IconButton';
 
 function NewCampaignOptions() {
     const [formData, setFormData] = useState({
@@ -71,19 +74,43 @@ function NewCampaignOptions() {
             >
                 <CardContent>
                     <form onSubmit={onSubmit}>
-                        <Typography
-                            sx={{
-                                display: 'flex',
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Typography
+                                sx={{
+                                    display: 'flex',
 
-                                fontSize: '35px',
-                                fontWeight: 'bold',
-                                color: 'white',
-                                textShadow: '2px 2px #262626',
-                            }}
-                        >
-                            Create a Campaign
-                        </Typography>
-
+                                    fontSize: '35px',
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    textShadow: '2px 2px #262626',
+                                }}
+                            >
+                                Create a Campaign
+                            </Typography>
+                            <Box>
+                                <IconButton
+                                    component={Link}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3, duration: 0.1 }}
+                                    initial={{ opacity: 0 }}
+                                    to='/campaigns'
+                                    type='button'
+                                    variant='contained'
+                                    color='calmRed'
+                                    style={{ color: '#E57373' }}
+                                >
+                                    <IconContext.Provider
+                                        value={{
+                                            color: 'calmRed',
+                                            className: 'global-class-name',
+                                            size: '2rem',
+                                        }}
+                                    >
+                                        <MdClose />
+                                    </IconContext.Provider>
+                                </IconButton>
+                            </Box>
+                        </Box>
                         <TextField
                             sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '50%' }}
                             fullWidth

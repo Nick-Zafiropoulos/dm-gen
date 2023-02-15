@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MdCircle, MdRemoveCircle } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import IconButton from '@mui/material/IconButton';
+import Modal from '@mui/material/Modal';
 
 const styles = {
     backgroundCanvas: {
@@ -31,6 +32,18 @@ const styles = {
 
         height: '100vw',
     },
+};
+
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: '#ECEFF1',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
 };
 
 const NPC = () => {
@@ -69,6 +82,10 @@ const NPC = () => {
         npc_flaws,
         _id,
     } = npcUpdateInfo;
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -176,22 +193,41 @@ const NPC = () => {
     let deleteVisibility;
     if (user._id == campaignInUse.dungeon_master[0]) {
         deleteVisibility = (
-            <Button
-                sx={{ mt: 3, mr: 5, color: 'white' }}
-                onClick={npcDelete}
-                type='button'
-                color='dangerRed'
-                variant='contained'
-            >
-                Delete NPC
-            </Button>
+            <Box sx={{ mt: 3, mr: 6 }}>
+                <Button color='calmRed' variant='outlined' onClick={handleOpen}>
+                    Delete NPC
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby='modal-modal-title'
+                    aria-describedby='modal-modal-description'
+                >
+                    <Box sx={modalStyle}>
+                        <Typography id='modal-modal-title' variant='h6' component='h2'>
+                            Are you sure you want to delete this character?
+                        </Typography>
+                        <Box sx={{ mt: 3, display: 'flex', justifyContent: 'right' }}>
+                            <Button
+                                onClick={npcDelete}
+                                type='button'
+                                variant='contained'
+                                color='calmRed'
+                                sx={{ color: 'white' }}
+                            >
+                                Delete
+                            </Button>
+                        </Box>
+                    </Box>
+                </Modal>
+            </Box>
         );
     } else {
         deleteVisibility = <p></p>;
     }
 
     let editVisibility;
-    if (user._id == campaignInUse.dungeon_master[0]) {
+    if (user._id == campaignInUse.dungeon_master[0] && editState == 0) {
         editVisibility = (
             <Button sx={{ mt: 3, mr: 3 }} onClick={npcEdit} type='button' color='secondary' variant='contained'>
                 Edit NPC
@@ -410,25 +446,47 @@ const NPC = () => {
                 >
                     <Box>
                         {editState == 0 && (
-                            <Typography
-                                sx={{
-                                    display: 'flex',
-                                    ml: 3,
-                                    mt: 6,
-
-                                    fontSize: '35px',
-                                    fontWeight: 'bold',
-                                    color: 'white',
-                                    textShadow: '2px 2px #262626',
+                            <Card
+                                component={motion.div}
+                                initial={{ x: -500 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 400,
+                                    damping: 40,
                                 }}
+                                animate={{ x: -20 }}
+                                sx={{ display: 'inline-flex', maxWidth: '30rem', mt: 3, boxShadow: 10 }}
                             >
-                                {npcInUse.npc_name}
-                            </Typography>
+                                <CardContent>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'space-between',
+                                        }}
+                                    >
+                                        <Typography
+                                            sx={{
+                                                display: 'flex',
+                                                ml: 5,
+                                                mr: 1,
+
+                                                fontSize: '35px',
+                                                fontWeight: 'bold',
+                                                color: 'white',
+                                                textShadow: '2px 2px #262626',
+                                            }}
+                                        >
+                                            {npcInUse.npc_name}
+                                        </Typography>
+                                    </Box>
+                                </CardContent>
+                            </Card>
                         )}
                     </Box>
 
                     <Box sx={{}}>
-                        <Box sx={{ mt: 3 }}>
+                        <Box sx={{ mt: 3, display: 'flex' }}>
                             {editVisibility}
                             {deleteVisibility}
                         </Box>
@@ -437,7 +495,7 @@ const NPC = () => {
                 <Box
                     component={motion.div}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.1, duration: 0.1 }}
+                    transition={{ delay: 0.3, duration: 0.1 }}
                     initial={{ opacity: 0 }}
                     sx={{ mt: 3, ml: 3, mr: 5, maxWidth: '95vw' }}
                 >

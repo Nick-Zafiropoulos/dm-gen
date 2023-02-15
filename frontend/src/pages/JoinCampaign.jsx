@@ -13,6 +13,9 @@ import CardContent from '@mui/material/CardContent';
 import { motion } from 'framer-motion';
 import blankCanvas from '../images/dmgenblankcloth.png';
 import Navbar from '../components/Navbar';
+import { MdClose } from 'react-icons/md';
+import { IconContext } from 'react-icons';
+import IconButton from '@mui/material/IconButton';
 
 const styles = {
     backgroundCanvas: {
@@ -91,18 +94,43 @@ const JoinCampaign = () => {
                     >
                         <CardContent>
                             <form onSubmit={onSubmit}>
-                                <Typography
-                                    sx={{
-                                        display: 'flex',
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <Typography
+                                        sx={{
+                                            display: 'flex',
 
-                                        fontSize: '35px',
-                                        fontWeight: 'bold',
-                                        color: 'white',
-                                        textShadow: '2px 2px #262626',
-                                    }}
-                                >
-                                    Join a Campaign
-                                </Typography>
+                                            fontSize: '35px',
+                                            fontWeight: 'bold',
+                                            color: 'white',
+                                            textShadow: '2px 2px #262626',
+                                        }}
+                                    >
+                                        Join a Campaign
+                                    </Typography>
+                                    <Box>
+                                        <IconButton
+                                            component={Link}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ delay: 0.3, duration: 0.1 }}
+                                            initial={{ opacity: 0 }}
+                                            to='/campaigns'
+                                            type='button'
+                                            variant='contained'
+                                            color='calmRed'
+                                            style={{ color: '#E57373' }}
+                                        >
+                                            <IconContext.Provider
+                                                value={{
+                                                    color: 'calmRed',
+                                                    className: 'global-class-name',
+                                                    size: '2rem',
+                                                }}
+                                            >
+                                                <MdClose />
+                                            </IconContext.Provider>
+                                        </IconButton>
+                                    </Box>
+                                </Box>
 
                                 <TextField
                                     sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '90%' }}

@@ -7,6 +7,7 @@ import { logout, reset } from '../features/auth/authSlice';
 import { Box, shadows } from '@mui/material';
 import dmgenlogoblack from '../images/dmgenlogoblack.png';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BsPlusCircle, BsPersonPlus, BsBackspace } from 'react-icons/bs';
 
 const styles = {
     dmgentext: {
@@ -34,7 +35,9 @@ function Navbar() {
     if (document.URL.includes('campaigns') || document.URL.includes('join')) {
         CampaignCreateVisibility = (
             <li>
-                <Link to='/campaigns/newcampaign'>Create a Campaign</Link>
+                <Link to='/campaigns/newcampaign'>
+                    <BsPlusCircle /> Create a Campaign
+                </Link>
             </li>
         );
     } else {
@@ -49,7 +52,9 @@ function Navbar() {
     ) {
         ShopCreateVisibility = (
             <li>
-                <Link to='/shop/newshop'>New Shop</Link>
+                <Link to='/shop/newshop'>
+                    <BsPlusCircle /> New Shop
+                </Link>
             </li>
         );
     } else {
@@ -64,7 +69,9 @@ function Navbar() {
     ) {
         NPCCreateVisibility = (
             <li>
-                <Link to='/npc/newnpc'>New NPC</Link>
+                <Link to='/npc/newnpc'>
+                    <BsPlusCircle /> New NPC
+                </Link>
             </li>
         );
     } else {
@@ -75,7 +82,9 @@ function Navbar() {
     if (document.URL.includes('campaigns') || document.URL.includes('join')) {
         CampaignJoinVisibility = (
             <li>
-                <Link to='/join'>Join a Campaign</Link>
+                <Link to='/join'>
+                    <BsPersonPlus /> Join a Campaign
+                </Link>
             </li>
         );
     } else {
@@ -86,7 +95,9 @@ function Navbar() {
     if (document.URL.includes('shop') || document.URL.includes('npc')) {
         ToCampaignVisibility = (
             <li>
-                <Link to='/campaign'>Back to Campaign</Link>
+                <Link to='/campaign'>
+                    <BsBackspace /> Back to Campaign
+                </Link>
             </li>
         );
     } else {
@@ -104,20 +115,18 @@ function Navbar() {
         LogoVisibility = <span></span>;
     }
 
-    let MyCampaignSlide;
-    if (document.URL.includes('shop') || document.URL.includes('campaign') || document.URL.includes('npc')) {
-        MyCampaignSlide = (
-            <Link to='/campaigns'>
-                <MdHome /> My Campaigns
-            </Link>
-        );
+    let MyCampaigns;
+    if (document.URL.includes('campaigns')) {
+        MyCampaigns = <span></span>;
     } else {
-        MyCampaignSlide = (
-            <Box>
-                <Link to='/campaigns'>
-                    <MdHome /> My Campaigns
-                </Link>
-            </Box>
+        MyCampaigns = (
+            <li>
+                <Box>
+                    <Link to='/campaigns'>
+                        <MdHome /> My Campaigns
+                    </Link>
+                </Box>
+            </li>
         );
     }
 
@@ -158,6 +167,7 @@ function Navbar() {
                             </button>
 
                             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+                                {MyCampaigns}
                                 {ShopCreateVisibility}
                                 {NPCCreateVisibility}
                                 {CampaignCreateVisibility}
@@ -173,7 +183,12 @@ function Navbar() {
                                     <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                         {user ? (
                                             <>
-                                                <li>{MyCampaignSlide}</li>
+                                                <li>
+                                                    <Link to='/howitworks'>
+                                                        <MdOutlineHelp />
+                                                        How It Works
+                                                    </Link>
+                                                </li>
                                                 <li>
                                                     <button className='btn' onClick={onLogout}>
                                                         <MdLogout /> Logout

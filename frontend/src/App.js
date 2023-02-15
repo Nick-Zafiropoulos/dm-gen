@@ -16,6 +16,7 @@ import NewNPC from './pages/NewNPC';
 import NewCampaign from './pages/NewCampaign';
 import NoPage from './pages/NoPage';
 import JoinCampaign from './pages/JoinCampaign';
+import HowItWorks from './pages/HowItWorks';
 import Layout from './pages/Layout';
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                     <Route path='/*' element={<NoPage />} />
+
+                    <Route path='/howitworks' element={<HowItWorks />} />
 
                     <Route path='/join' element={<JoinCampaign />} />
 

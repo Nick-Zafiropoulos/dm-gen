@@ -99,7 +99,21 @@ const removeItem = asyncHandler(async (req, res) => {
         return -1;
     }
 
-    const itemObjectIndex = indexOfbyKey(shop.shop_list, req.body.removedItemIdAndShop.itemId);
+    function indexOfbyKeyForCustom(obj_list, value) {
+        for (let index in obj_list) {
+            if (obj_list[index]._id === value) return index;
+        }
+        return -1;
+    }
+
+    let itemObjectIndex;
+
+    if (req.body.removedItemIdAndShop.itemId.includes('-')) {
+        itemObjectIndex = indexOfbyKeyForCustom(shop.shop_list, req.body.removedItemIdAndShop.itemId);
+    } else {
+        itemObjectIndex = indexOfbyKey(shop.shop_list, req.body.removedItemIdAndShop.itemId);
+    }
+
     shop.shop_list.splice(itemObjectIndex, 1);
     const newList = shop.shop_list;
 
@@ -132,6 +146,7 @@ const addItem = asyncHandler(async (req, res) => {
     const shop = await Shop.findOne({ _id: req.body.newItemAndShop.shopId });
 
     const newItem = {
+        _id: req.body.newItemAndShop._id,
         item_name: req.body.newItemAndShop.new_item_name,
         item_desc: req.body.newItemAndShop.new_item_description,
         equipment_category: req.body.newItemAndShop.new_item_equipment_category,

@@ -2,10 +2,10 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import CampaignItem from '../components/CampaignItem';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCampaign, reset } from '../features/campaigns/campaignSlice';
-import { Box, shadows, Typography } from '@mui/material';
+import { Box, shadows, Typography, Button } from '@mui/material';
 import blankCanvas from '../images/dmgenblankcloth.png';
 import { motion } from 'framer-motion';
 
@@ -51,6 +51,17 @@ function Campaigns() {
         // };
     }, [user, navigate, isError, message, dispatch]);
 
+    let CampaignCreateButton;
+    if (document.URL.includes('campaigns') || document.URL.includes('join')) {
+        CampaignCreateButton = (
+            <li>
+                <Link to='/campaigns/newcampaign'>Create a Campaign</Link>
+            </li>
+        );
+    } else {
+        CampaignCreateButton = <span></span>;
+    }
+
     return (
         <>
             <Box style={styles.backgroundCanvas}>
@@ -86,10 +97,41 @@ function Campaigns() {
                             </div>
                         ) : (
                             <Typography sx={{ color: 'white' }}>
-                                You do not have any campaigns yet. Click "Create a Campaign" in the banner above to get
-                                started!
+                                You do not have any campaigns yet. Click "Create a Campaign" to get started!
                             </Typography>
                         )}
+                    </Box>
+                    <Box sx={{ display: 'flex', mt: 3, ml: 3 }}>
+                        <Box sx={{ mr: 5 }}>
+                            <Button
+                                component={Link}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.3, duration: 0.1 }}
+                                initial={{ opacity: 0 }}
+                                type='button'
+                                variant='contained'
+                                color='secondary'
+                                to='/campaigns/newcampaign'
+                                style={{ color: '#FFF' }}
+                            >
+                                + Create a Campaign
+                            </Button>
+                        </Box>
+                        <Box>
+                            <Button
+                                component={Link}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.3, duration: 0.1 }}
+                                initial={{ opacity: 0 }}
+                                type='button'
+                                variant='contained'
+                                color='secondary'
+                                to='/join'
+                                style={{ color: '#FFF' }}
+                            >
+                                + Join a Campaign
+                            </Button>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
