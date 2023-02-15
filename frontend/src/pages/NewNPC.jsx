@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar';
 import { Box, shadows, Typography } from '@mui/material';
 import NewNPCOptions from '../components/NewNPCOptions';
 import blankCanvas from '../images/dmgenblankcloth.png';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const styles = {
     backgroundCanvas: {
@@ -22,21 +24,19 @@ const styles = {
     },
 };
 
-class NewNPC extends React.Component {
-    render() {
-        return (
-            <>
-                <Box style={styles.backgroundCanvas}>
-                    <Navbar />
+const NewNPC = () => {
+    return (
+        <>
+            <Box style={styles.backgroundCanvas}>
+                <Navbar />
 
-                    <Box className='row'>
-                        <NewNPCOptions />
-                    </Box>
+                <Box className='row'>
+                    <NewNPCOptions />
                 </Box>
-                <Box style={styles.backgroundSolid}></Box>
-            </>
-        );
-    }
-}
+            </Box>
+            <Box style={styles.backgroundSolid}></Box>
+        </>
+    );
+};
 
 export default NewNPC;

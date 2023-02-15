@@ -43,6 +43,10 @@ const Login = () => {
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [navigate]);
+
+    useEffect(() => {
         if (isError) {
             toast.error(message);
         }

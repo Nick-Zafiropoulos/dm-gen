@@ -8,6 +8,8 @@ import { Box, Typography } from '@mui/material';
 import diceCanvas from '../images/dicebackground.jpeg';
 import dmgenlogowhite from '../images/dmgenlogowhite.png';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const styles = {
     backgroundContainer: {
@@ -33,7 +35,12 @@ const styles = {
 };
 
 function Home() {
+    const navigate = useNavigate();
     const { user } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [navigate]);
 
     return (
         <>
@@ -65,6 +72,30 @@ function Home() {
                         >
                             Item shop and NPC generation managed by you, viewable by your players.
                         </Typography>
+                    </Box>
+                    <Box
+                        component={motion.div}
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ type: 'smooth', delay: 0.8 }}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'right',
+                            mt: 3,
+                            ml: 5,
+                            mr: 93,
+                        }}
+                    >
+                        <Button
+                            component={Link}
+                            type='button'
+                            to='/howitworks'
+                            variant='contained'
+                            color='secondary'
+                            style={{ color: '#FFF' }}
+                        >
+                            See How It Works
+                        </Button>
                     </Box>
 
                     {/* <div className='col'>

@@ -22,9 +22,9 @@ X // Styling (create campaign, join campaign, shop)
 X // Complete new item push to shop_list (push works, need to refresh state. Also need to make remove item work for items with no ID)
 X // animations (modals), (X) add shop and add npc buttons on campaign page, add campaign on campaigns page
 // How it works page with gifs
+// Responsive sizing
 // Error displays (custom item needs all fields, not a full list of items could be generated due to limited items in database, etc...)
 // prevent injection with field/text validation
-// Responsive sizing
 // increase gen table size
 // A few unit tests
 // Deployment

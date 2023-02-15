@@ -161,7 +161,7 @@ const Campaign = () => {
         // </div>
         <>
             <Box style={styles.backgroundCanvas}>
-                <Navbar />
+                <Navbar sticky='top' />
                 <Box
                     component={motion.div}
                     animate={{ opacity: 1 }}
