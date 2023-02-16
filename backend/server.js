@@ -5,7 +5,7 @@ const connectDB = require('./config/db');
 
 connectDB();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 const app = express();
 
@@ -36,4 +36,4 @@ app.use('/api/npcs', require('./routes/npcRoutes'));
 
 app.use(errorHandler);
 
-app.listen(port, '0.0.0.0');
+app.listen(process.env.PORT || 80, '0.0.0.0');
