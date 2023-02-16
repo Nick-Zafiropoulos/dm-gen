@@ -14,20 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // For whitelisting react app port
-const cors = require('cors');
+
 const { db } = require('./models/campaignModel');
-const whitelist = ['http://localhost:3000'];
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || whitelist.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-};
-app.use(cors(corsOptions));
 
 app.use('/api/campaigns', require('./routes/campaignRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
