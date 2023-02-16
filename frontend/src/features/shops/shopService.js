@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/shops/';
-const API_URL_REMOVEITEM = 'http://localhost:5000/api/shops/removeitem';
-const API_URL_ADDITEM = 'http://localhost:5000/api/shops/additem';
+const API_URL = '/api/shops/';
+const API_URL_REMOVEITEM = '/api/shops/removeitem';
+const API_URL_ADDITEM = '/api/shops/additem';
 
 // Create a shop
 const createShop = async (shopData, token, currentCampaign) => {

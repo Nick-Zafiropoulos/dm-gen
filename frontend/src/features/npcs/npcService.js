@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/npcs/';
-const API_URL_NOTE = 'http://localhost:5000/api/npcs/notes';
-const API_URL_NOTEDELETE = 'http://localhost:5000/api/npcs/deletenote';
+const API_URL = '/api/npcs/';
+const API_URL_NOTE = '/api/npcs/notes';
+const API_URL_NOTEDELETE = '/api/npcs/deletenote';
 
 // Create a npc
 const createNPC = async (npcData, token, currentCampaign) => {

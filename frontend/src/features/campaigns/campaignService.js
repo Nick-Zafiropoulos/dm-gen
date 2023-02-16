@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/campaigns/';
-const API_URL_LEAVE = 'http://localhost:5000/api/campaigns/leave';
+const API_URL = '/api/campaigns/';
+const API_URL_LEAVE = '/api/campaigns/leave';
 
 // Create a campaign
 const createCampaign = async (campaignData, token) => {
