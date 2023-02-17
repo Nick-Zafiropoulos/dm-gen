@@ -35,6 +35,7 @@ const styles = {
         backgroundSize: 'cover',
 
         height: '100vw',
+        minHeight: '1200px',
     },
 };
 

@@ -520,16 +520,22 @@ const NPC = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.1 }}
                     initial={{ opacity: 0 }}
-                    sx={{ mt: 3, ml: 3, mr: 5, maxWidth: '95vw' }}
+                    sx={{ mt: 3, ml: { xs: 0, sm: 3 }, mr: { xs: 0, sm: 5 }, maxWidth: { xs: '100%', sm: '95vw' } }}
                 >
                     <Card sx={{ boxShadow: 10 }}>
                         <CardContent>
                             <div className='row'>
                                 <div className='col'></div>
                                 <div className='d-flex align-items-center justify-content-end col'></div>
-                                <Box sx={{ display: 'flex', justifyContent: 'left' }}>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: { xs: 'column', sm: 'row' },
+                                        justifyContent: 'left',
+                                    }}
+                                >
                                     {editView}
-                                    <Box sx={{ ml: 20, maxWidth: '70vw' }}>
+                                    <Box sx={{ ml: { xs: 0, sm: 20 }, maxWidth: '70vw' }}>
                                         <form className='' onSubmit={npcNoteSend}>
                                             <TextField
                                                 component={motion.div}
@@ -595,7 +601,7 @@ const NPC = () => {
                     </Card>
                 </Box>
             </Box>
-            <Box style={styles.backgroundSolid}></Box>
+            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 };

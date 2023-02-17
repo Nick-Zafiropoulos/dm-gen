@@ -229,7 +229,7 @@ function NewShopOptions() {
                 },
             }}
             animate={{ x: 0, opacity: 1 }}
-            sx={{ mt: 5, ml: 5, maxWidth: '500px' }}
+            sx={{ mt: { xs: 0, sm: 5 }, ml: { xs: 0, sm: 5 }, maxWidth: '500px' }}
         >
             <Card sx={{ boxShadow: 10 }}>
                 <CardContent>

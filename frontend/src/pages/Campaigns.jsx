@@ -24,6 +24,7 @@ const styles = {
         backgroundSize: 'cover',
 
         height: '100vw',
+        minHeight: '1200px',
     },
 };
 
@@ -101,7 +102,7 @@ function Campaigns() {
                             </Typography>
                         )}
                     </Box>
-                    <Box sx={{ display: 'flex', mt: 3, ml: 3 }}>
+                    <Box sx={{ display: 'flex', mt: 3, ml: { xs: 0, sm: 3 } }}>
                         <Box sx={{ mr: 5 }}>
                             <Button
                                 component={Link}

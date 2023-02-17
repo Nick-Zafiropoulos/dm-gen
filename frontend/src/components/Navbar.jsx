@@ -154,6 +154,16 @@ function Navbar() {
                             >
                                 <MdNavigateNext />
                             </IconContext.Provider>
+
+                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+                                {MyCampaigns}
+                                {ShopCreateVisibility}
+                                {NPCCreateVisibility}
+                                {CampaignCreateVisibility}
+                                {CampaignJoinVisibility}
+                                {ToCampaignVisibility}
+                            </ul>
+
                             <button
                                 className='navbar-toggler'
                                 type='button'
@@ -165,15 +175,6 @@ function Navbar() {
                             >
                                 <span className='navbar-toggler-icon'></span>
                             </button>
-
-                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                                {MyCampaigns}
-                                {ShopCreateVisibility}
-                                {NPCCreateVisibility}
-                                {CampaignCreateVisibility}
-                                {CampaignJoinVisibility}
-                                {ToCampaignVisibility}
-                            </ul>
 
                             <div className='collapse navbar-collapse' id='navbarText'>
                                 <ul className='navbar-nav me-auto mb-2 mb-lg-0'>

@@ -27,6 +27,12 @@ const styles = {
         width: '100%',
         height: 'auto',
     },
+    gifs: {
+        // width: '100%',
+        height: 'auto',
+        minWidth: '15em',
+        // maxWidth: '100px',
+    },
 };
 
 const HowItWorks = () => {
@@ -79,10 +85,10 @@ const HowItWorks = () => {
                                 fontSize: '1.2rem',
                                 textAlign: 'center',
                                 textShadow: '2px 2px #262626',
-                                ml: 10,
-                                mr: 10,
-                                pr: 30,
-                                pl: 30,
+                                ml: { xs: 2, sm: 10 },
+                                mr: { xs: 2, sm: 10 },
+                                pr: { xs: 0, sm: 30 },
+                                pl: { xs: 0, sm: 30 },
                             }}
                         >
                             DM Gen is a tool for 5th Edition Dungeons and Dragons that allows Dungeon Masters to
@@ -100,8 +106,8 @@ const HowItWorks = () => {
                                 fontWeight: 'bold',
                                 fontSize: '2rem',
                                 textAlign: 'center',
-                                ml: 10,
-                                mr: 10,
+                                ml: { xs: 0, sm: 10 },
+                                mr: { xs: 0, sm: 10 },
                                 mt: 30,
                                 mb: 20,
                                 textShadow: '2px 2px #262626',
@@ -111,7 +117,14 @@ const HowItWorks = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 30 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        justifyContent: { xs: 'left', sm: 'space-between' },
+                        mb: 30,
+                    }}
+                >
                     <Box
                         component={motion.div}
                         transition={{
@@ -124,10 +137,15 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: 20 }}
+                        sx={{
+                            boxShadow: 20,
+                            display: 'inline-flex',
+                            border: '1px solid black',
+                            ml: { xs: 0, sm: 20 },
+                        }}
                         viewport={{ once: true }}
                     >
-                        <img src='https://i.imgur.com/PN1F0ws.gif' />
+                        <img style={styles.gifs} src='https://i.imgur.com/PN1F0ws.gif' />
                     </Box>
                     <Box
                         component={motion.div}
@@ -141,7 +159,7 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: 10, textShadow: '2px 2px #262626' }}
+                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
                         <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
@@ -150,7 +168,14 @@ const HowItWorks = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 30 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        justifyContent: 'space-between',
+                        mb: 30,
+                    }}
+                >
                     <Box
                         component={motion.div}
                         transition={{
@@ -163,10 +188,10 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: 20 }}
+                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
                         viewport={{ once: true }}
                     >
-                        <img src='https://i.imgur.com/SNnM6UY.gif' />
+                        <img style={styles.gifs} src='https://i.imgur.com/SNnM6UY.gif' />
                     </Box>
                     <Box
                         component={motion.div}
@@ -180,7 +205,7 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: 10, textShadow: '2px 2px #262626' }}
+                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
                         <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
@@ -189,7 +214,14 @@ const HowItWorks = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 30 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        justifyContent: 'space-between',
+                        mb: 30,
+                    }}
+                >
                     <Box
                         component={motion.div}
                         transition={{
@@ -202,10 +234,10 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: 20 }}
+                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
                         viewport={{ once: true }}
                     >
-                        <img src='https://i.imgur.com/M5EDNTX.gif' />
+                        <img style={styles.gifs} src='https://i.imgur.com/M5EDNTX.gif' />
                     </Box>
                     <Box
                         component={motion.div}
@@ -219,7 +251,7 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: 10, textShadow: '2px 2px #262626' }}
+                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
                         <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
@@ -227,7 +259,14 @@ const HowItWorks = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 30 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        justifyContent: 'space-between',
+                        mb: 30,
+                    }}
+                >
                     <Box
                         component={motion.div}
                         transition={{
@@ -240,10 +279,10 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: 20 }}
+                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
                         viewport={{ once: true }}
                     >
-                        <img src='https://i.imgur.com/sJ4Nl9u.gif' />
+                        <img style={styles.gifs} src='https://i.imgur.com/sJ4Nl9u.gif' />
                     </Box>
                     <Box
                         component={motion.div}
@@ -257,7 +296,7 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: 10, textShadow: '2px 2px #262626' }}
+                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
                         <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
@@ -266,7 +305,14 @@ const HowItWorks = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 20 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        justifyContent: 'space-between',
+                        mb: 20,
+                    }}
+                >
                     <Box
                         component={motion.div}
                         transition={{
@@ -279,10 +325,10 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: 20 }}
+                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
                         viewport={{ once: true }}
                     >
-                        <img src='https://i.imgur.com/FxALMbs.gif' />
+                        <img style={styles.gifs} src='https://i.imgur.com/FxALMbs.gif' />
                     </Box>
                     <Box
                         component={motion.div}
@@ -296,7 +342,7 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: 10, textShadow: '2px 2px #262626' }}
+                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
                         <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
@@ -317,7 +363,7 @@ const HowItWorks = () => {
                     }}
                     initial={{ opacity: 0, y: 200 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    sx={{ p: 10 }}
+                    sx={{ p: { xs: 0, sm: 10 } }}
                     viewport={{ once: true }}
                     sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
@@ -325,7 +371,7 @@ const HowItWorks = () => {
                         sx={{
                             color: 'white',
                             fontWeight: 'bold',
-                            fontSize: '2.5rem',
+                            fontSize: { xs: '1em', sm: '2.5rem' },
                             textAlign: 'center',
                             mr: 1,
                             mt: 20,
@@ -352,7 +398,7 @@ const HowItWorks = () => {
                         to='/register'
                         variant='contained'
                         color='secondary'
-                        sx={{ ml: 8 }}
+                        sx={{ ml: { xs: 2, sm: 8 }, mr: { xs: 2, sm: 0 } }}
                         style={{ color: '#FFF' }}
                     >
                         Create My Account

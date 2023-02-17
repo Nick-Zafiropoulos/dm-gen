@@ -34,6 +34,7 @@ const styles = {
         backgroundSize: 'cover',
 
         height: '100vw',
+        minHeight: '1200px',
     },
 };
 
@@ -229,7 +230,7 @@ const Campaign = () => {
                                 ml: 3,
                                 mt: 3,
                                 mb: 3,
-                                fontSize: '35px',
+                                fontSize: { xs: '1.5em', sm: '35px' },
                                 fontWeight: 'bold',
                                 color: 'white',
                                 textShadow: '2px 2px #262626',
@@ -238,9 +239,17 @@ const Campaign = () => {
                             {campaignInUse.campaign_name}
                         </Typography>
                     </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: 4, p: 3 }}>
-                        <Box sx={{ width: '40%' }}>
-                            <Box sx={{ width: '50%' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            justifyContent: 'flex-start',
+                            gap: 4,
+                            p: 3,
+                        }}
+                    >
+                        <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
+                            <Box sx={{ width: { xs: '80%', sm: '50%' } }}>
                                 <IconContext.Provider
                                     value={{ color: 'white', className: 'global-class-name', size: '40px' }}
                                 >
@@ -267,8 +276,8 @@ const Campaign = () => {
                             </Box>
                             {ShopCreateVisibility}
                         </Box>
-                        <Box sx={{ width: '40%' }}>
-                            <Box sx={{ width: '50%' }}>
+                        <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
+                            <Box sx={{ width: { xs: '80%', sm: '50%' } }}>
                                 <IconContext.Provider
                                     value={{ color: 'white', className: 'global-class-name', size: '40px' }}
                                 >

@@ -79,7 +79,7 @@ const JoinCampaign = () => {
         <>
             <Box style={styles.backgroundCanvas}>
                 <Navbar />
-                <Box sx={{ mt: 5, ml: 5, maxWidth: '30rem' }}>
+                <Box sx={{ mt: { xs: 0, sm: 5 }, ml: { xs: 0, sm: 5 }, maxWidth: '30rem' }}>
                     <Card
                         component={motion.div}
                         initial={{ x: -600 }}

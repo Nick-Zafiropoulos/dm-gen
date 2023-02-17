@@ -28,8 +28,9 @@ const styles = {
         height: '100vw',
     },
     dmgentext: {
-        width: '100%',
+        // width: '100%',
         height: 'auto',
+        minWidth: '15em',
         maxWidth: '500px',
     },
 };
@@ -48,7 +49,14 @@ function Home() {
                 <Box>
                     <Navbar />
 
-                    <Box sx={{ display: 'flex', justifyContent: 'right', mt: 35, pr: 55 }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: { xs: 'left', sm: 'right' },
+                            mt: { xs: 5, sm: 35 },
+                            pr: 55,
+                        }}
+                    >
                         <AnimatePresence>
                             <motion.img
                                 key='logo'
@@ -62,7 +70,15 @@ function Home() {
                             />
                         </AnimatePresence>
                     </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'right', mt: 5, pr: 25 }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: { xs: 'left', sm: 'right' },
+                            mt: 5,
+                            pr: { xs: 3, sm: 25 },
+                            ml: { xs: 3 },
+                        }}
+                    >
                         <Typography
                             component={motion.div}
                             initial={{ opacity: 0, x: 10 }}
@@ -80,10 +96,10 @@ function Home() {
                         transition={{ type: 'smooth', delay: 0.8 }}
                         sx={{
                             display: 'flex',
-                            justifyContent: 'right',
+                            justifyContent: { xs: 'left', sm: 'right' },
                             mt: 3,
-                            ml: 5,
-                            mr: 93,
+                            ml: { sx: 3, sm: 5 },
+                            mr: { sx: 0, sm: 70, md: 93 },
                         }}
                     >
                         <Button
@@ -93,6 +109,7 @@ function Home() {
                             variant='contained'
                             color='secondary'
                             style={{ color: '#FFF' }}
+                            sx={{ ml: 3 }}
                         >
                             See How It Works
                         </Button>
