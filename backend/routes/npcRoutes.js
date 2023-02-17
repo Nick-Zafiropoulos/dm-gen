@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
     getNpcs,
+    getOneNpc,
     postNpc,
     updateNpc,
     deleteNpc,
@@ -10,6 +11,8 @@ const {
 } = require('../controllers/npcController');
 
 router.get('/', getNpcs);
+
+router.get('/onenpc', getOneNpc);
 
 router.post('/', postNpc);
 

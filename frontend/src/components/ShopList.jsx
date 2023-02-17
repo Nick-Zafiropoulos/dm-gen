@@ -30,6 +30,8 @@ const ShopList = ({ item }) => {
     const dispatch = useDispatch();
 
     const { shopInUse } = useSelector((state) => state.shop);
+    const { campaignInUse } = useSelector((state) => state.campaign);
+    const { user, isLoading, isError, message } = useSelector((state) => state.auth);
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -96,6 +98,42 @@ const ShopList = ({ item }) => {
         dispatch(setShop(newCurrentShop));
     };
 
+    let removeItemVisibility;
+    if (user._id == campaignInUse.dungeon_master[0]) {
+        removeItemVisibility = (
+            <Box sx={{ mt: 3, mr: 6 }}>
+                <Button color='calmRed' variant='outlined' onClick={handleOpen}>
+                    Remove Item
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby='modal-modal-title'
+                    aria-describedby='modal-modal-description'
+                >
+                    <Box sx={modalStyle}>
+                        <Typography id='modal-modal-title' variant='h6' component='h2'>
+                            Are you sure you want to remove this item?
+                        </Typography>
+                        <Box sx={{ mt: 3, display: 'flex', justifyContent: 'right' }}>
+                            <Button
+                                onClick={clickRemoveItem}
+                                type='button'
+                                variant='contained'
+                                color='calmRed'
+                                sx={{ color: 'white' }}
+                            >
+                                Yes, Remove Item
+                            </Button>
+                        </Box>
+                    </Box>
+                </Modal>
+            </Box>
+        );
+    } else {
+        removeItemVisibility = <span></span>;
+    }
+
     return (
         <Accordion
             component={motion.div}
@@ -124,34 +162,7 @@ const ShopList = ({ item }) => {
                     </Typography>
                 </Box>
 
-                <Box sx={{ mt: 3, mr: 6 }}>
-                    <Button color='calmRed' variant='outlined' onClick={handleOpen}>
-                        Remove Item
-                    </Button>
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby='modal-modal-title'
-                        aria-describedby='modal-modal-description'
-                    >
-                        <Box sx={modalStyle}>
-                            <Typography id='modal-modal-title' variant='h6' component='h2'>
-                                Are you sure you want to remove this item?
-                            </Typography>
-                            <Box sx={{ mt: 3, display: 'flex', justifyContent: 'right' }}>
-                                <Button
-                                    onClick={clickRemoveItem}
-                                    type='button'
-                                    variant='contained'
-                                    color='calmRed'
-                                    sx={{ color: 'white' }}
-                                >
-                                    Yes, Remove Item
-                                </Button>
-                            </Box>
-                        </Box>
-                    </Modal>
-                </Box>
+                {removeItemVisibility}
                 {/* <Button onClick={clickRemoveItem} type='button' variant='contained' color='secondary'>
                     Remove Item
                 </Button> */}

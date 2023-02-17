@@ -4,7 +4,7 @@ import DeleteNoteButton from '../components/DeleteNoteButton';
 import { useEffect } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateNPC, deleteNPC, getNPC, setNPC, npcNote } from '../features/npcs/npcSlice';
+import { updateNPC, deleteNPC, getNPC, getOneNPC, setNPC, npcNote } from '../features/npcs/npcSlice';
 import { Box, shadows, Button, Typography, TextField } from '@mui/material';
 import blankCanvas from '../images/dmgenblankcloth.png';
 import Card from '@mui/material/Card';
@@ -88,8 +88,31 @@ const NPC = () => {
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
+        getCurrentNpc();
         window.scrollTo(0, 0);
     }, [navigate]);
+
+    const getCurrentNpc = async () => {
+        const npcData = npcInUse._id;
+
+        const newNpcData = await dispatch(getOneNPC(npcData));
+
+        const npcRefresh = {
+            npc_name: newNpcData.payload.npc_name,
+            npc_species: newNpcData.payload.npc_species,
+            npc_age: newNpcData.payload.npc_age,
+            npc_gender: newNpcData.payload.npc_gender,
+            npc_location: newNpcData.payload.npc_location,
+            npc_occupation: newNpcData.payload.npc_occupation,
+            npc_personality: newNpcData.payload.npc_personality,
+            npc_flaws: newNpcData.payload.npc_flaws,
+            _id,
+            npc_campaign: npcInUse.npc_campaign,
+            npc_notes: newNpcData.payload.npc_notes,
+        };
+
+        dispatch(setNPC(npcRefresh));
+    };
 
     const onChange = (e) => {
         setNpcUpdateInfo((prevState) => ({

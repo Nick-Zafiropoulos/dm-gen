@@ -456,7 +456,7 @@ const Shop = () => {
                             ))}{' '}
                         </Box>
                     ) : (
-                        <Typography>This shop has no items!</Typography>
+                        <Typography sx={{ color: 'white', mt: 2 }}>This shop has no items!</Typography>
                     )}
                 </Box>
                 <Box sx={{ ml: 5, mt: 3 }}>{addItemVisibility}</Box>

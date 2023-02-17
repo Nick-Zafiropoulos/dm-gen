@@ -23,6 +23,7 @@ import { motion } from 'framer-motion';
 import { MdClose } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import IconButton from '@mui/material/IconButton';
+import Alert from '@mui/material/Alert';
 
 function NewShopOptions() {
     const [formData, setFormData] = useState({
@@ -51,7 +52,9 @@ function NewShopOptions() {
         staff: false,
     });
 
-    const categoryArray = [];
+    let rarityError = false;
+    let rarityErrorVisibility;
+    let categoryArray = [];
 
     // rarity data
     const rarities = useRef({
@@ -63,7 +66,7 @@ function NewShopOptions() {
         artifact: false,
     });
 
-    const rarityArray = [];
+    let rarityArray = [];
 
     const { shop_name, shop_owner, shop_location, shop_itemCount, shop_categories, shop_rarities } = formData;
 
@@ -176,10 +179,38 @@ function NewShopOptions() {
             shop_categories,
             shop_rarities,
         };
-        await dispatch(createShop({ shopData }));
 
-        navigate('/campaign');
+        if (shopData.shop_rarities.length < 1 || shopData.shop_categories.length < 1) {
+            rarityError = true;
+            categoryArray = [];
+            rarityArray = [];
+            setFormData((prevState) => ({
+                ...prevState,
+                shop_rarities: [],
+                shop_categories: [],
+            }));
+
+            rarityErrorVisibility = (
+                <Box>
+                    <Alert severity='error'>You need at least one rarity type!</Alert>
+                </Box>
+            );
+
+            window.alert('You need at least one rarity and one equipment type!');
+        } else {
+            await dispatch(createShop({ shopData }));
+
+            navigate('/campaign');
+        }
     };
+
+    // if (rarityError == true) {
+
+    //     console.log('hello');
+    // } else {
+    //     // rarityErrorVisibility = <span></span>;
+    //     console.log('i shouldnt see this');
+    // }
 
     if (isLoading) {
         return <Spinner />;
@@ -570,6 +601,7 @@ function NewShopOptions() {
                     </form>
                 </CardContent>
             </Card>
+            {rarityErrorVisibility}
         </Box>
     );
 }

@@ -41,6 +41,19 @@ export const getNPC = createAsyncThunk('npc/getnpc', async (_, thunkAPI) => {
     }
 });
 
+// Get a npc from DB
+export const getOneNPC = createAsyncThunk('npc/getonenpc', async (npcData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+
+        return await npcService.getOneNPC(npcData, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // Set current npc
 export const setNPC = createAsyncThunk('npc/setnpc', async (npc, thunkAPI) => {
     const currentNPC = npc;

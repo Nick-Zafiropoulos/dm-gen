@@ -14,6 +14,14 @@ const getNpcs = asyncHandler(async (req, res) => {
     res.send(npcs);
 });
 
+// @desc Get one npc
+// @route GET /api/npcs/onenpc
+const getOneNpc = asyncHandler(async (req, res) => {
+    const npc = await NPC.findOne({ _id: req.query.npcData });
+
+    res.send(npc);
+});
+
 // @desc Create npc
 // @route POST /api/npcs
 const postNpc = asyncHandler(async (req, res) => {
@@ -181,6 +189,7 @@ const deleteNpc = asyncHandler(async (req, res) => {
 
 module.exports = {
     getNpcs,
+    getOneNpc,
     postNpc,
     updateNpc,
     updateNpcNotes,

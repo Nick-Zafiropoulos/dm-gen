@@ -6,7 +6,7 @@ import { IconContext } from 'react-icons';
 import IconButton from '@mui/material/IconButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { npcDeleteNote, setNPC, getNPC } from '../features/npcs/npcSlice';
+import { npcDeleteNote, setNPC, getNPC, getOneNPC } from '../features/npcs/npcSlice';
 
 const DeleteNoteButton = ({ note }) => {
     const dispatch = useDispatch();
@@ -43,10 +43,33 @@ const DeleteNoteButton = ({ note }) => {
 
         await dispatch(npcDeleteNote(noteToDeleteData));
 
-        dispatch(setNPC(newNPCInfo));
+        // dispatch(setNPC(newNPCInfo));
+        getCurrentNpc();
         dispatch(getNPC());
 
         navigate('/npc');
+    };
+
+    const getCurrentNpc = async () => {
+        const npcData = npcInUse._id;
+
+        const newNpcData = await dispatch(getOneNPC(npcData));
+
+        const npcRefresh = {
+            npc_name: newNpcData.payload.npc_name,
+            npc_species: newNpcData.payload.npc_species,
+            npc_age: newNpcData.payload.npc_age,
+            npc_gender: newNpcData.payload.npc_gender,
+            npc_location: newNpcData.payload.npc_location,
+            npc_occupation: newNpcData.payload.npc_occupation,
+            npc_personality: newNpcData.payload.npc_personality,
+            npc_flaws: newNpcData.payload.npc_flaws,
+            _id: npcInUse._id,
+            npc_campaign: npcInUse.npc_campaign,
+            npc_notes: newNpcData.payload.npc_notes,
+        };
+
+        dispatch(setNPC(npcRefresh));
     };
 
     return (

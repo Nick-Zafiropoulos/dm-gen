@@ -124,6 +124,60 @@ const Campaign = () => {
         setNPCResults(npcs);
     }, [npcSuccess]);
 
+    let ShopCreateVisibility;
+    if (
+        document.URL.includes('campaign') &&
+        !document.URL.includes('campaigns') &&
+        user._id == campaignInUse.dungeon_master[0]
+    ) {
+        ShopCreateVisibility = (
+            <Box sx={{ mt: 3, ml: 2 }}>
+                <Button
+                    component={Link}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.1 }}
+                    initial={{ opacity: 0 }}
+                    type='button'
+                    variant='contained'
+                    color='secondary'
+                    to='/shop/newshop'
+                    style={{ color: '#FFF' }}
+                >
+                    + New Shop
+                </Button>
+            </Box>
+        );
+    } else {
+        ShopCreateVisibility = <span></span>;
+    }
+
+    let NPCCreateVisibility;
+    if (
+        document.URL.includes('campaign') &&
+        !document.URL.includes('campaigns') &&
+        user._id == campaignInUse.dungeon_master[0]
+    ) {
+        NPCCreateVisibility = (
+            <Box sx={{ mt: 3, ml: 2 }}>
+                <Button
+                    component={Link}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.1 }}
+                    initial={{ opacity: 0 }}
+                    type='button'
+                    variant='contained'
+                    color='secondary'
+                    to='/npc/newnpc'
+                    style={{ color: '#FFF' }}
+                >
+                    + New NPC
+                </Button>
+            </Box>
+        );
+    } else {
+        NPCCreateVisibility = <span></span>;
+    }
+
     return (
         // <div className='pageBody'>
         //     <Navbar />
@@ -211,21 +265,7 @@ const Campaign = () => {
                                     <p>You do not have any shops yet!</p>
                                 )}
                             </Box>
-                            <Box sx={{ mt: 3, ml: 2 }}>
-                                <Button
-                                    component={Link}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.3, duration: 0.1 }}
-                                    initial={{ opacity: 0 }}
-                                    type='button'
-                                    variant='contained'
-                                    color='secondary'
-                                    to='/shop/newshop'
-                                    style={{ color: '#FFF' }}
-                                >
-                                    + New Shop
-                                </Button>
-                            </Box>
+                            {ShopCreateVisibility}
                         </Box>
                         <Box sx={{ width: '40%' }}>
                             <Box sx={{ width: '50%' }}>
@@ -253,21 +293,7 @@ const Campaign = () => {
                                     <p>You do not have any NPCs yet!</p>
                                 )}
                             </Box>
-                            <Box sx={{ mt: 3, ml: 2 }}>
-                                <Button
-                                    component={Link}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.3, duration: 0.1 }}
-                                    initial={{ opacity: 0 }}
-                                    type='button'
-                                    variant='contained'
-                                    color='secondary'
-                                    to='/npc/newnpc'
-                                    style={{ color: '#FFF' }}
-                                >
-                                    + New NPC
-                                </Button>
-                            </Box>
+                            {NPCCreateVisibility}
                         </Box>
                     </Box>
                 </Box>
