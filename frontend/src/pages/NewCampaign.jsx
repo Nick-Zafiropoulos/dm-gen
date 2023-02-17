@@ -31,7 +31,7 @@ function NewCampaign() {
 
                 <NewCampaignOptions />
             </Box>
-            <Box style={styles.backgroundSolid}></Box>
+            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 }

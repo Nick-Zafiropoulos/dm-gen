@@ -14,8 +14,12 @@ const styles = {
         width: 'auto',
         height: 'auto',
         maxWidth: '50px',
+        marginLeft: 5,
         margin: 0,
         padding: 0,
+    },
+    hamburger: {
+        marginBottom: 10,
     },
 };
 
@@ -219,7 +223,9 @@ function Navbar() {
                     <nav className='navbar navbar-expand-lg bg-light'>
                         <div className='container-fluid'>
                             <span className='navbar-brand'></span>
+
                             <button
+                                style={styles.hamburger}
                                 className='navbar-toggler'
                                 type='button'
                                 data-bs-toggle='collapse'

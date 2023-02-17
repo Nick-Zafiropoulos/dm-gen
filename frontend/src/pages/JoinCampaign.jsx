@@ -155,7 +155,7 @@ const JoinCampaign = () => {
                     </Card>
                 </Box>
             </Box>
-            <Box style={styles.backgroundSolid}></Box>
+            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 };

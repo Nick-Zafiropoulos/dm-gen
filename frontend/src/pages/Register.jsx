@@ -87,113 +87,132 @@ const Register = () => {
     }
 
     return (
-        <Box style={styles.backgroundContainer}>
-            <Navbar />
-            <Box
-                component={motion.div}
-                initial={{ x: 650, opacity: 0 }}
-                transition={{
-                    type: 'spring',
-                    stiffness: 400,
-                    damping: 40,
-                    opacity: {
-                        duration: 0.4,
-                    },
-                }}
-                animate={{ x: 0, opacity: 1 }}
-            >
-                <Box sx={{ display: 'flex', justifyContent: 'right', mt: 30, mr: 35 }}>
-                    <form onSubmit={onSubmit}>
-                        <Box>
-                            <Typography
-                                sx={{
-                                    mt: 3,
-                                    fontSize: '35px',
-                                    fontWeight: 'bold',
-                                    color: 'white',
-                                    textShadow: '2px 2px #262626',
-                                }}
-                            >
-                                Create Your Account
-                            </Typography>
+        <>
+            <Box style={styles.backgroundContainer}>
+                <Navbar />
+                <Box
+                    component={motion.div}
+                    initial={{ x: 650, opacity: 0 }}
+                    transition={{
+                        type: 'spring',
+                        stiffness: 400,
+                        damping: 40,
+                        opacity: {
+                            duration: 0.4,
+                        },
+                    }}
+                    animate={{ x: 0, opacity: 1 }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: { xs: 'left', sm: 'right' },
+                            ml: { xs: 3, sm: 0 },
+                            mt: { xs: 5, sm: 30 },
+                            mr: { xs: 3, sm: 35 },
+                        }}
+                    >
+                        <form onSubmit={onSubmit}>
                             <Box>
-                                <TextField
-                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
-                                    fullWidth
-                                    id='standard-basic'
-                                    label='Username'
-                                    variant='standard'
-                                    type='text'
-                                    className='searchBarInput form-control'
-                                    placeholder='Enter a username'
-                                    name='user_name'
-                                    value={user_name}
-                                    onChange={onChange}
-                                />
+                                <Typography
+                                    sx={{
+                                        mt: 3,
+                                        fontSize: '35px',
+                                        fontWeight: 'bold',
+                                        color: 'white',
+                                        textShadow: '2px 2px #262626',
+                                    }}
+                                >
+                                    Create Your Account
+                                </Typography>
+                                <Box>
+                                    <TextField
+                                        sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                        fullWidth
+                                        id='standard-basic'
+                                        label='Username'
+                                        variant='standard'
+                                        type='text'
+                                        className='searchBarInput form-control'
+                                        placeholder='Enter a username'
+                                        name='user_name'
+                                        value={user_name}
+                                        onChange={onChange}
+                                    />
+                                </Box>
+                                <Box>
+                                    <TextField
+                                        sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                        fullWidth
+                                        id='standard-basic'
+                                        label='Email'
+                                        variant='standard'
+                                        type='email'
+                                        className='searchBarInput form-control'
+                                        placeholder='Enter your email'
+                                        name='user_email'
+                                        value={user_email}
+                                        onChange={onChange}
+                                    />
+                                </Box>
+                                <Box>
+                                    <TextField
+                                        sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                        fullWidth
+                                        id='standard-basic'
+                                        label='Password'
+                                        variant='standard'
+                                        type='password'
+                                        className='searchBarInput form-control'
+                                        placeholder='Enter a password'
+                                        name='user_password'
+                                        value={user_password}
+                                        onChange={onChange}
+                                    />
+                                </Box>{' '}
+                                <Box>
+                                    <TextField
+                                        sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                        fullWidth
+                                        label='Re-enter Password'
+                                        type='password'
+                                        variant='standard'
+                                        className='form-control'
+                                        id='user_password2'
+                                        name='user_password2'
+                                        value={user_password2}
+                                        placeholder='Re-enter your password'
+                                        onChange={onChange}
+                                    />
+                                </Box>
                             </Box>
-                            <Box>
-                                <TextField
-                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
-                                    fullWidth
-                                    id='standard-basic'
-                                    label='Email'
-                                    variant='standard'
-                                    type='email'
-                                    className='searchBarInput form-control'
-                                    placeholder='Enter your email'
-                                    name='user_email'
-                                    value={user_email}
-                                    onChange={onChange}
-                                />
+                            <Box sx={{ mt: 3 }}>
+                                <Button type='submit' variant='contained' color='secondary'>
+                                    Create Account
+                                </Button>
                             </Box>
-                            <Box>
-                                <TextField
-                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
-                                    fullWidth
-                                    id='standard-basic'
-                                    label='Password'
-                                    variant='standard'
-                                    type='password'
-                                    className='searchBarInput form-control'
-                                    placeholder='Enter a password'
-                                    name='user_password'
-                                    value={user_password}
-                                    onChange={onChange}
-                                />
-                            </Box>{' '}
-                            <Box>
-                                <TextField
-                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
-                                    fullWidth
-                                    label='Re-enter Password'
-                                    type='password'
-                                    variant='standard'
-                                    className='form-control'
-                                    id='user_password2'
-                                    name='user_password2'
-                                    value={user_password2}
-                                    placeholder='Re-enter your password'
-                                    onChange={onChange}
-                                />
-                            </Box>
-                        </Box>
-                        <Box sx={{ mt: 3 }}>
-                            <Button type='submit' variant='contained' color='secondary'>
-                                Create Account
-                            </Button>
-                        </Box>
-                    </form>
+                        </form>
+                    </Box>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: { xs: 'left', sm: 'right' },
+                            mt: 5,
+                            ml: { xs: 3, sm: 0 },
+                            mr: { xs: 5, sm: 44 },
+                        }}
+                    >
+                        <Typography sx={{ pr: 3, mt: 0.5 }} color='primary'>
+                            Already have an account?
+                        </Typography>
+                        <Button component={Link} to='/login' variant='outlined' color='secondary' size='small'>
+                            Login
+                        </Button>
+                    </Box>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'right', mt: 5, mr: 44 }}>
-                    <Typography sx={{ pr: 3, mt: 0.5 }} color='primary'>
-                        Already have an account?
-                    </Typography>
-                    <Button component={Link} to='/login' variant='outlined' color='secondary' size='small'>
-                        Login
-                    </Button>
-                </Box>
-            </Box>
-        </Box>
+            </Box>{' '}
+            {/* <Box style={styles.backgroundSolid}></Box> */}
+        </>
 
         // <>
         //     <section className=''>

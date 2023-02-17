@@ -463,7 +463,7 @@ const Shop = () => {
                 <Box sx={{ ml: 5, mt: 3 }}>{addItemVisibility}</Box>
                 <Box sx={{ ml: 3, mt: 3 }}>{editNewItem}</Box>
             </Box>
-            <Box style={styles.backgroundSolid}></Box>
+            {/* <Box style={styles.backgroundSolid}></Box> */}
         </Box>
     );
 };
