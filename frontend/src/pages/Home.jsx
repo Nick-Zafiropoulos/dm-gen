@@ -52,9 +52,9 @@ function Home() {
                     <Box
                         sx={{
                             display: 'flex',
-                            justifyContent: { xs: 'left', sm: 'right' },
-                            mt: { xs: 5, sm: 35 },
-                            pr: 55,
+                            justifyContent: { xs: 'left', md: 'right' },
+                            mt: { xs: '20%', md: 30 },
+                            pr: { xs: 3, md: 55 },
                         }}
                     >
                         <AnimatePresence>
@@ -73,10 +73,10 @@ function Home() {
                     <Box
                         sx={{
                             display: 'flex',
-                            justifyContent: { xs: 'left', sm: 'right' },
+                            justifyContent: { xs: 'left', md: 'right' },
                             mt: 5,
-                            pr: { xs: 3, sm: 25 },
-                            ml: { xs: 3 },
+                            pr: { xs: 3, md: 25 },
+                            ml: { xs: 3, md: 3 },
                         }}
                     >
                         <Typography
@@ -84,7 +84,11 @@ function Home() {
                             initial={{ opacity: 0, x: 10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ type: 'smooth', delay: 0.6 }}
-                            sx={{ color: 'white', fontSize: '20px', fontWeight: 'bold' }}
+                            sx={{
+                                color: 'white',
+                                fontSize: '20px',
+                                fontWeight: 'bold',
+                            }}
                         >
                             Item shop and NPC generation managed by you, viewable by your players.
                         </Typography>
@@ -96,10 +100,10 @@ function Home() {
                         transition={{ type: 'smooth', delay: 0.8 }}
                         sx={{
                             display: 'flex',
-                            justifyContent: { xs: 'left', sm: 'right' },
+                            justifyContent: { xs: 'left', md: 'right' },
                             mt: 3,
-                            ml: { sx: 3, sm: 5 },
-                            mr: { sx: 0, sm: 70, md: 93 },
+                            ml: { xs: 0, md: 0 },
+                            mr: { xs: 0, md: 93 },
                         }}
                     >
                         <Button
@@ -128,7 +132,7 @@ function Home() {
                     </div> */}
                 </Box>
             </Box>
-            <Box style={styles.backgroundSolid}></Box>
+            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 }

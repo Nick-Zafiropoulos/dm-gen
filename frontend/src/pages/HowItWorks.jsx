@@ -28,10 +28,10 @@ const styles = {
         height: 'auto',
     },
     gifs: {
-        // width: '100%',
+        width: '90%',
         height: 'auto',
-        minWidth: '15em',
-        // maxWidth: '100px',
+        minWidth: '5em',
+        maxWidth: '50rem',
     },
 };
 
@@ -46,10 +46,10 @@ const HowItWorks = () => {
                         sx={{
                             display: 'flex',
                             justifyContent: 'center',
-                            mt: 15,
+                            mt: { xs: 5, sm: 15 },
                             mb: 10,
 
-                            maxWidth: '75%',
+                            maxWidth: { xs: '90%', lg: '75%' },
                         }}
                     >
                         <AnimatePresence>
@@ -73,7 +73,7 @@ const HowItWorks = () => {
                     initial={{ opacity: 0 }}
                     sx={{ display: 'flex', justifyContent: 'center' }}
                 >
-                    <Box sx={{ mt: 10 }}>
+                    <Box sx={{ mt: { xs: 0, sm: 10 }, width: '80%' }}>
                         <Typography
                             component={motion.div}
                             initial={{ opacity: 0, y: -5 }}
@@ -82,18 +82,16 @@ const HowItWorks = () => {
                             sx={{
                                 color: 'white',
                                 fontWeight: 'bold',
-                                fontSize: '1.2rem',
-                                textAlign: 'center',
+                                fontSize: { xs: '1rem', sm: '1.2rem' },
+                                textAlign: { xs: 'left', sm: 'center' },
                                 textShadow: '2px 2px #262626',
-                                ml: { xs: 2, sm: 10 },
-                                mr: { xs: 2, sm: 10 },
-                                pr: { xs: 0, sm: 30 },
-                                pl: { xs: 0, sm: 30 },
                             }}
                         >
-                            DM Gen is a tool for 5th Edition Dungeons and Dragons that allows Dungeon Masters to
-                            generate, customize, and save item shops and NPCs. By inviting their players to join their
-                            DM Gen campaign, players can view item shop inventories and NPC information.
+                            DM Gen is a tool for 5th Edition Dungeons and Dragons that allows Dungeon Masters to easily
+                            generate, customize, and save item shops and NPCs. After creating a campaign, users can
+                            invite their players to join the campaign to view item shop inventories and NPC information.
+                            Running your D&D campaign is already a lot of work, DM Gen takes care of creating and
+                            organizing player-facing information so you don't have to.
                         </Typography>
 
                         <Typography
@@ -104,11 +102,10 @@ const HowItWorks = () => {
                             sx={{
                                 color: 'white',
                                 fontWeight: 'bold',
-                                fontSize: '2rem',
-                                textAlign: 'center',
-                                ml: { xs: 0, sm: 10 },
-                                mr: { xs: 0, sm: 10 },
-                                mt: 30,
+                                fontSize: { xs: '1.5rem', sm: '2.5rem' },
+                                textAlign: { xs: 'left', sm: 'center' },
+
+                                mt: { xs: 7, sm: 30 },
                                 mb: 20,
                                 textShadow: '2px 2px #262626',
                             }}
@@ -120,11 +117,28 @@ const HowItWorks = () => {
                 <Box
                     sx={{
                         display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        justifyContent: { xs: 'left', sm: 'space-between' },
-                        mb: 30,
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        justifyContent: { xs: 'center', lg: 'center' },
+                        alignItems: 'center',
+                        mb: { xs: 10, sm: 30 },
                     }}
                 >
+                    <motion.img
+                        component={motion.image}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 200,
+                            damping: 40,
+                            opacity: {
+                                duration: 1,
+                            },
+                        }}
+                        initial={{ opacity: 0, y: 500 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        src='https://i.imgur.com/hAPVHkq.gif'
+                        style={styles.gifs}
+                    />
                     <Box
                         component={motion.div}
                         transition={{
@@ -138,44 +152,52 @@ const HowItWorks = () => {
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         sx={{
-                            boxShadow: 20,
-                            display: 'inline-flex',
-                            border: '1px solid black',
-                            ml: { xs: 0, sm: 20 },
+                            p: { xs: 3, lg: 10 },
+                            textShadow: '2px 2px #262626',
                         }}
                         viewport={{ once: true }}
                     >
-                        <img style={styles.gifs} src='https://i.imgur.com/PN1F0ws.gif' />
-                    </Box>
-                    <Box
-                        component={motion.div}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 200,
-                            damping: 40,
-                            opacity: {
-                                duration: 1,
-                            },
-                        }}
-                        initial={{ opacity: 0, y: 500 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
-                        viewport={{ once: true }}
-                    >
-                        <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
+                        <Typography
+                            sx={{
+                                mt: { xs: 1, lg: 10 },
+                                mb: { xs: 1, lg: 10 },
+                                color: 'white',
+                                fontSize: { xs: '1rem', sm: '1.5rem' },
+
+                                maxWidth: '20em',
+                            }}
+                        >
                             Generate fully random NPCs with a single button press, or fill in the blanks that you have
-                            specifics for.
+                            specifics for and let the DM Gen create the rest.
                         </Typography>
                     </Box>
                 </Box>
                 <Box
                     sx={{
                         display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        justifyContent: 'space-between',
-                        mb: 30,
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        justifyContent: { xs: 'center', lg: 'center' },
+                        alignItems: 'center',
+                        mb: { xs: 10, sm: 30 },
                     }}
                 >
+                    <motion.img
+                        component={motion.image}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 200,
+                            damping: 40,
+                            opacity: {
+                                duration: 1,
+                            },
+                        }}
+                        initial={{ opacity: 0, y: 500 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        src='https://i.imgur.com/SNnM6UY.gif'
+                        style={styles.gifs}
+                    />
+
                     <Box
                         component={motion.div}
                         transition={{
@@ -188,40 +210,59 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
+                        sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
-                        <img style={styles.gifs} src='https://i.imgur.com/SNnM6UY.gif' />
-                    </Box>
-                    <Box
-                        component={motion.div}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 200,
-                            damping: 40,
-                            opacity: {
-                                duration: 1,
-                            },
-                        }}
-                        initial={{ opacity: 0, y: 500 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
-                        viewport={{ once: true }}
-                    >
-                        <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
-                            Create shops with randomly generated wares based on the criteria you choose. Once a shop is
-                            created, you can remove items or add your own custom items.
+                        <Typography
+                            sx={{
+                                mt: { xs: 1, lg: 10 },
+                                mb: { xs: 3, lg: 10 },
+                                color: 'white',
+                                fontSize: { xs: '1rem', sm: '1.5rem' },
+                                maxWidth: '20em',
+                            }}
+                        >
+                            Create and manage shops with randomly generated wares based on the criteria you choose.
+                        </Typography>
+                        <Typography
+                            sx={{
+                                mt: { xs: 1, lg: 10 },
+                                mb: { xs: 1, lg: 10 },
+                                color: 'white',
+                                fontSize: { xs: '1rem', sm: '1.5rem' },
+                                maxWidth: '20em',
+                            }}
+                        >
+                            Items are sourced from a 5th Edition D&D API.
                         </Typography>
                     </Box>
                 </Box>
                 <Box
                     sx={{
                         display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        justifyContent: 'space-between',
-                        mb: 30,
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        justifyContent: { xs: 'center', lg: 'center' },
+                        alignItems: 'center',
+                        mb: { xs: 10, sm: 30 },
                     }}
                 >
+                    <motion.img
+                        component={motion.image}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 200,
+                            damping: 40,
+                            opacity: {
+                                duration: 1,
+                            },
+                        }}
+                        initial={{ opacity: 0, y: 500 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        src='https://i.imgur.com/M5EDNTX.gif'
+                        style={styles.gifs}
+                    />
+
                     <Box
                         component={motion.div}
                         transition={{
@@ -234,39 +275,49 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
+                        sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
-                        <img style={styles.gifs} src='https://i.imgur.com/M5EDNTX.gif' />
-                    </Box>
-                    <Box
-                        component={motion.div}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 200,
-                            damping: 40,
-                            opacity: {
-                                duration: 1,
-                            },
-                        }}
-                        initial={{ opacity: 0, y: 500 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
-                        viewport={{ once: true }}
-                    >
-                        <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
-                            Easily search through shops and NPCs to view their contents.
+                        <Typography
+                            sx={{
+                                mt: { xs: 1, lg: 10 },
+                                mb: { xs: 1, lg: 10 },
+                                color: 'white',
+                                fontSize: { xs: '1rem', sm: '1.5rem' },
+                                maxWidth: '20em',
+                            }}
+                        >
+                            Easily search through shops and NPCs to view their contents. You can remove items or add
+                            your own custom items to any shop you create.
                         </Typography>
                     </Box>
                 </Box>
                 <Box
                     sx={{
                         display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        justifyContent: 'space-between',
-                        mb: 30,
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        justifyContent: { xs: 'center', lg: 'center' },
+                        alignItems: 'center',
+                        mb: { xs: 10, sm: 30 },
                     }}
                 >
+                    <motion.img
+                        component={motion.image}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 200,
+                            damping: 40,
+                            opacity: {
+                                duration: 1,
+                            },
+                        }}
+                        initial={{ opacity: 0, y: 500 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        src='https://i.imgur.com/sJ4Nl9u.gif'
+                        style={styles.gifs}
+                    />
+
                     <Box
                         component={motion.div}
                         transition={{
@@ -279,27 +330,18 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
+                        sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
-                        <img style={styles.gifs} src='https://i.imgur.com/sJ4Nl9u.gif' />
-                    </Box>
-                    <Box
-                        component={motion.div}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 200,
-                            damping: 40,
-                            opacity: {
-                                duration: 1,
-                            },
-                        }}
-                        initial={{ opacity: 0, y: 500 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
-                        viewport={{ once: true }}
-                    >
-                        <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
+                        <Typography
+                            sx={{
+                                mt: { xs: 1, lg: 10 },
+                                mb: { xs: 1, lg: 10 },
+                                color: 'white',
+                                fontSize: { xs: '1rem', sm: '1.5rem' },
+                                maxWidth: '20em',
+                            }}
+                        >
                             Quickly edit NPC characteristics to reflect changes to the character or to give players new
                             information.
                         </Typography>
@@ -308,11 +350,29 @@ const HowItWorks = () => {
                 <Box
                     sx={{
                         display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'row' },
-                        justifyContent: 'space-between',
-                        mb: 20,
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        justifyContent: { xs: 'center', lg: 'center' },
+                        alignItems: 'center',
+                        mb: { xs: 1, lg: 20 },
                     }}
                 >
+                    <motion.img
+                        component={motion.image}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 200,
+                            damping: 40,
+                            opacity: {
+                                duration: 1,
+                            },
+                        }}
+                        initial={{ opacity: 0, y: 500 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        src='https://i.imgur.com/FxALMbs.gif'
+                        style={styles.gifs}
+                    />
+
                     <Box
                         component={motion.div}
                         transition={{
@@ -325,29 +385,20 @@ const HowItWorks = () => {
                         }}
                         initial={{ opacity: 0, y: 500 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ boxShadow: 20, display: 'inline-flex', border: '1px solid black', ml: { xs: 0, sm: 20 } }}
+                        sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
                     >
-                        <img style={styles.gifs} src='https://i.imgur.com/FxALMbs.gif' />
-                    </Box>
-                    <Box
-                        component={motion.div}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 200,
-                            damping: 40,
-                            opacity: {
-                                duration: 1,
-                            },
-                        }}
-                        initial={{ opacity: 0, y: 500 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        sx={{ p: { xs: 3, sm: 10 }, textShadow: '2px 2px #262626' }}
-                        viewport={{ once: true }}
-                    >
-                        <Typography sx={{ mt: 10, mb: 10, color: 'white', fontSize: '1.5rem' }}>
-                            Players can add notes to any NPC page, making it simple to view all information about a
-                            given character.
+                        <Typography
+                            sx={{
+                                mt: { xs: 1, lg: 10 },
+                                mb: { xs: 1, lg: 10 },
+                                color: 'white',
+                                fontSize: { xs: '1rem', sm: '1.5rem' },
+                                maxWidth: '20em',
+                            }}
+                        >
+                            Your players can add public notes to any NPC page, making it simple for them to share
+                            thoughts with each other during the game and refer back to them when needed.
                         </Typography>
                     </Box>
                 </Box>{' '}
@@ -363,7 +414,7 @@ const HowItWorks = () => {
                     }}
                     initial={{ opacity: 0, y: 200 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    sx={{ p: { xs: 0, sm: 10 } }}
+                    sx={{ p: { xs: 0, lg: 10 } }}
                     viewport={{ once: true }}
                     sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
@@ -398,7 +449,7 @@ const HowItWorks = () => {
                         to='/register'
                         variant='contained'
                         color='secondary'
-                        sx={{ ml: { xs: 2, sm: 8 }, mr: { xs: 2, sm: 0 } }}
+                        sx={{ ml: { xs: 2, sm: 8 }, mr: { xs: 2, lg: 1 } }}
                         style={{ color: '#FFF' }}
                     >
                         Create My Account

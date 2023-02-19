@@ -237,7 +237,7 @@ const Shop = () => {
                     },
                 }}
                 animate={{ x: 0, opacity: 1 }}
-                sx={{ display: 'inline-flex', maxWidth: '992px', mt: 3, boxShadow: 10 }}
+                sx={{ display: 'inline-flex', maxWidth: '992px', mt: 3, mr: 3, mb: 3, boxShadow: 10 }}
             >
                 <CardContent>
                     <Box key='newItemEdit' sx={{ ml: 3, mr: 3, mt: 1 }}>
@@ -280,7 +280,12 @@ const Shop = () => {
                                 </Box>
                             </Box>
                             <TextField
-                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '51%' }}
+                                sx={{
+                                    backgroundColor: 'transparent',
+                                    color: 'white',
+                                    mt: 2,
+                                    maxWidth: { xs: '90%', sm: '51%' },
+                                }}
                                 fullWidth
                                 id='standard-basic'
                                 inputRef={textInput}
@@ -308,7 +313,12 @@ const Shop = () => {
                                 onChange={onChange}
                             />
                             <TextField
-                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '51%' }}
+                                sx={{
+                                    backgroundColor: 'transparent',
+                                    color: 'white',
+                                    mt: 2,
+                                    maxWidth: { xs: '90%', sm: '51%' },
+                                }}
                                 fullWidth
                                 id='standard-basic'
                                 inputRef={textInput}
@@ -321,7 +331,12 @@ const Shop = () => {
                                 onChange={onChange}
                             />
                             <TextField
-                                sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '51%' }}
+                                sx={{
+                                    backgroundColor: 'transparent',
+                                    color: 'white',
+                                    mt: 2,
+                                    maxWidth: { xs: '90%', sm: '51%' },
+                                }}
                                 fullWidth
                                 id='standard-basic'
                                 inputRef={textInput}

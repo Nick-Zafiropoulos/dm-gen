@@ -102,8 +102,15 @@ function Campaigns() {
                             </Typography>
                         )}
                     </Box>
-                    <Box sx={{ display: 'flex', mt: 3, ml: { xs: 0, sm: 3 } }}>
-                        <Box sx={{ mr: 5 }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            mt: 3,
+                            ml: { xs: 0, sm: 3 },
+                        }}
+                    >
+                        <Box sx={{ mr: 5, mb: 3 }}>
                             <Button
                                 component={Link}
                                 animate={{ opacity: 1 }}

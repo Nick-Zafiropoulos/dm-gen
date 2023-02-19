@@ -95,7 +95,7 @@ const Login = () => {
                         sx={{
                             display: 'flex',
                             justifyContent: { xs: 'left', sm: 'right' },
-                            ml: { xs: 3, sm: 0 },
+                            ml: { xs: 0, sm: 0 },
                             p: { xs: 0, sm: 30 },
                         }}
                     >
@@ -116,18 +116,19 @@ const Login = () => {
                                 sx={{
                                     display: 'flex',
 
-                                    mt: 3,
+                                    mt: { xs: 10, sm: 0 },
                                     fontSize: '35px',
                                     fontWeight: 'bold',
                                     color: 'white',
                                     textShadow: '2px 2px #262626',
+                                    ml: 2,
                                 }}
                             >
                                 Login
                             </Typography>
                             <form onSubmit={onSubmit}>
                                 <TextField
-                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3, ml: 2, width: '80%' }}
                                     fullWidth
                                     id='standard-basic'
                                     label='Email'
@@ -141,7 +142,7 @@ const Login = () => {
                                 />
 
                                 <TextField
-                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
+                                    sx={{ backgroundColor: 'transparent', color: 'white', mt: 3, ml: 2, width: '80%' }}
                                     fullWidth
                                     id='standard-basic'
                                     label='Password'
@@ -154,7 +155,7 @@ const Login = () => {
                                     onChange={onChange}
                                 />
 
-                                <Box sx={{ mt: 3 }}>
+                                <Box sx={{ mt: 3, ml: 2 }}>
                                     <Button type='submit' variant='contained' color='secondary'>
                                         Login
                                     </Button>
@@ -162,7 +163,7 @@ const Login = () => {
                             </form>
 
                             <Box sx={{ display: 'inline-flex', mt: 5 }}>
-                                <Typography sx={{ pr: 3, mt: 0.5 }} color='primary'>
+                                <Typography sx={{ pr: 3, mt: 0.5, ml: 2 }} color='primary'>
                                     New User?
                                 </Typography>
                                 <Button
