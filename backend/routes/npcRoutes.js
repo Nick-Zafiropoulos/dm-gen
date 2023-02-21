@@ -9,19 +9,20 @@ const {
     updateNpcNotes,
     deleteNpcNote,
 } = require('../controllers/npcController');
+const { protect } = require('../middleware/authMiddleware');
 
-router.get('/', getNpcs);
+router.get('/', protect, getNpcs);
 
-router.get('/onenpc', getOneNpc);
+router.get('/onenpc', protect, getOneNpc);
 
-router.post('/', postNpc);
+router.post('/', protect, postNpc);
 
-router.put('/', updateNpc);
+router.put('/', protect, updateNpc);
 
-router.put('/notes', updateNpcNotes);
+router.put('/notes', protect, updateNpcNotes);
 
-router.put('/deletenote', deleteNpcNote);
+router.put('/deletenote', protect, deleteNpcNote);
 
-router.delete('/', deleteNpc);
+router.delete('/', protect, deleteNpc);
 
 module.exports = router;

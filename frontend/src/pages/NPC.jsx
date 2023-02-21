@@ -252,7 +252,7 @@ const NPC = () => {
     let editVisibility;
     if (user._id == campaignInUse.dungeon_master[0] && editState == 0) {
         editVisibility = (
-            <Button sx={{ mt: 3, mr: 3 }} onClick={npcEdit} type='button' color='secondary' variant='contained'>
+            <Button sx={{ ml: 3, mt: 3, mr: 3 }} onClick={npcEdit} type='button' color='secondary' variant='contained'>
                 Edit NPC
             </Button>
         );
@@ -465,7 +465,11 @@ const NPC = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.1, duration: 0.1 }}
                     initial={{ opacity: 0 }}
-                    sx={{ display: 'flex', justifyContent: 'space-between' }}
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                    }}
                 >
                     <Box>
                         {editState == 0 && (

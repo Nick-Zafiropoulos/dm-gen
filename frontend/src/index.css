@@ -31,7 +31,7 @@ a {
 }
 
 .navcolor {
-    background-color: gray;
+    background-color: #e0e0e0;
 }
 
 .accordion-body {
@@ -53,4 +53,9 @@ a {
 
 .blurb {
     color: 'white';
+}
+
+.logoutButton {
+    padding-top: 0px;
+    padding-bottom: 0px;
 }

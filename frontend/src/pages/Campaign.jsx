@@ -216,7 +216,7 @@ const Campaign = () => {
         // </div>
         <>
             <Box style={styles.backgroundCanvas}>
-                <Navbar sticky='top' />
+                <Navbar position='sticky' />
                 <Box
                     component={motion.div}
                     animate={{ opacity: 1 }}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
+
 import Navbar from '../components/Navbar';
 
 import { Button } from '@mui/material';
@@ -47,8 +48,8 @@ function Home() {
         <>
             <Box style={styles.backgroundContainer}>
                 <Box>
+                    {/* <Navbar /> */}
                     <Navbar />
-
                     <Box
                         sx={{
                             display: 'flex',

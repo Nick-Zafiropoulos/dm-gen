@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const { getShops, postShop, removeItem, deleteShop, addItem } = require('../controllers/shopController');
+const { protect } = require('../middleware/authMiddleware');
 
-router.get('/', getShops);
+router.get('/', protect, getShops);
 
-router.post('/', postShop);
+router.post('/', protect, postShop);
 
-router.put('/removeitem', removeItem);
+router.put('/removeitem', protect, removeItem);
 
-router.put('/additem', addItem);
+router.put('/additem', protect, addItem);
 
-router.delete('/', deleteShop);
+router.delete('/', protect, deleteShop);
 
 module.exports = router;

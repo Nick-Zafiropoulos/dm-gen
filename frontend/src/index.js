@@ -27,6 +27,7 @@ const theme = createTheme({
         },
         background: {
             paper: '#48413f',
+            navcolor: '#ECEFF1',
         },
     },
 });

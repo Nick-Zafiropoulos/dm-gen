@@ -1,5 +1,13 @@
 import React from 'react';
-import { MdAccountCircle, MdLogin, MdHome, MdLogout, MdPersonAdd, MdOutlineHelp, MdNavigateNext } from 'react-icons/md';
+import {
+    MdAccountCircle,
+    MdLogin,
+    MdOutlineHome,
+    MdLogout,
+    MdPersonAdd,
+    MdHelpOutline,
+    MdNavigateNext,
+} from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -127,7 +135,12 @@ function Navbar() {
             <li>
                 <Box>
                     <Link to='/campaigns'>
-                        <MdHome /> My Campaigns
+                        <IconContext.Provider
+                            value={{ color: 'black', className: 'global-class-name', size: '1.2rem' }}
+                        >
+                            <MdOutlineHome />
+                        </IconContext.Provider>
+                        My Campaigns
                     </Link>
                 </Box>
             </li>
@@ -138,36 +151,47 @@ function Navbar() {
         <Box width='100%' sx={{ boxShadow: 4 }}>
             <header className='header'>
                 {user ? (
-                    <nav className='navbar navbar-expand-lg bg-light'>
+                    <nav className='navbar sticky-top navbar-expand-xl navcolor'>
                         <div className='container-fluid'>
                             <Link to='/'>
                                 <img style={styles.dmgentext} className='' src={dmgenlogoblack} />
                             </Link>
 
-                            <Box sx={{ ml: 3, mb: 1 }}>
+                            {/* <Box sx={{ ml: 3, mb: 1 }}>
                                 <span style={{ fontSize: '30px' }} className='navbar-brand'>
                                     |
                                 </span>
-                            </Box>
+                            </Box> */}
 
-                            <Box sx={{ ml: 1 }}>
+                            <Box sx={{ ml: 3 }}>
                                 <span className='navbar-brand'>{user.user_name}'s Dashboard</span>
                             </Box>
-                            <IconContext.Provider
+                            {/* <IconContext.Provider
                                 value={{ color: 'black', className: 'global-class-name', size: '35px' }}
                             >
                                 <MdNavigateNext />
-                            </IconContext.Provider>
+                            </IconContext.Provider> */}
 
                             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                                {MyCampaigns}
+                                {/* {MyCampaigns}
                                 {ShopCreateVisibility}
                                 {NPCCreateVisibility}
                                 {CampaignCreateVisibility}
                                 {CampaignJoinVisibility}
-                                {ToCampaignVisibility}
+                                {ToCampaignVisibility} */}
                             </ul>
 
+                            {/* <button
+                                className='navbar-toggler'
+                                type='button'
+                                data-bs-toggle='collapse'
+                                data-bs-target='#navbarText'
+                                aria-controls='navbarText'
+                                aria-expanded='false'
+                                aria-label='Toggle navigation'
+                            >
+                                <span className='navbar-toggler-icon'></span>
+                            </button> */}
                             <button
                                 className='navbar-toggler'
                                 type='button'
@@ -179,23 +203,47 @@ function Navbar() {
                             >
                                 <span className='navbar-toggler-icon'></span>
                             </button>
-
                             <div className='collapse navbar-collapse' id='navbarText'>
                                 <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                     <li className='nav-item'></li>
                                 </ul>
+
                                 <span className='navbar'>
                                     <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                         {user ? (
                                             <>
+                                                <Box
+                                                    sx={{
+                                                        display: 'flex',
+                                                        flexWrap: 'wrap',
+                                                        flexDirection: { xs: 'column', lg: 'row' },
+                                                    }}
+                                                >
+                                                    {ToCampaignVisibility}
+                                                    {MyCampaigns}
+                                                    {ShopCreateVisibility}
+                                                    {NPCCreateVisibility}
+                                                    {CampaignCreateVisibility}
+                                                    {CampaignJoinVisibility}
+
+                                                    <li>
+                                                        <Link to='/howitworks'>
+                                                            <IconContext.Provider
+                                                                value={{
+                                                                    color: 'black',
+                                                                    className: 'global-class-name',
+                                                                    size: '1.1rem',
+                                                                }}
+                                                            >
+                                                                <MdHelpOutline />
+                                                            </IconContext.Provider>
+                                                            How It Works
+                                                        </Link>
+                                                    </li>
+                                                </Box>
+
                                                 <li>
-                                                    <Link to='/howitworks'>
-                                                        <MdOutlineHelp />
-                                                        How It Works
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <button className='btn' onClick={onLogout}>
+                                                    <button className='btn logoutButton' onClick={onLogout}>
                                                         <MdLogout /> Logout
                                                     </button>
                                                 </li>
@@ -204,7 +252,7 @@ function Navbar() {
                                             <>
                                                 <li>
                                                     <Link to='/'>
-                                                        <MdHome /> Home
+                                                        <MdOutlineHome /> Home
                                                     </Link>
                                                 </li>
                                                 <li>
@@ -220,10 +268,15 @@ function Navbar() {
                         </div>
                     </nav>
                 ) : (
-                    <nav className='navbar navbar-expand-lg bg-light'>
+                    <nav className='navbar sticky-top navbar-expand-xl navcolor'>
                         <div className='container-fluid'>
                             <span className='navbar-brand'></span>
 
+                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+                                <Link to='/'>
+                                    <img style={styles.dmgentext} className='' src={dmgenlogoblack} />
+                                </Link>
+                            </ul>
                             <button
                                 style={styles.hamburger}
                                 className='navbar-toggler'
@@ -236,12 +289,6 @@ function Navbar() {
                             >
                                 <span className='navbar-toggler-icon'></span>
                             </button>
-                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                                <Link to='/'>
-                                    <img style={styles.dmgentext} className='' src={dmgenlogoblack} />
-                                </Link>
-                            </ul>
-
                             <div className='collapse navbar-collapse' id='navbarText'>
                                 <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                     <li className='nav-item'></li>
@@ -250,11 +297,29 @@ function Navbar() {
                                     <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                         {user ? (
                                             <>
-                                                <li>
-                                                    <Link to='/'>
-                                                        <MdHome /> Home
-                                                    </Link>
-                                                </li>
+                                                <Box
+                                                    sx={{
+                                                        display: 'flex',
+                                                        flexWrap: 'wrap',
+                                                        flexDirection: { xs: 'column', lg: 'row' },
+                                                    }}
+                                                >
+                                                    <li>
+                                                        <Link to='/howitworks'>
+                                                            <IconContext.Provider
+                                                                value={{
+                                                                    color: 'black',
+                                                                    className: 'global-class-name',
+                                                                    size: '1.1rem',
+                                                                }}
+                                                            >
+                                                                <MdHelpOutline />
+                                                            </IconContext.Provider>
+                                                            How It Works
+                                                        </Link>
+                                                    </li>
+                                                </Box>
+
                                                 <li>
                                                     <button className='btn' onClick={onLogout}>
                                                         <MdLogout /> Logout
@@ -263,22 +328,38 @@ function Navbar() {
                                             </>
                                         ) : (
                                             <>
-                                                <li>
-                                                    <Link to='/howitworks'>
-                                                        <MdOutlineHelp />
-                                                        How It Works
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link to='/register'>
-                                                        <MdPersonAdd /> Register
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link to='/login'>
-                                                        <MdLogin /> Login
-                                                    </Link>
-                                                </li>
+                                                <Box
+                                                    sx={{
+                                                        display: 'flex',
+                                                        flexWrap: 'wrap',
+                                                        flexDirection: { xs: 'column', lg: 'row' },
+                                                    }}
+                                                >
+                                                    <li>
+                                                        <Link to='/howitworks'>
+                                                            <IconContext.Provider
+                                                                value={{
+                                                                    color: 'black',
+                                                                    className: 'global-class-name',
+                                                                    size: '1.1rem',
+                                                                }}
+                                                            >
+                                                                <MdHelpOutline />
+                                                            </IconContext.Provider>
+                                                            How It Works
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to='/register'>
+                                                            <MdPersonAdd /> Register
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to='/login'>
+                                                            <MdLogin /> Login
+                                                        </Link>
+                                                    </li>
+                                                </Box>
                                             </>
                                         )}
                                     </ul>
