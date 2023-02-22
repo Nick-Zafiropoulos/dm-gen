@@ -61,7 +61,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
-// @desc Create user
+// @desc Login user
 // @route POST /api/users/login
 const loginUser = asyncHandler(async (req, res) => {
     const { user_email, user_password } = req.body;
@@ -93,7 +93,7 @@ const deleteUser = asyncHandler(async (req, res) => {});
 
 // JWT generation function
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '24h' });
 };
 
 module.exports = {

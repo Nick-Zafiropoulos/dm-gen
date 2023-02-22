@@ -25,6 +25,14 @@ import { IconContext } from 'react-icons';
 import IconButton from '@mui/material/IconButton';
 import Alert from '@mui/material/Alert';
 
+const styles = {
+    input: {
+        '&:invalid': {
+            border: 'red solid 2px',
+        },
+    },
+};
+
 function NewShopOptions() {
     const [formData, setFormData] = useState({
         shop_name: '',
@@ -36,6 +44,116 @@ function NewShopOptions() {
     });
 
     const [itemTotal, setItemTotal] = useState('');
+
+    const [errorMessage, setErrorMessage] = useState({
+        shop_name: '',
+        shop_owner: '',
+        shop_location: '',
+    });
+
+    const disallowedSymbols = [
+        '/',
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+        '^',
+        '&',
+        '*',
+        '(',
+        ')',
+        '+',
+        '=',
+        '-',
+        '[',
+        ']',
+        '{',
+        '}',
+        ';',
+        ':',
+        '"',
+        '_',
+        ',',
+        '<',
+        '>',
+        '?',
+    ];
+
+    // Error message shop name
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.shop_name.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                shop_name: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.shop_name]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.shop_name.includes(el)) && errorMessage.shop_name) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    shop_name: '',
+                }));
+            }
+        },
+        [formData.shop_name, errorMessage.shop_name]
+    );
+
+    // Error message shop owner
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.shop_owner.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                shop_owner: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.shop_owner]);
+
+    useEffect(() => {
+        // Set empty erroMessage only if text does not include disallowed symbols
+        // and errorMessage is not empty.
+        // avoids setting empty errorMessage if the errorMessage is already empty
+        if (!disallowedSymbols.some((el) => formData.shop_owner.includes(el)) && errorMessage.shop_owner) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                shop_owner: '',
+            }));
+        }
+    }, [formData.shop_owner, errorMessage.shop_owner]);
+
+    // Error message shop location
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.shop_location.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                shop_location: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.shop_location]);
+
+    useEffect(() => {
+        // Set empty erroMessage only if text does not include disallowed symbols
+        // and errorMessage is not empty.
+        // avoids setting empty errorMessage if the errorMessage is already empty
+        if (!disallowedSymbols.some((el) => formData.shop_location.includes(el)) && errorMessage.shop_location) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                shop_location: '',
+            }));
+        }
+    }, [formData.shop_location, errorMessage.shop_location]);
 
     const handleChange = (event) => {
         setItemTotal(event.target.value);
@@ -278,6 +396,9 @@ function NewShopOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.shop_name.includes(el))}
+                                helperText={errorMessage.shop_name}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Shop Name'
                                 variant='standard'
                                 type='text'
@@ -292,6 +413,9 @@ function NewShopOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.shop_owner.includes(el))}
+                                helperText={errorMessage.shop_owner}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Shop Owner'
                                 variant='standard'
                                 type='text'
@@ -306,6 +430,9 @@ function NewShopOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.shop_location.includes(el))}
+                                helperText={errorMessage.shop_location}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Location'
                                 variant='standard'
                                 type='text'
