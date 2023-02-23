@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = '/api/shops/';
+const API_URL_ONESHOP = '/api/shops/oneshop';
 const API_URL_REMOVEITEM = '/api/shops/removeitem';
 const API_URL_ADDITEM = '/api/shops/additem';
 
@@ -17,7 +18,7 @@ const createShop = async (shopData, token, currentCampaign) => {
     return response.data;
 };
 
-// Get a shop
+// Get shops
 const getShop = async (currentCampaign, token) => {
     const tokenHeader = {
         headers: {
@@ -26,6 +27,18 @@ const getShop = async (currentCampaign, token) => {
     };
 
     const response = await axios.get(`${API_URL}?currentCampaign=${currentCampaign}`, tokenHeader);
+    return response.data;
+};
+
+// Get a shop
+const getOneShop = async (shopData, token) => {
+    const tokenHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.get(`${API_URL_ONESHOP}?shopData=${shopData}`, tokenHeader);
     return response.data;
 };
 
@@ -70,6 +83,7 @@ const deleteShop = async (shopToDelete, token) => {
 const shopService = {
     createShop,
     getShop,
+    getOneShop,
     removeItem,
     addItem,
     deleteShop,

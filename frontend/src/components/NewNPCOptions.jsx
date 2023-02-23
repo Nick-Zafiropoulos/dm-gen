@@ -65,23 +65,17 @@ function NewNPCOptions() {
         '^',
         '&',
         '*',
-        '(',
-        ')',
         '+',
         '=',
-        '-',
         '[',
         ']',
         '{',
         '}',
         ';',
         ':',
-        '"',
         '_',
-        ',',
         '<',
         '>',
-        '?',
     ];
 
     // Error message npc name
@@ -91,7 +85,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_name.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_name: 'Do not use symbols other than apostrophe or period.',
+                npc_name: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_name]);
@@ -118,7 +112,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_species.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_species: 'Do not use symbols other than apostrophe or period.',
+                npc_species: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_species]);
@@ -145,7 +139,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_age.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_age: 'Do not use symbols other than apostrophe or period.',
+                npc_age: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_age]);
@@ -172,7 +166,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_gender.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_gender: 'Do not use symbols other than apostrophe or period.',
+                npc_gender: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_gender]);
@@ -199,7 +193,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_occupation.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_occupation: 'Do not use symbols other than apostrophe or period.',
+                npc_occupation: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_occupation]);
@@ -226,7 +220,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_personality.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_personality: 'Do not use symbols other than apostrophe or period.',
+                npc_personality: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_personality]);
@@ -256,7 +250,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_flaws.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_flaws: 'Do not use symbols other than apostrophe or period.',
+                npc_flaws: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_flaws]);
@@ -283,7 +277,7 @@ function NewNPCOptions() {
         if (disallowedSymbols.some((el) => formData.npc_location.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                npc_location: 'Do not use symbols other than apostrophe or period.',
+                npc_location: 'Contains disallowed character',
             }));
         }
     }, [formData.npc_location]);
@@ -407,7 +401,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_name.includes(el))}
                                 helperText={errorMessage.npc_name}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Name'
                                 variant='standard'
                                 type='text'
@@ -424,7 +418,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_species.includes(el))}
                                 helperText={errorMessage.npc_species}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Species'
                                 variant='standard'
                                 type='text'
@@ -441,7 +435,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_age.includes(el))}
                                 helperText={errorMessage.npc_age}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Age'
                                 variant='standard'
                                 type='text'
@@ -458,7 +452,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_gender.includes(el))}
                                 helperText={errorMessage.npc_gender}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Gender'
                                 variant='standard'
                                 type='text'
@@ -475,7 +469,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_occupation.includes(el))}
                                 helperText={errorMessage.npc_occupation}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Occupation'
                                 variant='standard'
                                 type='text'
@@ -492,7 +486,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_personality.includes(el))}
                                 helperText={errorMessage.npc_personality}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Personality'
                                 variant='standard'
                                 type='text'
@@ -509,7 +503,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_flaws.includes(el))}
                                 helperText={errorMessage.npc_flaws}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Flaws'
                                 variant='standard'
                                 type='text'
@@ -526,7 +520,7 @@ function NewNPCOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.npc_location.includes(el))}
                                 helperText={errorMessage.npc_location}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".,-?() ]{1,}' }}
                                 label='Location'
                                 variant='standard'
                                 type='text'

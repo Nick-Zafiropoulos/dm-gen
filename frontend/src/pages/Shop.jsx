@@ -4,7 +4,7 @@ import ShopList from '../components/ShopList';
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteShop, reset, getShop, setShop, addItem } from '../features/shops/shopSlice';
+import { deleteShop, reset, getShop, setShop, getOneShop, addItem } from '../features/shops/shopSlice';
 import { Box, shadows, Typography, Button, TextField } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -84,7 +84,7 @@ const Shop = () => {
         new_item_rarity: '',
     });
 
-    const disallowedSymbols = ['/', '(', ')', '=', '[', ']', '{', '}', ';', ':', '"', '<', '>', '`', '~'];
+    const disallowedSymbols = ['/', '=', '[', ']', '{', '}', ';', '<', '>', '`', '~'];
 
     // Error message new_item_name
     useEffect(() => {
@@ -207,8 +207,27 @@ const Shop = () => {
     );
 
     useEffect(() => {
+        getCurrentShop();
         window.scrollTo(0, 0);
     }, [navigate]);
+
+    const getCurrentShop = async () => {
+        const shopData = shopInUse._id;
+
+        const newShopData = await dispatch(getOneShop(shopData));
+
+        const shopRefresh = {
+            shop_name: newShopData.payload.shop_name,
+            shop_owner: newShopData.payload.shop_owner,
+            shop_location: newShopData.payload.shop_location,
+            shop_campaign: newShopData.payload.shop_campaign,
+            shop_list: newShopData.payload.shop_list,
+            shop_hidden_list: newShopData.payload.shop_hidden_list,
+            _id: shopInUse._id,
+        };
+
+        dispatch(setShop(shopRefresh));
+    };
 
     const onChange = (e) => {
         setEditNewItemState((prevState) => ({
@@ -426,7 +445,7 @@ const Shop = () => {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => editNewItemState.new_item_name.includes(el))}
                                 helperText={errorMessage.new_item_name}
-                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'".!?@#$%^&*_+-,:() ]{1,}' }}
                                 inputRef={textInput}
                                 label='Item Name'
                                 variant='standard'
@@ -451,7 +470,7 @@ const Shop = () => {
                                     editNewItemState.new_item_equipment_category.includes(el)
                                 )}
                                 helperText={errorMessage.new_item_equipment_category}
-                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
+                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-,:() ]{1,}" }}
                                 inputRef={textInput}
                                 label='Category'
                                 variant='standard'
@@ -473,7 +492,7 @@ const Shop = () => {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => editNewItemState.new_item_rarity.includes(el))}
                                 helperText={errorMessage.new_item_rarity}
-                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
+                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-,:() ]{1,}" }}
                                 inputRef={textInput}
                                 label='Rarity'
                                 variant='standard'
@@ -487,12 +506,9 @@ const Shop = () => {
                             <TextField
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '100%' }}
                                 fullWidth
+                                multiline
+                                rows={6}
                                 id='standard-basic'
-                                error={disallowedSymbols.some((el) =>
-                                    editNewItemState.new_item_description.includes(el)
-                                )}
-                                helperText={errorMessage.new_item_description}
-                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
                                 inputRef={textInput}
                                 label='Description'
                                 variant='outlined'

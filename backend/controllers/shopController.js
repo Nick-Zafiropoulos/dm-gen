@@ -11,6 +11,14 @@ const getShops = asyncHandler(async (req, res) => {
     res.send(shops);
 });
 
+// @desc Get one shop
+// @route GET /api/shops/oneshop
+const getOneShop = asyncHandler(async (req, res) => {
+    const shop = await Shop.findOne({ _id: req.query.shopData });
+
+    res.send(shop);
+});
+
 // @desc Create shop
 // @route POST /api/shops
 const postShop = asyncHandler(async (req, res) => {
@@ -168,6 +176,7 @@ const deleteShop = asyncHandler(async (req, res) => {
 
 module.exports = {
     getShops,
+    getOneShop,
     postShop,
     removeItem,
     addItem,

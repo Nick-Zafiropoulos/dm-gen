@@ -25,14 +25,6 @@ import { IconContext } from 'react-icons';
 import IconButton from '@mui/material/IconButton';
 import Alert from '@mui/material/Alert';
 
-// const styles = {
-//     input: {
-//         '&:invalid': {
-//             border: 'red solid 2px',
-//         },
-//     },
-// };
-
 function NewShopOptions() {
     const [formData, setFormData] = useState({
         shop_name: '',
@@ -61,23 +53,21 @@ function NewShopOptions() {
         '^',
         '&',
         '*',
-        '(',
-        ')',
+
         '+',
         '=',
-        '-',
+
         '[',
         ']',
         '{',
         '}',
         ';',
         ':',
-        '"',
+
         '_',
-        ',',
+
         '<',
         '>',
-        '?',
     ];
 
     // Error message shop name
@@ -87,7 +77,7 @@ function NewShopOptions() {
         if (disallowedSymbols.some((el) => formData.shop_name.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                shop_name: 'Do not use symbols other than apostrophe or period.',
+                shop_name: 'Contains disallowed character',
             }));
         }
     }, [formData.shop_name]);
@@ -114,7 +104,7 @@ function NewShopOptions() {
         if (disallowedSymbols.some((el) => formData.shop_owner.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                shop_owner: 'Do not use symbols other than apostrophe or period.',
+                shop_owner: 'Contains disallowed character',
             }));
         }
     }, [formData.shop_owner]);
@@ -138,7 +128,7 @@ function NewShopOptions() {
         if (disallowedSymbols.some((el) => formData.shop_location.includes(el))) {
             setErrorMessage((prevState) => ({
                 ...prevState,
-                shop_location: 'Do not use symbols other than apostrophe or period.',
+                shop_location: 'Contains disallowed character',
             }));
         }
     }, [formData.shop_location]);
@@ -398,7 +388,7 @@ function NewShopOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.shop_name.includes(el))}
                                 helperText={errorMessage.shop_name}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'",-?(). ]{1,}' }}
                                 label='Shop Name'
                                 variant='standard'
                                 type='text'
@@ -415,7 +405,7 @@ function NewShopOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.shop_owner.includes(el))}
                                 helperText={errorMessage.shop_owner}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'",-?(). ]{1,}' }}
                                 label='Shop Owner'
                                 variant='standard'
                                 type='text'
@@ -432,7 +422,7 @@ function NewShopOptions() {
                                 id='standard-basic'
                                 error={disallowedSymbols.some((el) => formData.shop_location.includes(el))}
                                 helperText={errorMessage.shop_location}
-                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
+                                inputProps={{ pattern: '[A-Za-z0-9\'",-?(). ]{1,}' }}
                                 label='Location'
                                 variant='standard'
                                 type='text'

@@ -12,7 +12,7 @@ const SearchBar = ({ callback, searchType }) => {
         innerValue: '',
     });
 
-    const disallowedSymbols = ['/', '(', ')', '=', '[', ']', '{', '}', ';', ':', '"', '<', '>', '`', '~'];
+    const disallowedSymbols = ['/', '=', '[', ']', '{', '}', ';', ':', '<', '>', '`', '~'];
 
     // Error message innerValue
     useEffect(() => {
@@ -54,7 +54,7 @@ const SearchBar = ({ callback, searchType }) => {
                 id='standard-basic'
                 error={disallowedSymbols.some((el) => innerValue.includes(el))}
                 helperText={errorMessage.innerValue}
-                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
+                inputProps={{ pattern: '[A-Za-z0-9\'".!?@#$%^&*_+-,() ]{1,}' }}
                 label={`Search ${searchType}`}
                 variant='standard'
                 type='text'

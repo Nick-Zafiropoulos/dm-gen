@@ -9,7 +9,7 @@ const npcSchema = mongoose.Schema({
         type: String,
     },
     npc_age: {
-        type: Number,
+        type: String,
     },
     npc_gender: {
         type: String,
@@ -27,7 +27,7 @@ const npcSchema = mongoose.Schema({
         type: String,
     },
     npc_notes: {
-        type: Array,
+        type: [String],
     },
     npc_campaign: {
         type: String,

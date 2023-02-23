@@ -196,11 +196,10 @@ function NewCampaignOptions() {
                         <TextField
                             sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
                             fullWidth
+                            multiline
+                            rows={6}
                             required
                             id='standard-basic'
-                            error={disallowedSymbols.some((el) => formData.campaign_description.includes(el))}
-                            helperText={errorMessage.campaign_description}
-                            inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
                             label='Description'
                             variant='outlined'
                             type='text'

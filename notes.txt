@@ -37,6 +37,7 @@ X // Responsive sizing
 - lessons learned for future:
     - JOI regexp pattern protection for backend model
     - pass a lot more keys to components to allow them to be reused
+    - improve accessibility attributes
 
 
 

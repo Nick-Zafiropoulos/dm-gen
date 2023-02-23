@@ -41,6 +41,19 @@ export const getShop = createAsyncThunk('shop/getshop', async (_, thunkAPI) => {
     }
 });
 
+// Get a shop from DB
+export const getOneShop = createAsyncThunk('shop/getoneshop', async (shopData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+
+        return await shopService.getOneShop(shopData, token);
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 // Set current shop
 export const setShop = createAsyncThunk('shop/setshop', async (shop, thunkAPI) => {
     const currentShop = shop;
