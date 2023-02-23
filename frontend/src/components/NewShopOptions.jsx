@@ -166,12 +166,10 @@ function NewShopOptions() {
 
     // rarity data
     const rarities = useRef({
-        common: false,
         uncommon: false,
         rare: false,
         veryRare: false,
         legendary: false,
-        artifact: false,
     });
 
     let rarityArray = [];
@@ -234,9 +232,7 @@ function NewShopOptions() {
         }
 
         // populate selected rarities array
-        if (rarities.common) {
-            rarityArray.push('Common');
-        }
+
         if (rarities.uncommon) {
             rarityArray.push('Uncommon');
         }
@@ -248,9 +244,6 @@ function NewShopOptions() {
         }
         if (rarities.legendary) {
             rarityArray.push('Legendary');
-        }
-        if (rarities.artifact) {
-            rarityArray.push('Artifact');
         }
 
         for (let element of categoryArray) {
@@ -272,12 +265,11 @@ function NewShopOptions() {
         categories.current.staff = false;
 
         // reset rarities
-        rarities.current.common = false;
+
         rarities.current.uncommon = false;
         rarities.current.rare = false;
         rarities.current.veryRare = false;
         rarities.current.legendary = false;
-        rarities.current.artifact = false;
 
         const shopData = {
             shop_name,
@@ -621,20 +613,6 @@ function NewShopOptions() {
                                 <FormGroup sx={{ mt: 0.2 }}>
                                     <FormControlLabel
                                         control={<Switch color='secondary' size='small' />}
-                                        label='Common'
-                                        onChange={() => {
-                                            if (!rarities.common) {
-                                                rarities.common = true;
-                                            } else {
-                                                rarities.common = false;
-                                            }
-                                        }}
-                                    />
-                                </FormGroup>
-
-                                <FormGroup sx={{ mt: 0.2 }}>
-                                    <FormControlLabel
-                                        control={<Switch color='secondary' size='small' />}
                                         label='Uncommon'
                                         onChange={() => {
                                             if (!rarities.uncommon) {
@@ -687,20 +665,6 @@ function NewShopOptions() {
                                         }}
                                     />
                                 </FormGroup>
-
-                                <FormGroup sx={{ mt: 0.2 }}>
-                                    <FormControlLabel
-                                        control={<Switch color='secondary' size='small' />}
-                                        label='Artifact'
-                                        onChange={() => {
-                                            if (!rarities.artifact) {
-                                                rarities.artifact = true;
-                                            } else {
-                                                rarities.artifact = false;
-                                            }
-                                        }}
-                                    />
-                                </FormGroup>
                             </Box>
 
                             <Box
@@ -714,6 +678,10 @@ function NewShopOptions() {
                                     Create
                                 </Button>
                             </Box>
+                            <Typography sx={{ fontSize: '.8rem', mt: 2 }}>
+                                Some filter combinations may not have enough items to generate a full shop. If that is
+                                the case, your shop will still generate.
+                            </Typography>
                         </div>
                     </form>
                 </CardContent>

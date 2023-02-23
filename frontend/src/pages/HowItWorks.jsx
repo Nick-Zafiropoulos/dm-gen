@@ -168,7 +168,7 @@ const HowItWorks = () => {
                             }}
                         >
                             Generate fully random NPCs with a single button press, or fill in the blanks that you have
-                            specifics for and let the DM Gen create the rest.
+                            specifics for and let DM Gen create the rest.
                         </Typography>
                     </Box>
                 </Box>
