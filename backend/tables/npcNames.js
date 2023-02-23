@@ -97,6 +97,7 @@ const npcNames = [
     'Dagrod',
     'Gentar',
     'Feston',
+    'Fenton',
 ];
 
 module.exports = npcNames;
