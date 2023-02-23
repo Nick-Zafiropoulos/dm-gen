@@ -29,10 +29,14 @@ X // Responsive sizing
 // A few unit tests
 // Deployment
 
+
 // Make talking point list for what I did in my project
 - talk about modern stuff Im doing:
     - CSS injection in React using styles
     - switching from class react components to function components
+- lessons learned for future:
+    - JOI regexp pattern protection for backend model
+    - pass a lot more keys to components to allow them to be reused
 
 
 

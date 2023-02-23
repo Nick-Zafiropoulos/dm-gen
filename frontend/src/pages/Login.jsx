@@ -42,6 +42,87 @@ const Login = () => {
 
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
+    const [errorMessage, setErrorMessage] = useState({
+        user_email: '',
+        user_password: '',
+    });
+
+    const disallowedSymbols = ['/', '(', ')', '=', '[', ']', '{', '}', ';', ':', '"', ',', '<', '>', '?', '`', '~'];
+
+    const disallowedSymbolsEmail = [
+        '/',
+        '(',
+        ')',
+        '=',
+        '[',
+        ']',
+        '{',
+        '}',
+        ';',
+        ':',
+        '"',
+        ',',
+        '<',
+        '>',
+        '?',
+        '`',
+        '~',
+    ];
+
+    // Error message user_email
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbolsEmail.some((el) => formData.user_email.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                user_email: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.user_email]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbolsEmail.some((el) => formData.user_email.includes(el)) && errorMessage.user_email) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    user_email: '',
+                }));
+            }
+        },
+        [formData.user_email, errorMessage.user_email]
+    );
+
+    // Error message user_password
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.user_password.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                user_password: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.user_password]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.user_password.includes(el)) && errorMessage.user_password) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    user_password: '',
+                }));
+            }
+        },
+        [formData.user_password, errorMessage.user_password]
+    );
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [navigate]);
@@ -131,6 +212,9 @@ const Login = () => {
                                     sx={{ backgroundColor: 'transparent', color: 'white', mt: 3, ml: 2, width: '80%' }}
                                     fullWidth
                                     id='standard-basic'
+                                    error={disallowedSymbolsEmail.some((el) => formData.user_email.includes(el))}
+                                    helperText={errorMessage.user_email}
+                                    inputProps={{ pattern: '[A-Za-z0-9!@#$%^&*_+.-]{1,}' }}
                                     label='Email'
                                     variant='standard'
                                     type='text'
@@ -145,6 +229,9 @@ const Login = () => {
                                     sx={{ backgroundColor: 'transparent', color: 'white', mt: 3, ml: 2, width: '80%' }}
                                     fullWidth
                                     id='standard-basic'
+                                    error={disallowedSymbols.some((el) => formData.user_password.includes(el))}
+                                    helperText={errorMessage.user_password}
+                                    inputProps={{ pattern: '[A-Za-z0-9!@#$%^&*_+.-]{1,}' }}
                                     label='Password'
                                     variant='standard'
                                     type='password'

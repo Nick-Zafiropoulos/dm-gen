@@ -28,6 +28,70 @@ function NewCampaignOptions() {
 
     const { isLoading, isSuccess, isError, message } = useSelector((state) => state.campaign);
 
+    const [errorMessage, setErrorMessage] = useState({
+        campaign_name: '',
+        campaign_description: '',
+    });
+
+    const disallowedSymbols = ['/', '(', ')', '=', '[', ']', '{', '}', ';', ':', '"', '<', '>', '`', '~'];
+
+    // Error message campaign_name
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.campaign_name.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                campaign_name: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.campaign_name]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.campaign_name.includes(el)) && errorMessage.campaign_name) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    campaign_name: '',
+                }));
+            }
+        },
+        [formData.campaign_name, errorMessage.campaign_name]
+    );
+
+    // Error message campaign_description
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.campaign_description.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                campaign_description: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.campaign_description]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (
+                !disallowedSymbols.some((el) => formData.campaign_description.includes(el)) &&
+                errorMessage.campaign_description
+            ) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    campaign_description: '',
+                }));
+            }
+        },
+        [formData.campaign_description, errorMessage.campaign_description]
+    );
+
     useEffect(() => {
         if (isError) {
             toast.error(message);
@@ -114,11 +178,15 @@ function NewCampaignOptions() {
                         <TextField
                             sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '50%' }}
                             fullWidth
+                            required
                             id='standard-basic'
+                            error={disallowedSymbols.some((el) => formData.campaign_name.includes(el))}
+                            helperText={errorMessage.campaign_name}
+                            inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
                             label='Campaign Title'
                             variant='standard'
                             type='text'
-                            className='searchBarInput form-control'
+                            className=''
                             placeholder='Enter a title for your campaign'
                             name='campaign_name'
                             value={campaign_name}
@@ -128,18 +196,21 @@ function NewCampaignOptions() {
                         <TextField
                             sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
                             fullWidth
-                            multiline
-                            rows={6}
+                            required
                             id='standard-basic'
+                            error={disallowedSymbols.some((el) => formData.campaign_description.includes(el))}
+                            helperText={errorMessage.campaign_description}
+                            inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
                             label='Description'
                             variant='outlined'
                             type='text'
-                            className='searchBarInput form-control'
+                            className=''
                             placeholder='Write a description for this campaign'
                             name='campaign_description'
                             value={campaign_description}
                             onChange={onChange}
                         />
+
                         <Button sx={{ mt: 3 }} variant='contained' color='secondary' type='submit'>
                             Create
                         </Button>

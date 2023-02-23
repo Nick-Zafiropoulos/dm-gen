@@ -25,13 +25,13 @@ import { IconContext } from 'react-icons';
 import IconButton from '@mui/material/IconButton';
 import Alert from '@mui/material/Alert';
 
-const styles = {
-    input: {
-        '&:invalid': {
-            border: 'red solid 2px',
-        },
-    },
-};
+// const styles = {
+//     input: {
+//         '&:invalid': {
+//             border: 'red solid 2px',
+//         },
+//     },
+// };
 
 function NewShopOptions() {
     const [formData, setFormData] = useState({

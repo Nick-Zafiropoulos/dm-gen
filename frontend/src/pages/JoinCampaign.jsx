@@ -47,6 +47,39 @@ const JoinCampaign = () => {
 
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
+    const [errorMessage, setErrorMessage] = useState({
+        campaign_code: '',
+    });
+
+    const disallowedSymbols = ['/', '(', ')', '=', '[', ']', '{', '}', ';', ':', '"', '<', '>', '`', '~'];
+
+    // Error message campaign_code
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.campaign_code.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                campaign_code: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.campaign_code]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.campaign_code.includes(el)) && errorMessage.campaign_code) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    campaign_code: '',
+                }));
+            }
+        },
+        [formData.campaign_code, errorMessage.campaign_code]
+    );
+
     useEffect(() => {
         if (isError) {
             toast.error(message);
@@ -136,6 +169,9 @@ const JoinCampaign = () => {
                                     sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '90%' }}
                                     fullWidth
                                     id='standard-basic'
+                                    error={disallowedSymbols.some((el) => formData.campaign_code.includes(el))}
+                                    helperText={errorMessage.campaign_code}
+                                    inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
                                     label='Enter a campaign code'
                                     variant='standard'
                                     type='text'

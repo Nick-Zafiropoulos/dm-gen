@@ -77,6 +77,135 @@ const Shop = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const [errorMessage, setErrorMessage] = useState({
+        new_item_name: '',
+        new_item_description: '',
+        new_item_equipment_category: '',
+        new_item_rarity: '',
+    });
+
+    const disallowedSymbols = ['/', '(', ')', '=', '[', ']', '{', '}', ';', ':', '"', '<', '>', '`', '~'];
+
+    // Error message new_item_name
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => editNewItemState.new_item_name.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                new_item_name: 'Contains disallowed character',
+            }));
+        }
+    }, [editNewItemState.new_item_name]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (
+                !disallowedSymbols.some((el) => editNewItemState.new_item_name.includes(el)) &&
+                errorMessage.new_item_name
+            ) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    new_item_name: '',
+                }));
+            }
+        },
+        [editNewItemState.new_item_name, errorMessage.new_item_name]
+    );
+
+    // Error message new_item_description
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => editNewItemState.new_item_description.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                new_item_description: 'Contains disallowed character',
+            }));
+        }
+    }, [editNewItemState.new_item_description]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (
+                !disallowedSymbols.some((el) => editNewItemState.new_item_description.includes(el)) &&
+                errorMessage.new_item_description
+            ) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    new_item_description: '',
+                }));
+            }
+        },
+        [editNewItemState.new_item_description, errorMessage.new_item_description]
+    );
+
+    // Error message new_item_equipment_category
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => editNewItemState.new_item_equipment_category.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                new_item_equipment_category: 'Contains disallowed character',
+            }));
+        }
+    }, [editNewItemState.new_item_equipment_category]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (
+                !disallowedSymbols.some((el) => editNewItemState.new_item_equipment_category.includes(el)) &&
+                errorMessage.new_item_equipment_category
+            ) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    new_item_equipment_category: '',
+                }));
+            }
+        },
+        [editNewItemState.new_item_equipment_category, errorMessage.new_item_equipment_category]
+    );
+
+    // Error message new_item_rarity
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => editNewItemState.new_item_rarity.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                new_item_rarity: 'Contains disallowed character',
+            }));
+        }
+    }, [editNewItemState.new_item_rarity]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (
+                !disallowedSymbols.some((el) => editNewItemState.new_item_rarity.includes(el)) &&
+                errorMessage.new_item_rarity
+            ) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    new_item_rarity: '',
+                }));
+            }
+        },
+        [editNewItemState.new_item_rarity, errorMessage.new_item_rarity]
+    );
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [navigate]);
@@ -148,6 +277,13 @@ const Shop = () => {
 
         await dispatch(setShop(shopReduxUpdate));
         textInput.current.value = '';
+        setEditNewItemState((prevState) => ({
+            new_item_name: '',
+            new_item_description: '',
+            new_item_equipment_category: '',
+            new_item_rarity: '',
+        }));
+
         setEditNewItemToggleState(0);
 
         navigate('/shop');
@@ -288,6 +424,9 @@ const Shop = () => {
                                 }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => editNewItemState.new_item_name.includes(el))}
+                                helperText={errorMessage.new_item_name}
+                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
                                 inputRef={textInput}
                                 label='Item Name'
                                 variant='standard'
@@ -295,14 +434,65 @@ const Shop = () => {
                                 className='searchBarInput form-control'
                                 placeholder='Enter an item name'
                                 name='new_item_name'
+                                value={new_item_name}
+                                onChange={onChange}
+                            />
+
+                            <TextField
+                                sx={{
+                                    backgroundColor: 'transparent',
+                                    color: 'white',
+                                    mt: 2,
+                                    maxWidth: { xs: '90%', sm: '51%' },
+                                }}
+                                fullWidth
+                                id='standard-basic'
+                                error={disallowedSymbols.some((el) =>
+                                    editNewItemState.new_item_equipment_category.includes(el)
+                                )}
+                                helperText={errorMessage.new_item_equipment_category}
+                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
+                                inputRef={textInput}
+                                label='Category'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Enter a category (weapon, armor, ring, etc...)'
+                                name='new_item_equipment_category'
+                                value={new_item_equipment_category}
+                                onChange={onChange}
+                            />
+                            <TextField
+                                sx={{
+                                    backgroundColor: 'transparent',
+                                    color: 'white',
+                                    mt: 2,
+                                    maxWidth: { xs: '90%', sm: '51%' },
+                                }}
+                                fullWidth
+                                id='standard-basic'
+                                error={disallowedSymbols.some((el) => editNewItemState.new_item_rarity.includes(el))}
+                                helperText={errorMessage.new_item_rarity}
+                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
+                                inputRef={textInput}
+                                label='Rarity'
+                                variant='standard'
+                                type='text'
+                                className='searchBarInput form-control'
+                                placeholder='Enter the item rarity (uncommon, rare, etc...)'
+                                name='new_item_rarity'
+                                value={new_item_rarity}
                                 onChange={onChange}
                             />
                             <TextField
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 2, maxWidth: '100%' }}
                                 fullWidth
-                                multiline
-                                rows={6}
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) =>
+                                    editNewItemState.new_item_description.includes(el)
+                                )}
+                                helperText={errorMessage.new_item_description}
+                                inputProps={{ pattern: "[A-Za-z0-9'.!?@#$%^&*_+-, ]{1,}" }}
                                 inputRef={textInput}
                                 label='Description'
                                 variant='outlined'
@@ -310,45 +500,9 @@ const Shop = () => {
                                 className='searchBarInput form-control'
                                 placeholder='Enter an item description'
                                 name='new_item_description'
+                                value={new_item_description}
                                 onChange={onChange}
                             />
-                            <TextField
-                                sx={{
-                                    backgroundColor: 'transparent',
-                                    color: 'white',
-                                    mt: 2,
-                                    maxWidth: { xs: '90%', sm: '51%' },
-                                }}
-                                fullWidth
-                                id='standard-basic'
-                                inputRef={textInput}
-                                label='Category'
-                                variant='standard'
-                                type='text'
-                                className='searchBarInput form-control'
-                                placeholder='Enter a category'
-                                name='new_item_equipment_category'
-                                onChange={onChange}
-                            />
-                            <TextField
-                                sx={{
-                                    backgroundColor: 'transparent',
-                                    color: 'white',
-                                    mt: 2,
-                                    maxWidth: { xs: '90%', sm: '51%' },
-                                }}
-                                fullWidth
-                                id='standard-basic'
-                                inputRef={textInput}
-                                label='Rarity'
-                                variant='standard'
-                                type='text'
-                                className='searchBarInput form-control'
-                                placeholder='Enter the item rarity'
-                                name='new_item_rarity'
-                                onChange={onChange}
-                            />
-
                             {/* <FormGroup sx={{ mt: 3, color: 'white' }}>
                                 <FormControlLabel
                                     control={
@@ -369,7 +523,7 @@ const Shop = () => {
                             </FormGroup> */}
 
                             <Box sx={{ mt: 3, mb: 3 }}>
-                                <Button onClick={addCustomItem} type='submit' variant='contained' color='secondary'>
+                                <Button type='submit' variant='contained' color='secondary'>
                                     Save
                                 </Button>
                             </Box>

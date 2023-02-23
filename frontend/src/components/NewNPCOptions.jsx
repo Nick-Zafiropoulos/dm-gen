@@ -44,6 +44,265 @@ function NewNPCOptions() {
 
     const { isLoading, isSuccess, isError, message } = useSelector((state) => state.shop);
 
+    const [errorMessage, setErrorMessage] = useState({
+        npc_name: '',
+        npc_species: '',
+        npc_age: '',
+        npc_gender: '',
+        npc_location: '',
+        npc_occupation: '',
+        npc_personality: '',
+        npc_flaws: '',
+    });
+
+    const disallowedSymbols = [
+        '/',
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+        '^',
+        '&',
+        '*',
+        '(',
+        ')',
+        '+',
+        '=',
+        '-',
+        '[',
+        ']',
+        '{',
+        '}',
+        ';',
+        ':',
+        '"',
+        '_',
+        ',',
+        '<',
+        '>',
+        '?',
+    ];
+
+    // Error message npc name
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_name.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_name: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_name]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.npc_name.includes(el)) && errorMessage.npc_name) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_name: '',
+                }));
+            }
+        },
+        [formData.npc_name, errorMessage.npc_name]
+    );
+
+    // Error message npc species
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_species.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_species: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_species]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.npc_species.includes(el)) && errorMessage.npc_species) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_species: '',
+                }));
+            }
+        },
+        [formData.npc_species, errorMessage.npc_species]
+    );
+
+    // Error message npc age
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_age.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_age: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_age]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.npc_age.includes(el)) && errorMessage.npc_age) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_age: '',
+                }));
+            }
+        },
+        [formData.npc_age, errorMessage.npc_age]
+    );
+
+    // Error message npc gender
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_gender.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_gender: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_gender]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.npc_gender.includes(el)) && errorMessage.npc_gender) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_gender: '',
+                }));
+            }
+        },
+        [formData.npc_gender, errorMessage.npc_gender]
+    );
+
+    // Error message npc occupation
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_occupation.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_occupation: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_occupation]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.npc_occupation.includes(el)) && errorMessage.npc_occupation) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_occupation: '',
+                }));
+            }
+        },
+        [formData.npc_occupation, errorMessage.npc_occupation]
+    );
+
+    // Error message npc personality
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_personality.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_personality: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_personality]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (
+                !disallowedSymbols.some((el) => formData.npc_personality.includes(el)) &&
+                errorMessage.npc_personality
+            ) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_personality: '',
+                }));
+            }
+        },
+        [formData.npc_personality, errorMessage.npc_personality]
+    );
+
+    // Error message npc flaws
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_flaws.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_flaws: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_flaws]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.npc_flaws.includes(el)) && errorMessage.npc_flaws) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_flaws: '',
+                }));
+            }
+        },
+        [formData.npc_flaws, errorMessage.npc_flaws]
+    );
+
+    // Error message npc location
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.npc_location.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                npc_location: 'Do not use symbols other than apostrophe or period.',
+            }));
+        }
+    }, [formData.npc_location]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.npc_location.includes(el)) && errorMessage.npc_location) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    npc_location: '',
+                }));
+            }
+        },
+        [formData.npc_location, errorMessage.npc_location]
+    );
+
     useEffect(() => {
         if (isError) {
             toast.error(message);
@@ -146,6 +405,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_name.includes(el))}
+                                helperText={errorMessage.npc_name}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Name'
                                 variant='standard'
                                 type='text'
@@ -160,6 +422,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_species.includes(el))}
+                                helperText={errorMessage.npc_species}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Species'
                                 variant='standard'
                                 type='text'
@@ -174,6 +439,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_age.includes(el))}
+                                helperText={errorMessage.npc_age}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Age'
                                 variant='standard'
                                 type='text'
@@ -188,6 +456,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_gender.includes(el))}
+                                helperText={errorMessage.npc_gender}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Gender'
                                 variant='standard'
                                 type='text'
@@ -202,6 +473,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_occupation.includes(el))}
+                                helperText={errorMessage.npc_occupation}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Occupation'
                                 variant='standard'
                                 type='text'
@@ -216,6 +490,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_personality.includes(el))}
+                                helperText={errorMessage.npc_personality}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Personality'
                                 variant='standard'
                                 type='text'
@@ -230,6 +507,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_flaws.includes(el))}
+                                helperText={errorMessage.npc_flaws}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Flaws'
                                 variant='standard'
                                 type='text'
@@ -244,6 +524,9 @@ function NewNPCOptions() {
                                 sx={{ backgroundColor: 'transparent', color: 'white', mt: 1, maxWidth: '75%' }}
                                 fullWidth
                                 id='standard-basic'
+                                error={disallowedSymbols.some((el) => formData.npc_location.includes(el))}
+                                helperText={errorMessage.npc_location}
+                                inputProps={{ pattern: "[A-Za-z0-9'. ]{1,}" }}
                                 label='Location'
                                 variant='standard'
                                 type='text'

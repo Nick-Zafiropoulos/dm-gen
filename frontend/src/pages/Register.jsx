@@ -44,6 +44,176 @@ const Register = () => {
 
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
+    const [errorMessage, setErrorMessage] = useState({
+        user_name: '',
+        user_email: '',
+        user_password: '',
+        user_password2: '',
+    });
+
+    const disallowedSymbols = ['/', '(', ')', '=', '[', ']', '{', '}', ';', ':', '"', ',', '<', '>', '?', '`', '~'];
+
+    const disallowedSymbolsUsername = [
+        '/',
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+        '^',
+        '&',
+        '*',
+        '(',
+        ')',
+        '+',
+        '=',
+        '-',
+        '[',
+        ']',
+        '{',
+        '}',
+        ';',
+        ':',
+        '"',
+        '_',
+        ',',
+        '<',
+        '>',
+        '?',
+        '`',
+        '~',
+        '.',
+        "'",
+    ];
+
+    const disallowedSymbolsEmail = [
+        '/',
+        '(',
+        ')',
+        '=',
+        '[',
+        ']',
+        '{',
+        '}',
+        ';',
+        ':',
+        '"',
+        ',',
+        '<',
+        '>',
+        '?',
+        '`',
+        '~',
+    ];
+
+    // Error message user_email
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbolsEmail.some((el) => formData.user_email.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                user_email: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.user_email]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbolsEmail.some((el) => formData.user_email.includes(el)) && errorMessage.user_email) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    user_email: '',
+                }));
+            }
+        },
+        [formData.user_email, errorMessage.user_email]
+    );
+
+    // Error message user_password
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.user_password.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                user_password: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.user_password]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.user_password.includes(el)) && errorMessage.user_password) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    user_password: '',
+                }));
+            }
+        },
+        [formData.user_password, errorMessage.user_password]
+    );
+
+    // Error message user_password2
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbols.some((el) => formData.user_password2.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                user_password2: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.user_password2]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbols.some((el) => formData.user_password2.includes(el)) && errorMessage.user_password2) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    user_password2: '',
+                }));
+            }
+        },
+        [formData.user_password2, errorMessage.user_password2]
+    );
+
+    // Error message user_name
+    useEffect(() => {
+        // Set errorMessage only if text includes disallowed symbols
+
+        if (disallowedSymbolsUsername.some((el) => formData.user_name.includes(el))) {
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                user_name: 'Contains disallowed character',
+            }));
+        }
+    }, [formData.user_name]);
+
+    useEffect(
+        (e) => {
+            // Set empty erroMessage only if text does not include disallowed symbols
+            // and errorMessage is not empty.
+            // avoids setting empty errorMessage if the errorMessage is already empty
+            if (!disallowedSymbolsUsername.some((el) => formData.user_name.includes(el)) && errorMessage.user_name) {
+                setErrorMessage((prevState) => ({
+                    ...prevState,
+                    user_name: '',
+                }));
+            }
+        },
+        [formData.user_name, errorMessage.user_name]
+    );
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [navigate]);
@@ -130,6 +300,9 @@ const Register = () => {
                                         sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
                                         fullWidth
                                         id='standard-basic'
+                                        error={disallowedSymbolsUsername.some((el) => formData.user_name.includes(el))}
+                                        helperText={errorMessage.user_name}
+                                        inputProps={{ pattern: '[A-Za-z0-9 ]{1,}' }}
                                         label='Username'
                                         variant='standard'
                                         type='text'
@@ -145,6 +318,9 @@ const Register = () => {
                                         sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
                                         fullWidth
                                         id='standard-basic'
+                                        error={disallowedSymbolsEmail.some((el) => formData.user_email.includes(el))}
+                                        helperText={errorMessage.user_email}
+                                        inputProps={{ pattern: '[A-Za-z0-9!@#$%^&*_+.-]{1,}' }}
                                         label='Email'
                                         variant='standard'
                                         type='email'
@@ -160,6 +336,9 @@ const Register = () => {
                                         sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
                                         fullWidth
                                         id='standard-basic'
+                                        error={disallowedSymbols.some((el) => formData.user_password.includes(el))}
+                                        helperText={errorMessage.user_password}
+                                        inputProps={{ pattern: '[A-Za-z0-9!@#$%^&*_+.-]{1,}' }}
                                         label='Password'
                                         variant='standard'
                                         type='password'
@@ -169,11 +348,14 @@ const Register = () => {
                                         value={user_password}
                                         onChange={onChange}
                                     />
-                                </Box>{' '}
+                                </Box>
                                 <Box>
                                     <TextField
                                         sx={{ backgroundColor: 'transparent', color: 'white', mt: 3 }}
                                         fullWidth
+                                        error={disallowedSymbols.some((el) => formData.user_password2.includes(el))}
+                                        helperText={errorMessage.user_password2}
+                                        inputProps={{ pattern: '[A-Za-z0-9!@#$%^&*_+.-]{1,}' }}
                                         label='Re-enter Password'
                                         type='password'
                                         variant='standard'
