@@ -4,6 +4,8 @@ DM Gen is a tool for 5th Edition Dungeons and Dragons (and any other TTRPG syste
 
 Running your D&D campaign is already a lot of work, DM Gen takes care of creating and organizing player-facing information so you don't have to.
 
+[Click Here](https://dmgen.up.railway.app/) to explore the app!
+
 
 # How Does It Work?
 
