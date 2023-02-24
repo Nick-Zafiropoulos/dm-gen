@@ -27,6 +27,14 @@ const styles = {
 
         height: '100vw',
     },
+    button: {
+        backgroundColor: '#3c52b2',
+        color: '#fff',
+        ':hover': {
+            backgroundColor: '#fff',
+            color: '#3c52b2',
+        },
+    },
 };
 
 const Login = () => {
@@ -243,7 +251,20 @@ const Login = () => {
                                 />
 
                                 <Box sx={{ mt: 3, ml: 2 }}>
-                                    <Button type='submit' variant='contained' color='secondary'>
+                                    <Button
+                                        type='submit'
+                                        variant='contained'
+                                        sx={{
+                                            ':hover': {
+                                                bgcolor: '#48413F',
+                                                color: '#FFF',
+                                            },
+                                            color: '#FFF',
+                                            backgroundColor: '#785C4D',
+                                        }}
+                                        // color='secondary'
+                                        // style={styles.button}
+                                    >
                                         Login
                                     </Button>
                                 </Box>
@@ -257,8 +278,16 @@ const Login = () => {
                                     component={Link}
                                     to='/register'
                                     variant='outlined'
-                                    color='secondary'
                                     size='small'
+                                    sx={{
+                                        ':hover': {
+                                            bgcolor: '#48413F',
+                                            color: '#FFF',
+                                            borderColor: '#FF000000',
+                                        },
+                                        color: '#FFF',
+                                        borderColor: '#785C4D',
+                                    }}
                                 >
                                     Register
                                 </Button>

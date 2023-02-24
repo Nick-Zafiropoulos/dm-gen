@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Box, shadows, Typography, Button, TextField } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRef } from 'react';
-import backgroundBlur from '../images/dmgenhowitworkscanvasblurlight.png';
+import backgroundBlur from '../images/dmgenhowitworkscanvasdark.png';
 import howItWorksTitle from '../images/dmgenhowitworkstitle.png';
 import Navbar from '../components/Navbar';
 import { MdDoubleArrow } from 'react-icons/md';
@@ -133,7 +133,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         src='https://i.imgur.com/hAPVHkq.gif'
@@ -149,7 +149,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         sx={{
                             p: { xs: 3, lg: 10 },
@@ -191,7 +191,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         src='https://i.imgur.com/SNnM6UY.gif'
@@ -208,7 +208,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
@@ -256,7 +256,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         src='https://i.imgur.com/M5EDNTX.gif'
@@ -273,7 +273,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
@@ -311,7 +311,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         src='https://i.imgur.com/sJ4Nl9u.gif'
@@ -328,7 +328,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
@@ -366,7 +366,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         src='https://i.imgur.com/FxALMbs.gif'
@@ -383,7 +383,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 500 }}
+                        initial={{ opacity: 0, y: 300 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         sx={{ p: { xs: 3, lg: 10 }, textShadow: '2px 2px #262626' }}
                         viewport={{ once: true }}
@@ -412,7 +412,7 @@ const HowItWorks = () => {
                             duration: 1,
                         },
                     }}
-                    initial={{ opacity: 0, y: 200 }}
+                    initial={{ opacity: 0, y: 300 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     sx={{ p: { xs: 0, lg: 10 } }}
                     viewport={{ once: true }}

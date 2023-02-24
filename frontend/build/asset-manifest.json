@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.6f0a7933.css",
-    "main.js": "/static/js/main.58c8bc6e.js",
+    "main.css": "/static/css/main.5f02867a.css",
+    "main.js": "/static/js/main.7a64716e.js",
     "static/media/dmgenblankcloth.png": "/static/media/dmgenblankcloth.0be0d62d232c18ed98b7.png",
     "static/media/dicebackground.jpeg": "/static/media/dicebackground.3a333a043505ec75f576.jpeg",
-    "static/media/dmgenhowitworkscanvasblurlight.png": "/static/media/dmgenhowitworkscanvasblurlight.aefa06e6e5e3b54352ef.png",
+    "static/media/dmgenhowitworkscanvasdark.png": "/static/media/dmgenhowitworkscanvasdark.7409e0b5126683ad6345.png",
     "static/media/dmgenhowitworkstitle.png": "/static/media/dmgenhowitworkstitle.24d3a33afc16afbc63cc.png",
     "static/media/dmgenlogowhite.png": "/static/media/dmgenlogowhite.821245e5033a7d8f6d02.png",
     "static/media/dmgenlogoblack.png": "/static/media/dmgenlogoblack.ed45b51a25818a348cff.png",
     "index.html": "/index.html",
-    "main.6f0a7933.css.map": "/static/css/main.6f0a7933.css.map",
-    "main.58c8bc6e.js.map": "/static/js/main.58c8bc6e.js.map"
+    "main.5f02867a.css.map": "/static/css/main.5f02867a.css.map",
+    "main.7a64716e.js.map": "/static/js/main.7a64716e.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f0a7933.css",
-    "static/js/main.58c8bc6e.js"
+    "static/css/main.5f02867a.css",
+    "static/js/main.7a64716e.js"
   ]
 }

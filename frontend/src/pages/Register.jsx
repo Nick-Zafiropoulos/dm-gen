@@ -369,7 +369,18 @@ const Register = () => {
                                 </Box>
                             </Box>
                             <Box sx={{ mt: 3 }}>
-                                <Button type='submit' variant='contained' color='secondary'>
+                                <Button
+                                    type='submit'
+                                    variant='contained'
+                                    sx={{
+                                        ':hover': {
+                                            bgcolor: '#48413F',
+                                            color: '#FFF',
+                                        },
+                                        color: '#FFF',
+                                        backgroundColor: '#785C4D',
+                                    }}
+                                >
                                     Create Account
                                 </Button>
                             </Box>
@@ -387,7 +398,21 @@ const Register = () => {
                         <Typography sx={{ pr: 3, mt: 0.5 }} color='primary'>
                             Already have an account?
                         </Typography>
-                        <Button component={Link} to='/login' variant='outlined' color='secondary' size='small'>
+                        <Button
+                            component={Link}
+                            to='/login'
+                            variant='outlined'
+                            size='small '
+                            sx={{
+                                ':hover': {
+                                    bgcolor: '#48413F',
+                                    color: '#FFF',
+                                    borderColor: '#FF000000',
+                                },
+                                color: '#FFF',
+                                borderColor: '#785C4D',
+                            }}
+                        >
                             Login
                         </Button>
                     </Box>

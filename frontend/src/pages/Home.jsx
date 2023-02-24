@@ -112,9 +112,15 @@ function Home() {
                             type='button'
                             to='/howitworks'
                             variant='contained'
-                            color='secondary'
-                            style={{ color: '#FFF' }}
-                            sx={{ ml: 3 }}
+                            sx={{
+                                ':hover': {
+                                    bgcolor: '#48413F',
+                                    color: '#FFF',
+                                },
+                                color: '#FFF',
+                                backgroundColor: '#785C4D',
+                                ml: 3,
+                            }}
                         >
                             See How It Works
                         </Button>
