@@ -10,7 +10,7 @@ Running your D&D campaign is already a lot of work, DM Gen takes care of creatin
 
 # How Does It Work?
 
-Click the link to see some of DM Gen's features.
+Click the link to walk through DM Gen's features.
 
 <a href="https://dmgen.up.railway.app/howitworks">
     <img width="190px" alt="how it works page" title="Go to How It Works page" src="https://custom-icon-badges.demolab.com/badge/-How%20It%20Works-blue?style=for-the-badge&logoColor=white&logo=repo"/></a>
