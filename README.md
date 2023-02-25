@@ -5,7 +5,7 @@ DM Gen is a tool for 5th Edition Dungeons and Dragons (and any other TTRPG syste
 Running your D&D campaign is already a lot of work, DM Gen takes care of creating and organizing player-facing information so you don't have to.
 
 <a href="https://dmgen.up.railway.app/">
-    <img width="150px" alt="DM Gen App" title="Go to DM Gen App" src="https://custom-icon-badges.demolab.com/badge/-Go%20to%20App-green?style=for-the-badge&logoColor=white&logo=repo"/></a>
+    <img width="150px" alt="DM Gen App" title="Go to DM Gen App" src="https://custom-icon-badges.demolab.com/badge/-Go%20to%20App-green?style=for-the-badge&logoColor=white&logo=sign-in"/></a>
 
 
 # How Does It Work?
@@ -13,7 +13,7 @@ Running your D&D campaign is already a lot of work, DM Gen takes care of creatin
 Click the link to walk through DM Gen's features.
 
 <a href="https://dmgen.up.railway.app/howitworks">
-    <img width="190px" alt="how it works page" title="Go to How It Works page" src="https://custom-icon-badges.demolab.com/badge/-How%20It%20Works-blue?style=for-the-badge&logoColor=white&logo=repo"/></a>
+    <img width="190px" alt="how it works page" title="Go to How It Works page" src="https://custom-icon-badges.demolab.com/badge/-How%20It%20Works-blue?style=for-the-badge&logoColor=white&logo=info"/></a>
 
 ## The Stack
 
