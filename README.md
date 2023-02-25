@@ -1,6 +1,6 @@
 ![dmgenlogoblacktrimmedsmall](https://user-images.githubusercontent.com/102330367/221329478-e6966299-e8bd-4e8a-ac5c-b2219788f8db.png)
 
-DM Gen is a tool for 5th Edition Dungeons and Dragons (and any other TTRPG systems) that allows Dungeon Masters to easily **generate**, **customize**, and **save** item shops and NPCs. After creating a campaign, users can **invite their players** to join their campaign to view item shop inventories and NPC information, as well as contribute notes that can be viewed by all users who have access to the campaign. 
+DM Gen is a tool for 5th Edition Dungeons and Dragons (and any other TTRPG systems) that allows Dungeon Masters to easily **generate**, **customize**, and **save** item shops and NPCs. After creating a campaign, users can **invite their players** to join their campaign to view item shop inventories and NPC information. In addition, players can contribute notes that can be viewed by all users who have access to the campaign. 
 
 Running your D&D campaign is already a lot of work, DM Gen takes care of creating and organizing player-facing information so you don't have to.
 
