@@ -36,7 +36,7 @@ const postCampaign = asyncHandler(async (req, res) => {
 });
 
 // @desc Update campaign
-// @route PUT /api/campaigns/
+// @route PUT /api/campaigns
 const updateCampaign = asyncHandler(async (req, res) => {
     const campaign = await Campaign.findOne({ campaign_link: req.body.code });
 
@@ -46,18 +46,13 @@ const updateCampaign = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user.id);
 
-    // check to find user at all
+    // check to find user
     if (!user) {
         res.status(401);
         throw new Error('User not found');
     }
 
-    // checking if current user is campaign dungeon master
-    // if (campaign.dungeon_master.toString() !== user.id) {
-    //     res.status(401);
-    //     throw new Error('The user is already the DM of this campaign');
-    // }
-
+    // check if current user is campaign dungeon master or already a player
     if (campaign.campaign_players.includes(req.user.id) || campaign.dungeon_master.includes(req.user.id)) {
         res.status(400);
         throw new Error('User is already a part of that campaign');
@@ -68,6 +63,8 @@ const updateCampaign = asyncHandler(async (req, res) => {
     res.send(campaign);
 });
 
+// @desc Leave campaign
+// @route PUT /api/campaigns/leave
 const leaveCampaign = asyncHandler(async (req, res) => {
     const campaign = await Campaign.findOne({ campaign_link: req.body.code });
 
@@ -77,30 +74,25 @@ const leaveCampaign = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user.id);
 
-    // check to find user at all
+    // check to find user
     if (!user) {
         res.status(401);
         throw new Error('User not found');
     }
 
-    // checking if current user is campaign dungeon master
-    // if (campaign.dungeon_master.toString() !== user.id) {
-    //     res.status(401);
-    //     throw new Error('The user is already the DM of this campaign');
-    // }
-
+    // check if current user is a player in the campaign, then pull them
     if (campaign.campaign_players.includes(req.user.id)) {
         await campaign.updateOne({ $pull: { campaign_players: req.user.id } });
     } else {
         res.status(400);
-        throw new Error('User is already a part of that campaign');
+        throw new Error('User is not a part of that campaign');
     }
 
     res.send(campaign);
 });
 
 // @desc Delete campaign
-// @route DELETE /api/campaigns/:id
+// @route DELETE /api/campaigns
 const deleteCampaign = asyncHandler(async (req, res) => {
     const campaign = await Campaign.findById(req.query.campaignId);
     console.log(campaign._id.toString());
@@ -111,13 +103,13 @@ const deleteCampaign = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user.id);
 
-    // check to find user at all
+    // check to find user
     if (!user) {
         res.status(401);
         throw new Error('User not found');
     }
 
-    // checking if current user is campaign dungeon master
+    // check if current user is campaign dungeon master
     if (campaign.dungeon_master[0].toString() !== user.id) {
         res.status(401);
         throw new Error('The user is not authorized');
@@ -127,9 +119,6 @@ const deleteCampaign = asyncHandler(async (req, res) => {
     const npcsDel = await NPC.deleteMany({ npc_campaign: campaign._id.toString() });
     const campaignDel = await Campaign.deleteOne({ _id: campaign._id });
 
-    // await campaign.remove();
-
-    // console.log(`${campaignDel} Campaigns, ${shopsDel} Shops, and ${npcsDel} NPCs deleted`);
     res.send(campaign);
 });
 

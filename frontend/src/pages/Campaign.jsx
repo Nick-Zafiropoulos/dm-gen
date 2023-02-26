@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
-import FilterCheckbox from '../components/FilterCheckbox';
 import FilterResults from '../components/FilterResults';
 import NPCFilter from '../components/NPCFilter';
 import { getShop } from '../features/shops/shopSlice';

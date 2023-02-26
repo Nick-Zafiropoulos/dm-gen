@@ -20,7 +20,6 @@ const { db } = require('./models/campaignModel');
 app.use('/api/campaigns', require('./routes/campaignRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/shops', require('./routes/shopRoutes'));
-app.use('/api/items', require('./routes/itemRoutes'));
 app.use('/api/npcs', require('./routes/npcRoutes'));
 
 // Serve Frontend

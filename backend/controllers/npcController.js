@@ -6,7 +6,7 @@ const npcPersonalities = require('../tables/npcPersonalities');
 const npcFlaws = require('../tables/npcFlaws');
 const npcSpecies = require('../tables/npcSpecies');
 
-// @desc Get npc
+// @desc Get all npcs
 // @route GET /api/npcs
 const getNpcs = asyncHandler(async (req, res) => {
     const npcs = await NPC.find({ npc_campaign: req.query.currentCampaign });
@@ -38,6 +38,7 @@ const postNpc = asyncHandler(async (req, res) => {
     let NPCFlaws = '';
     let NPCLocation = req.body.npcData.npcData.npc_location;
 
+    // Generate data for each field left empty by the user
     if (req.body.npcData.npcData.npc_name == '') {
         let randomNumber = Math.floor(Math.random() * npcNames.length);
         NPCName = npcNames[randomNumber];
@@ -114,6 +115,7 @@ const postNpc = asyncHandler(async (req, res) => {
 });
 
 //@desc Update npc notes
+//@route PUT /api/npcs/notes
 const updateNpcNotes = asyncHandler(async (req, res) => {
     let noteToNPC = await NPC.findOne({ _id: req.body.newNpcNote._id });
 
@@ -123,6 +125,7 @@ const updateNpcNotes = asyncHandler(async (req, res) => {
 });
 
 //@desc Delete npc note
+//@route PUT /api/npcs/deletenote
 const deleteNpcNote = asyncHandler(async (req, res) => {
     let deleteNoteNPC = await NPC.findOne({ _id: req.body.noteToDeleteData._id });
 
@@ -141,7 +144,7 @@ const deleteNpcNote = asyncHandler(async (req, res) => {
 });
 
 // @desc Update npc
-// @route PUT /api/npcs/:id
+// @route PUT /api/npcs
 const updateNpc = asyncHandler(async (req, res) => {
     const npcToUpdate = await NPC.findByIdAndUpdate(
         { _id: req.body.npcInfo._id },
@@ -158,30 +161,12 @@ const updateNpc = asyncHandler(async (req, res) => {
     );
 
     let sendBackNPC = await NPC.findOne({ _id: req.body.npcInfo.npc_id });
-    // if (!npcToUpdate) {
-    //     res.status(400).json('NPC Not Found');
-    // }
-    // const user = await User.findById(req.user.id);
-    // // check to find user
-    // if (!user) {
-    //     res.status(401);
-    //     throw new Error('User not found');
-    // }
-    // npcToUpdate.npc_name = req.body.npcInfo.npc_name;
-    // npcToUpdate.npc_species = req.body.npcInfo.species;
-    // npcToUpdate.npc_age = req.body.npcInfo.age;
-    // npcToUpdate.npc_gender = req.body.npcInfo.gender;
-    // npcToUpdate.npc_occupation = req.body.npcInfo.occupation;
-    // npcToUpdate.npc_personality = req.body.npcInfo.personality;
-    // npcToUpdate.npc_flaws = req.body.npcInfo.flaws;
-    // npcToUpdate.npc_location = req.body.npcInfo.location;
-    // await npcToUpdate.save();
 
     res.send(sendBackNPC);
 });
 
 // @desc Delete npc
-// @route DELETE /api/npcs/:id
+// @route DELETE /api/npcs
 const deleteNpc = asyncHandler(async (req, res) => {
     const willDelete = await NPC.deleteOne({ _id: req.query.npcToDelete });
     res.send(willDelete);
