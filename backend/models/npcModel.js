@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const npcSchema = mongoose.Schema({
     npc_name: {
         type: String,
-        // required: [true],
     },
     npc_species: {
         type: String,

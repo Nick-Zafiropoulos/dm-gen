@@ -43,6 +43,7 @@ function Navbar() {
         navigate('/');
     };
 
+    // Element Visibility Logic
     let CampaignCreateVisibility;
     if (document.URL.includes('campaigns') || document.URL.includes('join')) {
         CampaignCreateVisibility = (
@@ -157,41 +158,12 @@ function Navbar() {
                                 <img style={styles.dmgentext} className='' src={dmgenlogoblack} />
                             </Link>
 
-                            {/* <Box sx={{ ml: 3, mb: 1 }}>
-                                <span style={{ fontSize: '30px' }} className='navbar-brand'>
-                                    |
-                                </span>
-                            </Box> */}
-
                             <Box sx={{ ml: 3 }}>
                                 <span className='navbar-brand'>{user.user_name}'s Dashboard</span>
                             </Box>
-                            {/* <IconContext.Provider
-                                value={{ color: 'black', className: 'global-class-name', size: '35px' }}
-                            >
-                                <MdNavigateNext />
-                            </IconContext.Provider> */}
 
-                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                                {/* {MyCampaigns}
-                                {ShopCreateVisibility}
-                                {NPCCreateVisibility}
-                                {CampaignCreateVisibility}
-                                {CampaignJoinVisibility}
-                                {ToCampaignVisibility} */}
-                            </ul>
+                            <ul className='navbar-nav me-auto mb-2 mb-lg-0'></ul>
 
-                            {/* <button
-                                className='navbar-toggler'
-                                type='button'
-                                data-bs-toggle='collapse'
-                                data-bs-target='#navbarText'
-                                aria-controls='navbarText'
-                                aria-expanded='false'
-                                aria-label='Toggle navigation'
-                            >
-                                <span className='navbar-toggler-icon'></span>
-                            </button> */}
                             <button
                                 className='navbar-toggler'
                                 type='button'

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem } from '../features/shops/shopSlice';
 import { reset as shopReset, setShop } from '../features/shops/shopSlice';
@@ -36,16 +35,6 @@ const ShopList = ({ item }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    // const [revisedShop, setRevisedShop] = useState({
-    //     shop_name: shopInUse.shop_name,
-    //     shop_owner: shopInUse.shop_owner,
-    //     shop_location: shopInUse.shop_location,
-    //     shop_campaign: shopInUse.shop_campaign,
-    //     shop_list: shopInUse.shop_list,
-    //     shop_hidden_list: shopInUse.shop_hidden_list,
-    //     shop_name: shopInUse.shop_name,
-    //     _id: shopInUse._id,
-    // });
 
     const clickRemoveItem = (e) => {
         e.preventDefault();
@@ -163,26 +152,8 @@ const ShopList = ({ item }) => {
                 </Box>
 
                 {removeItemVisibility}
-                {/* <Button onClick={clickRemoveItem} type='button' variant='contained' color='secondary'>
-                    Remove Item
-                </Button> */}
             </AccordionDetails>
         </Accordion>
-
-        // <Accordion>
-        //     <Accordion.Item eventKey='0'>
-        //         <Accordion.Header></Accordion.Header>
-        //         <Accordion.Body>
-        //             <div className='col'>
-
-        //             </div>
-
-        //             <div>
-
-        //             </div>
-        //         </Accordion.Body>
-        //     </Accordion.Item>
-        // </Accordion>
     );
 };
 

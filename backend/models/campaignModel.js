@@ -14,7 +14,6 @@ const campaignSchema = mongoose.Schema({
     },
     campaign_link: {
         type: String,
-        // required: true,
     },
 });
 

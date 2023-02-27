@@ -26,10 +26,6 @@ const NPCFilter = ({ npc }) => {
         navigate('/npc');
     };
 
-    useEffect(() => {
-        // dispatch(getNPC());
-    }, [user, navigate, isError, message, dispatch]);
-
     return (
         <Accordion sx={{ boxShadow: 10, width: { xs: '100%', lg: '100%' } }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
@@ -73,33 +69,6 @@ const NPCFilter = ({ npc }) => {
                 </Typography>
             </AccordionDetails>
         </Accordion>
-
-        // <Accordion className='mt-2 mb-2'>
-        //     <Accordion.Item eventKey='0'>
-        //         <Accordion.Header>{npc.npc_name}</Accordion.Header>
-        //         <Accordion.Body>
-        //             <form onSubmit={onSubmit}>
-        //                 <div
-        //                     id='collapseOne'
-        //                     className='accordion-collapse collapse show'
-        //                     aria-labelledby='headingOne'
-        //                     data-bs-parent='#accordionExample'
-        //                 >
-        //                     <div className='accordion-body'>
-        //                         <div>
-        //                             <button type='submit' className='btn btn-primary'>
-        //                                 Go To NPC
-        //                             </button>
-        //                         </div>
-        //                         <p>Species: {npc.npc_species}</p>
-        //                         <p>Gender: {npc.npc_gender}</p>
-        //                         <p>Occupation: {npc.npc_occupation}</p>
-        //                     </div>
-        //                 </div>
-        //             </form>
-        //         </Accordion.Body>
-        //     </Accordion.Item>
-        // </Accordion>
     );
 };
 

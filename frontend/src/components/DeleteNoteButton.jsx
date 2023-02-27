@@ -27,23 +27,8 @@ const DeleteNoteButton = ({ note }) => {
 
         noteDeleteForRedux.splice(deletedNoteIndex, 1);
 
-        const newNPCInfo = {
-            npc_name: npcInUse.npc_name,
-            npc_species: npcInUse.npc_species,
-            npc_age: npcInUse.npc_age,
-            npc_gender: npcInUse.npc_gender,
-            npc_location: npcInUse.npc_location,
-            npc_occupation: npcInUse.npc_occupation,
-            npc_personality: npcInUse.npc_personality,
-            npc_flaws: npcInUse.npc_flaws,
-            _id: npcInUse._id,
-            npc_campaign: npcInUse.npc_campaign,
-            npc_notes: noteDeleteForRedux,
-        };
-
         await dispatch(npcDeleteNote(noteToDeleteData));
 
-        // dispatch(setNPC(newNPCInfo));
         getCurrentNpc();
         dispatch(getNPC());
 

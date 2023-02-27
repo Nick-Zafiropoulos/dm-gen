@@ -1,5 +1,4 @@
 import React from 'react';
-// import Accordion from 'react-bootstrap/Accordion';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -25,10 +24,6 @@ const FilterResults = ({ shop }) => {
         await dispatch(setShop(currentShop));
         navigate('/shop');
     };
-
-    useEffect(() => {
-        // dispatch(getShop());
-    }, [user, navigate, isError, message, dispatch]);
 
     return (
         <Accordion sx={{ boxShadow: 10, width: { xs: '100%', lg: '100%' } }}>

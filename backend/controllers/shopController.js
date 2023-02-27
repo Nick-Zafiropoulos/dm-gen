@@ -44,7 +44,6 @@ const postShop = asyncHandler(async (req, res) => {
 
     while (i < itemQuantity) {
         // pick random item
-
         let randomNumber = Math.floor(Math.random() * itemArray.length);
         let randomItem = itemArray[randomNumber];
 
@@ -125,26 +124,11 @@ const removeItem = asyncHandler(async (req, res) => {
     shop.shop_list.splice(itemObjectIndex, 1);
     const newList = shop.shop_list;
 
-    // if (!shop) {
-    //     res.status(400).json('Shop Not Found');
-    // }
-
-    // const user = await User.findById(req.user.id);
-
-    // // check to find user at all
-    // if (!user) {
-    //     res.status(401);
-    //     throw new Error('User not found');
-    // }
-
-    // console.log(newList);
-    console.log(req.body.removedItemIdAndShop.shopId);
-
     const willRemoveItem = await Shop.updateOne(
         { _id: req.body.removedItemIdAndShop.shopId.toString() },
         { $set: { shop_list: newList } }
     );
-    console.log(shop);
+
     res.send(shop);
 });
 
@@ -168,7 +152,7 @@ const addItem = asyncHandler(async (req, res) => {
 });
 
 // @desc Delete shop
-// @route DELETE /api/shops/:id
+// @route DELETE /api/shops
 const deleteShop = asyncHandler(async (req, res) => {
     const willDelete = await Shop.deleteOne({ _id: req.query.shopToDelete });
     res.send(willDelete);

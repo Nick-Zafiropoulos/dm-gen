@@ -20,17 +20,14 @@ import IconButton from '@mui/material/IconButton';
 const styles = {
     backgroundCanvas: {
         backgroundImage: `url(${blankCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     backgroundSolid: {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
 };
@@ -191,7 +188,6 @@ const JoinCampaign = () => {
                     </Card>
                 </Box>
             </Box>
-            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 };

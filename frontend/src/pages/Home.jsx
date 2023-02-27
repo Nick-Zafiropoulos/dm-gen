@@ -1,8 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-
 import Navbar from '../components/Navbar';
-
 import { Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { Box, Typography } from '@mui/material';
@@ -15,21 +13,17 @@ import { useNavigate } from 'react-router-dom';
 const styles = {
     backgroundContainer: {
         backgroundImage: `url(${diceCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     backgroundSolid: {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     dmgentext: {
-        // width: '100%',
         height: 'auto',
         minWidth: '15em',
         maxWidth: '500px',
@@ -48,7 +42,6 @@ function Home() {
         <>
             <Box style={styles.backgroundContainer}>
                 <Box>
-                    {/* <Navbar /> */}
                     <Navbar />
                     <Box
                         sx={{
@@ -125,21 +118,8 @@ function Home() {
                             See How It Works
                         </Button>
                     </Box>
-
-                    {/* <div className='col'>
-                        {user ? (
-                            <Button component={Link} to='/campaigns' variant='contained'>
-                                My Campaigns
-                            </Button>
-                        ) : (
-                            <Button component={Link} to='/login' variant='contained'>
-                                Login
-                            </Button>
-                        )}
-                    </div> */}
                 </Box>
             </Box>
-            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 }

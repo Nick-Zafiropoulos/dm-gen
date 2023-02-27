@@ -19,17 +19,14 @@ import Modal from '@mui/material/Modal';
 const styles = {
     backgroundCanvas: {
         backgroundImage: `url(${blankCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     backgroundSolid: {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
 };
@@ -213,6 +210,7 @@ const NPC = () => {
         navigate('/npc');
     };
 
+    // Element Visibility Logic
     let deleteVisibility;
     if (user._id == campaignInUse.dungeon_master[0]) {
         deleteVisibility = (
@@ -556,7 +554,6 @@ const NPC = () => {
                                                 inputRef={textInput}
                                                 id='standard-basic'
                                                 name='npcNewNote'
-                                                // value={npcNewNote}
                                                 label='Enter a new note'
                                                 variant='standard'
                                                 type='text'
@@ -605,7 +602,6 @@ const NPC = () => {
                     </Card>
                 </Box>
             </Box>
-            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 };

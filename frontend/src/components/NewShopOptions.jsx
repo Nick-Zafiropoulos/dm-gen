@@ -7,7 +7,6 @@ import { createShop, reset } from '../features/shops/shopSlice';
 import Spinner from '../components/Spinner';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -53,19 +52,15 @@ function NewShopOptions() {
         '^',
         '&',
         '*',
-
         '+',
         '=',
-
         '[',
         ']',
         '{',
         '}',
         ';',
         ':',
-
         '_',
-
         '<',
         '>',
     ];
@@ -232,7 +227,6 @@ function NewShopOptions() {
         }
 
         // populate selected rarities array
-
         if (rarities.uncommon) {
             rarityArray.push('Uncommon');
         }
@@ -265,7 +259,6 @@ function NewShopOptions() {
         categories.current.staff = false;
 
         // reset rarities
-
         rarities.current.uncommon = false;
         rarities.current.rare = false;
         rarities.current.veryRare = false;
@@ -303,14 +296,6 @@ function NewShopOptions() {
             navigate('/campaign');
         }
     };
-
-    // if (rarityError == true) {
-
-    //     console.log('hello');
-    // } else {
-    //     // rarityErrorVisibility = <span></span>;
-    //     console.log('i shouldnt see this');
-    // }
 
     if (isLoading) {
         return <Spinner />;

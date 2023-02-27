@@ -23,17 +23,14 @@ import Modal from '@mui/material/Modal';
 const styles = {
     backgroundCanvas: {
         backgroundImage: `url(${blankCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     backgroundSolid: {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
         minHeight: '1200px',
     },
@@ -239,9 +236,7 @@ const Shop = () => {
     const shopDelete = (e) => {
         e.preventDefault();
         const shopToDelete = shopInUse._id;
-        console.log(shopToDelete);
         dispatch(deleteShop(shopToDelete));
-
         navigate('/campaign');
     };
 
@@ -291,7 +286,6 @@ const Shop = () => {
             _id: shopInUse._id,
         };
 
-        console.log(itemDescArray);
         await dispatch(addItem(newItemAndShop));
 
         await dispatch(setShop(shopReduxUpdate));
@@ -519,25 +513,6 @@ const Shop = () => {
                                 value={new_item_description}
                                 onChange={onChange}
                             />
-                            {/* <FormGroup sx={{ mt: 3, color: 'white' }}>
-                                <FormControlLabel
-                                    control={
-                                        <Switch
-                                            color='secondary'
-                                            size='small'
-                                            onChange={() => {
-                                                if (!editNewItemCursed) {
-                                                    editNewItemCursed = true;
-                                                } else {
-                                                    editNewItemCursed = false;
-                                                }
-                                            }}
-                                        />
-                                    }
-                                    label='Cursed?'
-                                />
-                            </FormGroup> */}
-
                             <Box sx={{ mt: 3, mb: 3 }}>
                                 <Button type='submit' variant='contained' color='secondary'>
                                     Save
@@ -648,13 +623,8 @@ const Shop = () => {
                 <Box sx={{ ml: 5, mt: 3 }}>{addItemVisibility}</Box>
                 <Box sx={{ ml: 3, mt: 3 }}>{editNewItem}</Box>
             </Box>
-            {/* <Box style={styles.backgroundSolid}></Box> */}
         </Box>
     );
 };
 
 export default Shop;
-
-// Need to do:
-// - set a state key:value for shopInUse when clicking on the shop in the campain dashboard
-// - take shopInUse and GET item values, name, owner, and location from shopInUse Object to display on Shop/ShopList components

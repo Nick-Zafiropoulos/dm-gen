@@ -163,19 +163,6 @@ export const npcSlice = createSlice({
                 state.isError = true;
                 state.npcInUse = action.payload;
             });
-        // .addCase(updateNPC.pending, (state) => {
-        //     state.isLoading = true;
-        // })
-        // .addCase(updateNPC.fulfilled, (state, action) => {
-        //     state.isSuccess = true;
-        //     state.isLoading = false;
-        //     state.npcInUse = action.payload;
-        // })
-        // .addCase(updateNPC.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
     },
 });
 

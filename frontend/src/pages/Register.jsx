@@ -1,4 +1,3 @@
-// import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,17 +13,14 @@ import { motion } from 'framer-motion';
 const styles = {
     backgroundContainer: {
         backgroundImage: `url(${diceCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     backgroundSolid: {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
 };
@@ -417,85 +413,8 @@ const Register = () => {
                         </Button>
                     </Box>
                 </Box>
-            </Box>{' '}
-            {/* <Box style={styles.backgroundSolid}></Box> */}
+            </Box>
         </>
-
-        // <>
-        //     <section className=''>
-        //         <h1>Register</h1>
-        //     </section>
-
-        //     <section className='form'>
-        //         <form onSubmit={onSubmit}>
-        //             <div className='form-group'>
-        //                 <input
-        //                     type='text'
-        //                     className='form-control'
-        //                     id='user_name'
-        //                     name='user_name'
-        //                     value={user_name}
-        //                     placeholder='Enter a username'
-        //                     onChange={onChange}
-        //                 />
-        //             </div>
-
-        //             <div className='form-group'>
-        //                 <input
-        //                     type='email'
-        //                     className='form-control'
-        //                     id='user_email'
-        //                     name='user_email'
-        //                     value={user_email}
-        //                     placeholder='Enter an email'
-        //                     onChange={onChange}
-        //                 />
-        //             </div>
-
-        //             <div className='form-group'>
-        //                 <input
-        //                     type='password'
-        //                     className='form-control'
-        //                     id='user_password'
-        //                     name='user_password'
-        //                     value={user_password}
-        //                     placeholder='Enter a password'
-        //                     onChange={onChange}
-        //                 />
-        //             </div>
-
-        //             <div className='form-group'>
-        //                 <input
-        //                     type='password'
-        //                     className='form-control'
-        //                     id='user_password2'
-        //                     name='user_password2'
-        //                     value={user_password2}
-        //                     placeholder='Re-enter your password'
-        //                     onChange={onChange}
-        //                 />
-        //             </div>
-
-        //             <div className='form-group'>
-        //                 <button type='submit' className='btn btn-primary'>
-        //                     Submit
-        //                 </button>
-        //             </div>
-        //         </form>
-        //     </section>
-
-        //     <div>
-        //         <p>Already have an account?</p>
-
-        //         <Link to='/login' className='btn btn-primary'>
-        //             Login
-        //         </Link>
-        //     </div>
-
-        //     <Link to='/' className='btn btn-primary'>
-        //         Home
-        //     </Link>
-        // </>
     );
 };
 

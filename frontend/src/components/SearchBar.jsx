@@ -63,16 +63,6 @@ const SearchBar = ({ callback, searchType }) => {
                 value={innerValue}
                 onChange={(e) => setInnerValue(e.target.value)}
             />
-            {/* <span class='input-group-text' id='basic-addon1'>
-                Search
-            </span>
-            <input
-                type='text'
-                className='searchBarInput form-control'
-                placeholder={`Enter text to search for a ${searchType} name`}
-                value={innerValue}
-                onChange={(e) => setInnerValue(e.target.value)}
-            /> */}
         </form>
     );
 };

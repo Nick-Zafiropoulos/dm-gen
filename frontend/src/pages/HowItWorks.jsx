@@ -8,11 +8,12 @@ import howItWorksTitle from '../images/dmgenhowitworkstitle.png';
 import Navbar from '../components/Navbar';
 import { MdDoubleArrow } from 'react-icons/md';
 import { IconContext } from 'react-icons';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const styles = {
     backgroundCanvas: {
         backgroundImage: `url(${backgroundBlur})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
     },
@@ -20,7 +21,6 @@ const styles = {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     dmgentext: {
@@ -36,6 +36,12 @@ const styles = {
 };
 
 const HowItWorks = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [navigate]);
+
     return (
         <Box style={styles.backgroundCanvas}>
             <Navbar />
@@ -223,7 +229,9 @@ const HowItWorks = () => {
                             }}
                         >
                             Create and manage shops with randomly generated wares based on the criteria you choose.
+                            Items are sourced from a 5th Edition D&D API.
                         </Typography>
+
                         <Typography
                             sx={{
                                 mt: { xs: 1, lg: 10 },
@@ -233,7 +241,7 @@ const HowItWorks = () => {
                                 maxWidth: '20em',
                             }}
                         >
-                            Items are sourced from a 5th Edition D&D API.
+                            You can also create empty shops and fill them with custom items, completely system agnostic.
                         </Typography>
                     </Box>
                 </Box>
@@ -401,7 +409,7 @@ const HowItWorks = () => {
                             thoughts with each other during the game and refer back to them when needed.
                         </Typography>
                     </Box>
-                </Box>{' '}
+                </Box>
                 <Box
                     component={motion.div}
                     transition={{
@@ -414,9 +422,8 @@ const HowItWorks = () => {
                     }}
                     initial={{ opacity: 0, y: 300 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    sx={{ p: { xs: 0, lg: 10 } }}
                     viewport={{ once: true }}
-                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', p: { xs: 0, lg: 10 } }}
                 >
                     <Typography
                         sx={{
@@ -435,7 +442,7 @@ const HowItWorks = () => {
                     <Box
                         component={motion.div}
                         initial={{ x: 0 }}
-                        animate={{ x: [0, 20, 0] }}
+                        animate={{ x: [0, 15, 0] }}
                         transition={{ duration: 3, repeat: Infinity }}
                     >
                         <IconContext.Provider
@@ -462,11 +469,3 @@ const HowItWorks = () => {
 };
 
 export default HowItWorks;
-
-// description of what DM Gen is
-// what you can do
-// - create campaigns and invite your players to them
-// - generate new shops based on your needs or add your own custom items
-// - generate new NPCs with randomized traits or fill in the ones you already know
-// - add, view, and search through all shops and NPCs related to a specific campaign
-// - players can write notes about any NPC in the campaign

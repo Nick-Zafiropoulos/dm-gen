@@ -24,6 +24,3 @@ const shopSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Shop', shopSchema);
-
-// shop_list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
-//     shop_hidden_list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],

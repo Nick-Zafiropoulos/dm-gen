@@ -90,4 +90,3 @@ const shopService = {
 };
 
 export default shopService;
-// , { params: { currentCampaign } }

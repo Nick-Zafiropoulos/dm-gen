@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
+const { db } = require('./models/campaignModel');
 
 connectDB();
 
@@ -12,10 +13,6 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-// For whitelisting react app port
-
-const { db } = require('./models/campaignModel');
 
 app.use('/api/campaigns', require('./routes/campaignRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));

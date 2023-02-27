@@ -12,17 +12,14 @@ import { motion } from 'framer-motion';
 const styles = {
     backgroundCanvas: {
         backgroundImage: `url(${blankCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     backgroundSolid: {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
         minHeight: '1200px',
     },
@@ -37,19 +34,7 @@ function Campaigns() {
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        // if (isError) {
-        //     console.log(message);
-        // }
-
-        // if (!user) {
-        //     navigate('/login');
-        // }
-
         dispatch(getCampaign());
-
-        // return () => {
-        //     dispatch(reset());
-        // };
     }, [user, navigate, isError, message, dispatch]);
 
     let CampaignCreateButton;
@@ -94,7 +79,7 @@ function Campaigns() {
                             <div className='campaigns'>
                                 {campaigns.map((campaign) => (
                                     <CampaignItem key={campaign._id} campaign={campaign} />
-                                ))}{' '}
+                                ))}
                             </div>
                         ) : (
                             <Typography sx={{ color: 'white' }}>

@@ -21,7 +21,6 @@ import { motion } from 'framer-motion';
 const styles = {
     backgroundCanvas: {
         backgroundImage: `url(${blankCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
 
@@ -75,7 +74,6 @@ const Campaign = () => {
         combinedArray = Array.from(set);
 
         return combinedArray;
-        // return shops.filter((result) => result.shop_name.toLowerCase().includes(searchValue.toLowerCase()));
     };
 
     const [results, setResults] = useState(shops);
@@ -108,8 +106,6 @@ const Campaign = () => {
         npcCombinedArray = Array.from(npcSet);
 
         return npcCombinedArray;
-
-        // return npcs.filter((result) => result.npc_name.toLowerCase().includes(NPCsearchValue.toLowerCase()));
     };
 
     const [NPCresults, setNPCResults] = useState(npcs);
@@ -124,6 +120,7 @@ const Campaign = () => {
         setNPCResults(npcs);
     }, [npcSuccess]);
 
+    // Element Visibility Logic
     let ShopCreateVisibility;
     if (
         document.URL.includes('campaign') &&
@@ -179,40 +176,6 @@ const Campaign = () => {
     }
 
     return (
-        // <div className='pageBody'>
-        //     <Navbar />
-
-        //     <div className='row'>
-        //         <div className='col'>
-        //             <SearchBar callback={(searchValue) => setSearchValue(searchValue)} searchType='shop' />
-        //         </div>
-        //         <div className='col'>
-        //             {results.length >= 0 ? (
-        //                 <div className='campaigns'>
-        //                     {results.map((shop) => (
-        //                         <FilterResults key={results._id} shop={shop} />
-        //                     ))}{' '}
-        //                 </div>
-        //             ) : (
-        //                 <p>You do not have any shops yet!</p>
-        //             )}
-        //         </div>
-
-        //         <div className='col'>
-        //             <SearchBar callback={(NPCsearchValue) => setNPCSearchValue(NPCsearchValue)} searchType='NPC' />
-
-        //             {NPCresults.length >= 0 ? (
-        //                 <div className='campaigns'>
-        //                     {NPCresults.map((npc) => (
-        //                         <NPCFilter key={NPCresults._id} npc={npc} />
-        //                     ))}{' '}
-        //                 </div>
-        //             ) : (
-        //                 <p>You do not have any NPCs yet!</p>
-        //             )}
-        //         </div>
-        //     </div>
-        // </div>
         <>
             <Box style={styles.backgroundCanvas}>
                 <Navbar position='sticky' />
@@ -267,7 +230,7 @@ const Campaign = () => {
                                     <div className='campaigns'>
                                         {results.map((shop) => (
                                             <FilterResults key={results._id} shop={shop} />
-                                        ))}{' '}
+                                        ))}
                                     </div>
                                 ) : (
                                     <p>You do not have any shops yet!</p>
@@ -295,7 +258,7 @@ const Campaign = () => {
                                     <div className='campaigns'>
                                         {NPCresults.map((npc) => (
                                             <NPCFilter key={NPCresults._id} npc={npc} />
-                                        ))}{' '}
+                                        ))}
                                     </div>
                                 ) : (
                                     <p>You do not have any NPCs yet!</p>
@@ -306,7 +269,6 @@ const Campaign = () => {
                     </Box>
                 </Box>
             </Box>
-            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 };

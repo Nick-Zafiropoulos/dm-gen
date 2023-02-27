@@ -1,10 +1,8 @@
 import { React, useState } from 'react';
-// import Accordion from 'react-bootstrap/Accordion';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setCampaign, reset, leaveCampaign, deleteCampaign, getCampaign } from '../features/campaigns/campaignSlice';
-
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -64,9 +62,9 @@ const CampaignItem = ({ campaign }) => {
         navigate('/campaigns');
     };
 
+    // Element Visibility Logic
     let campaignLinkVisibility;
-    console.log(campaign.dungeon_master);
-    console.log(user._id);
+
     if (user._id == campaign.dungeon_master[0]) {
         campaignLinkVisibility = (
             <Box sx={{ mb: 2 }}>
@@ -112,10 +110,6 @@ const CampaignItem = ({ campaign }) => {
                     </Box>
                 </Modal>
             </Box>
-
-            // <Button onClick={clickLeaveCampaign} type='button' variant='text' sx={{ color: 'white', ml: 5 }}>
-            //     Leave Campaign
-            // </Button>
         );
     }
 
@@ -151,10 +145,6 @@ const CampaignItem = ({ campaign }) => {
                     </Box>
                 </Modal>
             </Box>
-
-            // <Button onClick={clickDeleteCampaign} type='submit' variant='text' sx={{ color: 'white', ml: 5 }}>
-            //     Delete Campaign
-            // </Button>
         );
     } else {
         campaignDeleteVisibility = <span></span>;
@@ -181,7 +171,6 @@ const CampaignItem = ({ campaign }) => {
                                     Enter Campaign
                                 </Button>
                                 {leaveLinkVisibility}
-
                                 {campaignDeleteVisibility}
                             </Box>
                         </div>
@@ -189,25 +178,6 @@ const CampaignItem = ({ campaign }) => {
                 </Typography>
             </AccordionDetails>
         </Accordion>
-
-        // <Accordion>
-        //     <Accordion.Item eventKey='0'>
-        //         <Accordion.Header>{campaign.campaign_name}</Accordion.Header>
-        //         <Accordion.Body>
-        //             <form onSubmit={onSubmit}>
-        //                 <div>
-        //                     <button type='submit' className='btn btn-primary'>
-        //                         Go To Campaign
-        //                     </button>
-        //                 </div>
-        //                 <div>{campaign.campaign_description}</div>
-        //                 {campaignLinkVisibility}
-        //                 {leaveLinkVisibility}
-        //                 {campaignDeleteVisibility}
-        //             </form>
-        //         </Accordion.Body>
-        //     </Accordion.Item>
-        // </Accordion>
     );
 };
 

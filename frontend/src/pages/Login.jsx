@@ -14,17 +14,14 @@ import Spinner from '../components/Spinner';
 const styles = {
     backgroundContainer: {
         backgroundImage: `url(${diceCanvas})`,
-        // backgroundColor: 'lightgray',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     backgroundSolid: {
         backgroundColor: '#030418',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
-
         height: '100vw',
     },
     button: {
@@ -177,8 +174,6 @@ const Login = () => {
         <>
             <Box style={styles.backgroundContainer}>
                 <Navbar />
-                {/* <motion.div initial='hidden' animate='visible' variants={variants} /> */}
-
                 <Box>
                     <Box
                         sx={{
@@ -262,8 +257,6 @@ const Login = () => {
                                             color: '#FFF',
                                             backgroundColor: '#785C4D',
                                         }}
-                                        // color='secondary'
-                                        // style={styles.button}
                                     >
                                         Login
                                     </Button>
@@ -296,7 +289,6 @@ const Login = () => {
                     </Box>
                 </Box>
             </Box>
-            {/* <Box style={styles.backgroundSolid}></Box> */}
         </>
     );
 };
