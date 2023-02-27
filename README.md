@@ -31,6 +31,6 @@ DM Gen was built with the following tools:
 
 
 **Backend:** Node.js, express, MongoDB, Mongoose <br>
-**Frontend:** React, Redux, HTML, CSS
+**Frontend:** React, Redux, HTML, CSS <br>
 **Other Tools**: JWT, bcrypt, Jest, Supertest, Axios
 
