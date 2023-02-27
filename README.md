@@ -25,10 +25,12 @@ DM Gen was built with the following tools:
 ![mongodb](https://user-images.githubusercontent.com/102330367/221290905-4681b961-a6bb-4418-aa0a-d9e99da9659a.svg)
 ![react-dark](https://user-images.githubusercontent.com/102330367/221290916-6d91e457-3086-4a56-b161-d83c7d2536c3.svg)
 ![redux](https://user-images.githubusercontent.com/102330367/221290923-061d34f5-c4c9-4759-a64c-fc5d947fdef2.svg)
+![jest](https://user-images.githubusercontent.com/102330367/221700190-462fb717-090c-454e-a596-e9e5b81796b9.svg)
 ![html](https://user-images.githubusercontent.com/102330367/221290935-b9645ebc-4c1c-4975-bff7-81e677190082.svg)
 ![css](https://user-images.githubusercontent.com/102330367/221290945-3a601c4f-4008-4954-b0e5-d282f02f201f.svg)
 
 
-**Backend:** Node.js, express, MongoDB <br>
+**Backend:** Node.js, express, MongoDB, Mongoose <br>
 **Frontend:** React, Redux, HTML, CSS
+**Other Tools**: JWT, bcrypt, Jest, Supertest, Axios
 
