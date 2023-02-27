@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createCampaign, reset } from '../features/campaigns/campaignSlice';
+import { createCampaign, getCampaign, reset } from '../features/campaigns/campaignSlice';
 import Spinner from '../components/Spinner';
 import { Box, shadows, Typography, Button } from '@mui/material';
 import { TextField } from '@mui/material';
@@ -106,14 +106,16 @@ function NewCampaignOptions() {
         }));
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         const campaignData = {
             campaign_name,
             campaign_description,
         };
-        dispatch(createCampaign({ campaignData }));
+        await dispatch(createCampaign({ campaignData }));
+
+        await dispatch(getCampaign());
 
         navigate('/campaigns');
     };

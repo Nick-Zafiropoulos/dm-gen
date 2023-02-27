@@ -158,11 +158,12 @@ const NPC = () => {
         navigate('/npc');
     };
 
-    const npcDelete = (e) => {
+    const npcDelete = async (e) => {
         e.preventDefault();
         const npcToDelete = npcInUse._id;
 
         dispatch(deleteNPC(npcToDelete));
+        await dispatch(getNPC());
         navigate('/campaign');
     };
 

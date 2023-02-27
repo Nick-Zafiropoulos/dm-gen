@@ -95,7 +95,6 @@ const leaveCampaign = asyncHandler(async (req, res) => {
 // @route DELETE /api/campaigns
 const deleteCampaign = asyncHandler(async (req, res) => {
     const campaign = await Campaign.findById(req.query.campaignId);
-    console.log(campaign._id.toString());
 
     if (!campaign) {
         res.status(400).json('Campaign Not Found');

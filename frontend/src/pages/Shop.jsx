@@ -233,10 +233,11 @@ const Shop = () => {
         }));
     };
 
-    const shopDelete = (e) => {
+    const shopDelete = async (e) => {
         e.preventDefault();
         const shopToDelete = shopInUse._id;
         dispatch(deleteShop(shopToDelete));
+        await dispatch(getShop());
         navigate('/campaign');
     };
 
