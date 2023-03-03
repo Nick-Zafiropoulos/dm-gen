@@ -173,8 +173,8 @@ const HowItWorks = () => {
                                 maxWidth: '20em',
                             }}
                         >
-                            Generate fully random NPCs with a single button press, or fill in the blanks that you have
-                            specifics for and let DM Gen create the rest.
+                            Generate fully random NPCs with the press of a button, or fill in the blanks that you have
+                            specifics for and let DM Gen create the rest!
                         </Typography>
                     </Box>
                 </Box>
