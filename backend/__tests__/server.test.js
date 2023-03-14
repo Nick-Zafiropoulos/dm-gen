@@ -43,3 +43,16 @@ describe('users', () => {
         });
     });
 });
+
+describe('campaigns', () => {
+    describe('POST to create a new campaign', () => {
+        describe('given that the user does not pass authentication credentials to backend when trying to create a campaign', () => {
+            it('should return 401', async () => {
+                const response = await request(server).post('/api/campaigns/').send({
+                    campaign_name: 'test campaign',
+                });
+                expect(response.statusCode).toBe(401);
+            });
+        });
+    });
+});
