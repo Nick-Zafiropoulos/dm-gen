@@ -139,7 +139,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 300 }}
+                        initial={{ opacity: 0, y: 100 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         src='https://i.imgur.com/hAPVHkq.gif'
@@ -155,7 +155,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 300 }}
+                        initial={{ opacity: 0, y: 100 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         sx={{
                             p: { xs: 3, lg: 10 },
@@ -197,7 +197,7 @@ const HowItWorks = () => {
                                 duration: 1,
                             },
                         }}
-                        initial={{ opacity: 0, y: 300 }}
+                        initial={{ opacity: 0, y: 200 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         src='https://i.imgur.com/SNnM6UY.gif'
